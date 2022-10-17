@@ -1,10 +1,9 @@
 import React from "react"
-import ReactDOM from "react-dom/client";
 import './App.css';
 //Already installed bootstrap through the terminal so no need to do it again
 import "bootstrap/dist/css/bootstrap.min.css";
 //Already installed react-router-dom through the terminal so no need to do it again
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 //import {BrowserRouter as Route, Router, Routes, Link} from "react-router-dom";
 
 //importing our page components
@@ -18,24 +17,17 @@ import SignUp from "./components/signUpPage.component";
 function App() {
   return (
 
-   /* 
-   routes not working rn
-   <BrowserRouter>
-      <Routes>
-
-
-        <Route path="/" element={<Journal />}>
-          <Route index element={<Journal />} />
-          <Route path="blogs" element={<WeeklyView />} />
-          <Route path="contact" element={<ArchivePage />} />
-
-        </Route>
-
-
-      </Routes>
-    </BrowserRouter>
+   /*<Router>
+      <Navbar />
+      <br/>
+      <Route path="/" exact component={Journal} />
+      <Route path="/weeklyView" component={WeeklyView} />
+      <Route path="/archivePage" component={ArchivePage} />
+      <Route path="/signIn" exact component={SignIn} />
+      <Route path="/signUp" exact component={SignUp} />
+    </Router>*/
     
-    Will eventually figure out how to route these*/
+    /*Will eventually figure out how to route these*/
     <div>
     <Journal />
     <WeeklyView />

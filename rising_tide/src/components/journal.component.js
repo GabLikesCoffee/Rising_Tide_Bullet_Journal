@@ -1,3 +1,5 @@
+//JOURNAL PAGE
+
 import React, { Component } from 'react';
 
 export default class Journal extends Component {

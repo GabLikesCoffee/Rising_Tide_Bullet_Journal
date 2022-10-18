@@ -1,4 +1,5 @@
-//import React from 'react';
+//NAVBAR FOR RISING TIDE
+
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from 'react-router-dom';
@@ -11,25 +12,26 @@ export default class Navbar extends Component {
                 <Link to="/" className="navbar-brand">
                     Rising Tide
                 </Link>
-                <div className="collapse navbar-collapse">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="navbar-item">
-                            <Link to="/journal" className="nav-link">
+                            <Link to="/" className="nav-link">
                                 Journal
                             </Link>
-                        </li>
-                        <li className="navbar-item">
+
+
                             <Link to="/weeklyView" className="nav-link">
                                 Weekly View
                             </Link>
-                        </li>
-                        <li className="navbar-item">
+
                             <Link to="/archivePage" className="nav-link">
                                 Archive Page
                             </Link>
-                        </li>
-                    </ul>
-                </div>
+
+                            <Link to="/signInPage" className="nav-link">
+                                Sign In
+                            </Link>
+
+                            <Link to="/signUpPage" className="nav-link">
+                                Sign Up
+                            </Link>
             </nav>
         );
     }

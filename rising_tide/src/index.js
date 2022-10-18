@@ -1,13 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+//import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Navbar from "./components/navbar.component";
+import Journal from "./components/journal.component";
+import WeeklyView from "./components/weeklyView.component";
+import ArchivePage from "./components/archivePage.component";
+import SignIn from "./components/signInPage.component";
+import SignUp from "./components/signUpPage.component";
+import {
+  BrowserRouter, Routes, Route
+} from "react-router-dom";
+
+//Put app above navbar if anything turns out wrong
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+
+    <Navbar />
+    <Routes>
+      <Route path = "/" element={<Journal />}></Route>
+      <Route path = "/weeklyView" element={<WeeklyView />}></Route>
+      <Route path = "/archivePage" element={<ArchivePage />}></Route>
+      <Route path = "/signInPage" element={<SignIn />}></Route>
+      <Route path = "/signUpPage" element={<SignUp />}></Route>
+    </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

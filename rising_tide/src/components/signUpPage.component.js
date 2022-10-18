@@ -10,14 +10,14 @@ export default class SignUp extends Component {
 
     render() {
         return(
-            <div style={{backgroundColor: 'lightblue'}}>
+            <div>
                 <form onSubmit={this.onSubmit}>
                 <p id="signup">Sign Up Here!</p>
                 <input type="textbox" placeholder="Username" required></input>
                 <br/>
                 <input type="password" placeholder="Password" required></input>
                 <br/>
-                <button type="submit">Sign Up</button>
+                <button type="submit" className="btn btn-primary btn-block btn-sm">Sign Up</button>
                 </form>
             </div>
 

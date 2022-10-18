@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Navbar from "./components/navbar.component";
@@ -9,6 +10,7 @@ import WeeklyView from "./components/weeklyView.component";
 import ArchivePage from "./components/archivePage.component";
 import SignIn from "./components/signInPage.component";
 import SignUp from "./components/signUpPage.component";
+import Footer from "./components/footer.component";
 import {
   BrowserRouter, Routes, Route
 } from "react-router-dom";
@@ -21,6 +23,7 @@ root.render(
     <BrowserRouter>
 
     <Navbar />
+    <div className="container" id="container">
     <Routes>
       <Route path = "/" element={<Journal />}></Route>
       <Route path = "/weeklyView" element={<WeeklyView />}></Route>
@@ -28,6 +31,8 @@ root.render(
       <Route path = "/signInPage" element={<SignIn />}></Route>
       <Route path = "/signUpPage" element={<SignUp />}></Route>
     </Routes>
+    </div>
+    <Footer />
     </BrowserRouter>
   </React.StrictMode>
 );

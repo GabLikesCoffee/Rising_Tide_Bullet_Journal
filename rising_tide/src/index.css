@@ -3,6 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+    background-color: #e4f5ff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +11,44 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.navbar {
+  background-color: #d2eaf9;
+}
+button{
+  background-color: lightblue;
+  border-radius: 10px;
+}
+
+input[type=textbox], input[type=password]{
+  margin-bottom: 10px;
+}
+
+/*Middle box*/
+#container{
+  padding-top: 20px;
+  background-color: #e4f5ff;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  height: 600px;
+}
+
+/*The logo in the navbar*/
+.navbar-brand{
+  margin-left: 10px;
+}
+
+/*Sign up to the right of the navbar*/
+#signUpLink{
+  margin-right: 10px;
+}
+
+footer{
+  background-color: lightblue;
+}
+
+/*The true background*/
+#root{
+  background-color: rgb(178, 224, 225);
 }

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from 'react-router-dom';
 
+
 export default class Navbar extends Component {
 
     render() {
@@ -29,7 +30,7 @@ export default class Navbar extends Component {
                                 Sign In
                             </Link>
 
-                            <Link to="/signUpPage" className="nav-link">
+                            <Link id="signUpLink" to="/signUpPage" className="nav-link">
                                 Sign Up
                             </Link>
             </nav>

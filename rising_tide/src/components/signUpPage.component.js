@@ -10,7 +10,7 @@ export default class SignUp extends Component {
 
     render() {
         return(
-            <div>
+            <div className="container" id="containerSignUpOrOut">
                 <form onSubmit={this.onSubmit}>
                 <p id="signup">Sign Up Here!</p>
                 <input type="textbox" placeholder="Username" required></input>

@@ -13,7 +13,7 @@ code {
     monospace;
 }
 .navbar {
-  background-color: #d2eaf9;
+  background-color: #bbe1f8;
 }
 button{
   background-color: lightblue;
@@ -24,6 +24,10 @@ input[type=textbox], input[type=password]{
   margin-bottom: 10px;
 }
 
+input[type=radio], label{
+  vertical-align: middle;
+}
+
 /*Middle box*/
 #container{
   padding-top: 20px;
@@ -31,7 +35,16 @@ input[type=textbox], input[type=password]{
   display: flex;
   flex-flow: column;
   align-items: stretch;
-  height: 700px;
+  
+}
+#containerSignUpOrOut{
+  padding-top: 20px;
+  background-color: #e4f5ff;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  height: 100vh;
+  
 }
 
 /*The logo in the navbar*/
@@ -50,5 +63,48 @@ footer{
 
 /*The true background*/
 #root{
-  background-color: rgb(178, 224, 225);
+  background-color: rgb(181, 231, 226);
+}
+
+table{
+  width: 100%;
+  table-layout: fixed;
+}
+table{
+  border: 1px solid rgb(118, 193, 194);
+}
+
+textarea{
+  resize: none;
+}
+
+textarea{
+  resize: none;
+  display: block;
+  font-size: 16px;
+  line-height: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 70px;
+  height: 300px;
+  width: 70%;
+  border-color: rgb(135, 210, 231);
+  padding: 30px;
+  outline: none;
+  overflow: hidden;
+}
+
+.journalHeader{
+  margin-bottom: 40px;
+}
+
+#journalSubmitBtn{
+  margin: 20px;
+  background-color: rgb(133, 204, 227);
+  border: none;
+}
+
+button{
+  margin: 20px;
 }

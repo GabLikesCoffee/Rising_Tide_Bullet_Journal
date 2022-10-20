@@ -23,7 +23,7 @@ root.render(
     <BrowserRouter>
 
     <Navbar />
-    <div className="container" id="container">
+    
     <Routes>
       <Route path = "/" element={<Journal />}></Route>
       <Route path = "/weeklyView" element={<WeeklyView />}></Route>
@@ -31,7 +31,7 @@ root.render(
       <Route path = "/signInPage" element={<SignIn />}></Route>
       <Route path = "/signUpPage" element={<SignUp />}></Route>
     </Routes>
-    </div>
+
     <Footer />
     </BrowserRouter>
   </React.StrictMode>

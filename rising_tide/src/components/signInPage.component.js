@@ -11,7 +11,7 @@ export default class SignIn extends Component {
     render() {
 
         return(
-            <div>
+            <div className="container" id="containerSignUpOrOut">
                 <form onSubmit={this.onSubmit}>
                 <p id="p">Log in Here!</p>
                 <input type="textbox" placeholder="Username" required></input>

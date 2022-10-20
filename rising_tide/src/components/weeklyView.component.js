@@ -6,7 +6,7 @@ export default class WeeklyView extends Component {
 
     render() {
         return(
-            <div>
+            <div className="container" id="containerSignUpOrOut">
                 <p>
                     weeklyview
                 </p>

@@ -6,7 +6,7 @@ export default class ArchivePage extends Component {
 
     render() {
         return(
-            <div>
+            <div className="container" id="containerSignUpOrOut">
                 <p>
                     archivepage
                 </p>

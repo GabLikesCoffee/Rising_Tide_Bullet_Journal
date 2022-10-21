@@ -4,9 +4,19 @@ import React, { Component } from 'react';
 import seashell from '../Assets/tempShell.PNG'
 
 const countChars = event => {
+    let end = "";
+    if(event.target.value.length === 500)
+    {
+        document.getElementById("charactersLeft").style = "color: red";
+        end = "!";
+    }
+    else{
+        document.getElementById("charactersLeft").style = "color: black";
+        end = "";
+    }
     let val = 500-event.target.value.length;
     let string = " characters left";
-    let fullString = val + string;
+    let fullString = val + string + end;
 
     document.getElementById("charactersLeft").innerHTML = fullString;
 }

@@ -12,14 +12,15 @@ export default class SignIn extends Component {
 
         return(
             <div className="container" id="containerSignUpOrOut">
-                <form onSubmit={this.onSubmit}>
-                <p id="p">Log in Here!</p>
-                <input type="textbox" placeholder="Username" required></input>
-                <br/>
-                <input type="password" placeholder="Password" required></input>
-                <br/>
-                <button type="submit" className="btn btn-primary btn-block btn-sm">Log in</button>
-                </form>
+                <center>
+                    <form onSubmit={this.onSubmit}>
+                    <h2 id="p">Log in Here!</h2>
+                    <br/>
+                    <input type="textbox" className="form-control" placeholder="Username" required></input>
+                    <input type="password" className="form-control" placeholder="Password" required></input>
+                    <button type="submit" className="btn btn-primary btn-block">Log in</button>
+                    </form>
+                </center>
             </div>
         )
     }

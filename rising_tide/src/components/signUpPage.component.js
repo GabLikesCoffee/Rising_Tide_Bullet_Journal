@@ -11,14 +11,17 @@ export default class SignUp extends Component {
     render() {
         return(
             <div className="container" id="containerSignUpOrOut">
-                <form onSubmit={this.onSubmit}>
-                <p id="signup">Sign Up Here!</p>
-                <input type="textbox" placeholder="Username" required></input>
-                <br/>
-                <input type="password" placeholder="Password" required></input>
-                <br/>
-                <button type="submit" className="btn btn-primary btn-block btn-sm">Sign Up</button>
-                </form>
+                <center>
+                    <form onSubmit={this.onSubmit}>
+                        <h2 id="signup">Sign Up Here!</h2>
+                        <br/>
+                        <input type="textbox"  className="form-control" placeholder="Username" required></input>
+
+                        <input type="password"  className="form-control" placeholder="Password" required></input>
+
+                        <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                    </form>
+                </center>
             </div>
 
         )

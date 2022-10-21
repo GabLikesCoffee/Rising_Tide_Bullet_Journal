@@ -25,10 +25,24 @@ button{
 
 input[type=textbox], input[type=password]{
   margin-bottom: 10px;
+  width: 50%
 }
 
 input[type=radio], label{
   vertical-align: middle;
+  margin-top: 10px;
+}
+
+label{
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+#moodTrackingDiv{
+  border-radius: 20px;
+  background-color:#fefcf0;
+  margin: 10px;
+  padding-bottom: 10px;
 }
 
 /*Middle box*/

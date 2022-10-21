@@ -9,30 +9,46 @@ export default class Navbar extends Component {
 
     render() {
         return(
-            <nav className="navbar navbar-light navbar-info">
+            <nav class="navbar navbar-expand-md py-4 navbar-light shadow-sm">
+                <table id="navTable">
+                <tr>
+                <td>
                 <Link to="/" className="navbar-brand">
                     Rising Tide
                 </Link>
-                            <Link to="/" className="nav-link">
-                                Journal
-                            </Link>
+                </td>
 
+                <td>
+                <Link to="/" className="nav-link" id="navJournalButton">
+                    Journal
+                </Link>
+                </td>
 
-                            <Link to="/weeklyView" className="nav-link">
-                                Weekly View
-                            </Link>
+                <td>
+                <Link to="/weeklyView" className="nav-link">
+                    Weekly View
+                </Link>
+                </td>
 
-                            <Link to="/archivePage" className="nav-link">
-                                Archive Page
-                            </Link>
+                <td>
+                <Link to="/archivePage" className="nav-link">
+                    Archive Page
+                </Link>
+                </td>
 
-                            <Link to="/signInPage" className="nav-link">
-                                Sign In
-                            </Link>
+                <td>
+                <Link to="/signInPage" className="nav-link">
+                    Sign In
+                </Link>
+                </td>
 
-                            <Link id="signUpLink" to="/signUpPage" className="nav-link">
-                                Sign Up
-                            </Link>
+                <td>
+                <Link id="signUpLink" to="/signUpPage" className="nav-link">
+                    Sign Up
+                </Link>
+                </td>
+                </tr>
+                </table>
             </nav>
         );
     }

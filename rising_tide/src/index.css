@@ -12,9 +12,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .navbar {
-  background-color: #bbe1f8;
+  background-color: lightblue;
+  
 }
+
 button{
   background-color: lightblue;
   border-radius: 10px;
@@ -31,7 +34,7 @@ input[type=radio], label{
 /*Middle box*/
 #container{
   padding-top: 20px;
-  background-color: #e4f5ff;
+  background-color: #f8f3de;
   display: flex;
   flex-flow: column;
   align-items: stretch;
@@ -39,7 +42,7 @@ input[type=radio], label{
 }
 #containerSignUpOrOut{
   padding-top: 20px;
-  background-color: #e4f5ff;
+  background-color: #f8f3de;
   display: flex;
   flex-flow: column;
   align-items: stretch;
@@ -49,12 +52,7 @@ input[type=radio], label{
 
 /*The logo in the navbar*/
 .navbar-brand{
-  margin-left: 10px;
-}
-
-/*Sign up to the right of the navbar*/
-#signUpLink{
-  margin-right: 10px;
+  margin-left: 40px;
 }
 
 footer{
@@ -63,15 +61,21 @@ footer{
 
 /*The true background*/
 #root{
-  background-color: rgb(181, 231, 226);
+  background-color: #e7c7b4;
+}
+
+#navJournalButton{
+  margin-left: 30px;
 }
 
 table{
   width: 100%;
   table-layout: fixed;
 }
-table{
-  border: 1px solid rgb(118, 193, 194);
+
+#navTable{
+  width: 100%;
+  table-layout: fixed;
 }
 
 textarea{

@@ -4,7 +4,10 @@ import React, { Component } from 'react';
 import seashell from '../Assets/tempShell.PNG'
 
 const countChars = event => {
+    //Value for an ! if the limit is reached
     let end = "";
+
+    //If limit is reached color the text red and add a !
     if(event.target.value.length === 500)
     {
         document.getElementById("charactersLeft").style = "color: red";
@@ -14,6 +17,8 @@ const countChars = event => {
         document.getElementById("charactersLeft").style = "color: black";
         end = "";
     }
+
+    //Set up a string for the message counter # + "characters left" + optional !
     let val = 500-event.target.value.length;
     let string = " characters left";
     let fullString = val + string + end;

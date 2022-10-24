@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 export default class SignUp extends Component {
-
+    
     onSubmit(e) {
         e.preventDefault();
         //Placeholder text change when form is submitted
-        document.getElementById("signup").innerHTML = "Welcome, new user!"
+        document.getElementById("signup").innerHTML = "Welcome, new user!";
     }
 
     render() {
@@ -19,7 +19,7 @@ export default class SignUp extends Component {
 
                         <input type="password"  className="form-control" placeholder="Password" required></input>
 
-                        <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                        <button type="submit" id="signUpBtn" className="btn btn-primary btn-block">Sign Up</button>
                     </form>
                 </center>
             </div>

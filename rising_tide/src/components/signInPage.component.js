@@ -18,7 +18,7 @@ export default class SignIn extends Component {
                     <br/>
                     <input type="textbox" className="form-control" placeholder="Username" required></input>
                     <input type="password" className="form-control" placeholder="Password" required></input>
-                    <button type="submit" className="btn btn-primary btn-block">Log in</button>
+                    <button type="submit" id="signInBtn" className="btn btn-primary btn-block">Log in</button>
                     </form>
                 </center>
             </div>

@@ -15,6 +15,8 @@ export default class SignUp extends Component {
                     <form onSubmit={this.onSubmit}>
                         <h2 id="signup">Sign Up Here!</h2>
                         <br/>
+                        <input type="email"  className="form-control" placeholder="Email" required></input>
+
                         <input type="textbox"  className="form-control" placeholder="Username" required></input>
 
                         <input type="password"  className="form-control" placeholder="Password" required></input>

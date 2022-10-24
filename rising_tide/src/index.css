@@ -23,9 +23,9 @@ button{
   border-radius: 10px;
 }
 
-input[type=textbox], input[type=password]{
+input[type=textbox], input[type=password], input[type=email]{
   margin-bottom: 10px;
-  width: 50%
+  width: 40%
 }
 
 input[type=radio], label{

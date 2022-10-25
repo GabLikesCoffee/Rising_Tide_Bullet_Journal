@@ -36,14 +36,15 @@ const addHabit = event => {
         textBoxUp = true;
         row = habitTable.insertRow(1);
         cell1 = row.insertCell(0);
-        cell1.innerHTML = "<input type='text' id='newHabitInput'></input>";
+        cell1.innerHTML = "<input type='text' id='newHabitInput' placeholder='Enter New Habit!'></input>";
+        document.getElementById("newHabitInput").focus();
     }
     else{
         textBoxUp = false;
         let newHabit = document.getElementById("newHabitInput").value;
         if(newHabit.length > 0){
             console.log(newHabit);
-            row = habitTable.insertRow(2);
+            row = habitTable.insertRow(-1);
             cell1 = row.insertCell(0);
             cell2 = row.insertCell(1);
     
@@ -128,7 +129,7 @@ export default class Journal extends Component {
                                 <tr>
                                     <th>
                                         <button type="button" id="addHabitButton" onClick={addHabit}>+</button>
-                                        Habits
+                                        <p id="habitsLabel">Habits</p>
                                     </th>
                                 </tr>
 

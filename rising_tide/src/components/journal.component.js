@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import seashell from '../Assets/tempShell.PNG'
 
+let textBoxUp = false;
 const countChars = event => {
     //Value for an ! if the limit is reached
     let end = "";
@@ -24,6 +25,35 @@ const countChars = event => {
     let fullString = val + string + end;
 
     document.getElementById("charactersLeft").innerHTML = fullString;
+}
+
+const addHabit = event => {
+    let habitTable = document.getElementById("habitTable");
+    var cell1;
+    var cell2;
+    var row;
+    if(textBoxUp === false){
+        textBoxUp = true;
+        row = habitTable.insertRow(1);
+        cell1 = row.insertCell(0);
+        cell1.innerHTML = "<input type='text' id='newHabitInput'></input>";
+    }
+    else{
+        textBoxUp = false;
+        let newHabit = document.getElementById("newHabitInput").value;
+        if(newHabit.length > 0){
+            console.log(newHabit);
+            row = habitTable.insertRow(2);
+            cell1 = row.insertCell(0);
+            cell2 = row.insertCell(1);
+    
+            cell1.innerHTML = newHabit;
+            cell2.innerHTML = "<input type='checkbox'></input>";
+        }
+        habitTable.deleteRow(1);
+
+    }
+
 }
 
 export default class Journal extends Component {
@@ -97,7 +127,7 @@ export default class Journal extends Component {
                             <table id="habitTable">
                                 <tr>
                                     <th>
-                                        <button type="button">+</button>
+                                        <button type="button" id="addHabitButton" onClick={addHabit}>+</button>
                                         Habits
                                     </th>
                                 </tr>

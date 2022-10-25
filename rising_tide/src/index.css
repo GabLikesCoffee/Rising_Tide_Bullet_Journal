@@ -80,15 +80,7 @@ footer{
   margin-left: 30px;
 }
 
-table{
-  width: 100%;
-  table-layout: fixed;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#navTable{
+#navTable, #moodTable{
   width: 100%;
   table-layout: fixed;
   text-align: center;
@@ -126,6 +118,13 @@ textarea{
 }
 
 button{
-  margin: 20px;
+  margin: 8px;
   background-color: rgb(133, 204, 227);
+  border-color: rgb(133, 204, 227);
+  border-radius: 10px;
+}
+
+#habitWidget{
+  background-color: white;
+  border-radius: 10px;
 }

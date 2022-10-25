@@ -45,7 +45,7 @@ export default class Journal extends Component {
 
                 <form onSubmit={this.onSubmit}>
                     <div id="moodTrackingDiv">
-                        <table>
+                        <table id="moodTable">
                             <tr>
                                 <td>
                                     <center>
@@ -93,7 +93,17 @@ export default class Journal extends Component {
                         </table>
                     </div>
                     <br/>
-                        <center>Space for habit widget</center>
+                        <div id="habitWidget">
+                            <table id="habitTable">
+                                <tr>
+                                    <th>
+                                        <button type="button">+</button>
+                                        Habits
+                                    </th>
+                                </tr>
+
+                            </table>
+                        </div>
                     <br/>
                     <center>
                         <textarea onInput={countChars} placeholder="How was your day? How are you feeling?" maxLength={500} id="dailyAffText"></textarea>

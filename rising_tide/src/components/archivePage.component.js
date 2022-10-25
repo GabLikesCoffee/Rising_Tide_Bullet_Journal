@@ -26,7 +26,7 @@ export default class ArchivePage extends Component {
                     <br/>
                     <h3>Enter to and from dates to view past journals</h3>
                     <form onSubmit={this.onSubmit}>
-                        <table>
+                        <table id="archivePageTable">
                             <tr>
                                 <th><label for="start">Start Date:</label></th>
                                 <th><label for="end">End Date:</label></th>

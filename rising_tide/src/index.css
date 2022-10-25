@@ -80,7 +80,7 @@ footer{
   margin-left: 30px;
 }
 
-#navTable, #moodTable{
+#navTable, #moodTable, #archivePageTable{
   width: 100%;
   table-layout: fixed;
   text-align: center;

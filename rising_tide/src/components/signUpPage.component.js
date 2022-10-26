@@ -61,9 +61,9 @@ export default class SignUp extends Component {
     onSubmit= (e)=>{
         
 		if(this.state.username.length < 3){
-			let bigLabel = document.getElementById("signup")
-			bigLabel.innerHTML = "Username should be at least 3 characters long"
-			bigLabel.style = "color: red";
+			let usernameLabel = document.getElementById("signUpUsernameLabel")
+			usernameLabel.innerHTML = "Username should be at least 3 characters long"
+			usernameLabel.style = "color: red";
 			e.preventDefault();
 			return;
 		}
@@ -78,8 +78,9 @@ export default class SignUp extends Component {
         
         
         console.log(user)
-		document.getElementById("signup").style = "color: black";
-        document.getElementById("signup").innerHTML = "Welcome, new user!"
+		document.getElementById("signUpUsernameLabel").style = "color: black";
+		document.getElementById("signUpUsernameLabel").innerHTML = "Username:";
+        document.getElementById("signup").innerHTML = "Welcome, new user!";
     }
 
 
@@ -94,7 +95,7 @@ export default class SignUp extends Component {
 						<label class="signUpFormLabels" for="signUpEmail">Email:</label>
                         <input id="signUpEmail" type="email"  className="form-control" placeholder="Email" required></input>
 						
-						<label class="signUpFormLabels" for="signUpUsername">Username:</label>
+						<label class="signUpFormLabels" for="signUpUsername" id="signUpUsernameLabel">Username:</label>
                         <input type="textbox" id="signUpUsername" className="form-control" placeholder="Username" 
                         required 
                         value={this.state.username}

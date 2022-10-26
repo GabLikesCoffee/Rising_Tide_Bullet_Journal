@@ -60,6 +60,14 @@ export default class SignUp extends Component {
 
     onSubmit= (e)=>{
         
+		if(this.state.username.length < 3){
+			let bigLabel = document.getElementById("signup")
+			bigLabel.innerHTML = "Username should be at least 3 characters long"
+			bigLabel.style = "color: red";
+			e.preventDefault();
+			return;
+		}
+
         const user={
 			_id: this.state.username,
 			password: this.state.password,
@@ -71,8 +79,6 @@ export default class SignUp extends Component {
         
         console.log(user)
         document.getElementById("signup").innerHTML = "Welcome, new user!"
-        
-		
     }
 
 

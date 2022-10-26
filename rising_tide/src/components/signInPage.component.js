@@ -85,6 +85,7 @@ export default class SignIn extends Component {
                     <form onSubmit={this.onSubmit}>
                         <h2 id="p">Log in Here!</h2>
                         <br/>
+						<label>Username:</label>
                         <input type="textbox"  className="form-control" placeholder="Username" 
                         required 
                         value={this.state.username}
@@ -92,6 +93,7 @@ export default class SignIn extends Component {
 
                         </input>
 
+						<label>Password:</label>
                         <input type="password"  className="form-control" placeholder="Password" 
                         required
                         value={this.state.password}

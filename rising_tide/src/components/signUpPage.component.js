@@ -78,6 +78,7 @@ export default class SignUp extends Component {
         
         
         console.log(user)
+		document.getElementById("signup").style = "color: black";
         document.getElementById("signup").innerHTML = "Welcome, new user!"
     }
 
@@ -89,15 +90,19 @@ export default class SignUp extends Component {
                     <form onSubmit={this.onSubmit}>
                         <h2 id="signup">Sign Up Here!</h2>
                         <br/>
-                        <input type="email"  className="form-control" placeholder="Email" required></input>
 
-                        <input type="textbox"  className="form-control" placeholder="Username" 
+						<label class="signUpFormLabels" for="signUpEmail">Email:</label>
+                        <input id="signUpEmail" type="email"  className="form-control" placeholder="Email" required></input>
+						
+						<label class="signUpFormLabels" for="signUpUsername">Username:</label>
+                        <input type="textbox" id="signUpUsername" className="form-control" placeholder="Username" 
                         required 
                         value={this.state.username}
                         onChange={this.changeUsername}>
                         </input>
 
-                        <input type="password"  className="form-control" placeholder="Password" 
+						<label class="signUpFormLabels" for="SignUpPassword">Password: </label>
+                        <input type="password" id="signUpPassword" className="form-control" placeholder="Password" 
                         required
                         value={this.state.password}
                         onChange={this.changePassword}>

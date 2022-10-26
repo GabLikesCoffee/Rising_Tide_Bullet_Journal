@@ -36,7 +36,7 @@ const addHabit = event => {
         textBoxUp = true;
         row = habitTable.insertRow(1);
         cell1 = row.insertCell(0);
-        cell1.innerHTML = "<input type='text' id='newHabitInput' placeholder='Enter New Habit!'></input>";
+        cell1.innerHTML = "<input type='text' id='newHabitInput' placeholder='Enter New Habit!' maxlength=50></input>";
         document.getElementById("newHabitInput").focus();
     }
     else{

@@ -40,6 +40,12 @@ const addHabit = event => {
     var cell1;
     var cell2;
 
+    //Saves ID for habit
+    var id;
+
+    //Saves habit string for the table
+    var habitString;
+
     //If the add habit textbox is not open, it will be opened so the user can add input
     if(textBoxUp === false){
 
@@ -74,12 +80,20 @@ const addHabit = event => {
             //Insert two cells into the row
             cell1 = row.insertCell(0);
             cell2 = row.insertCell(1);
+
+            //Sets ID based on how many habits there are
+            id = (habitTable.rows.length - 2);
+            
+            //Sets habit row checkbox with individual ID
+            habitString = "<input type='checkbox' id=";
+            habitString += id;
+            habitString += "></input>";
     
             //Cell one will have the text of the habit
             cell1.innerHTML = newHabit;
 
             //Cell two will have the checkbox
-            cell2.innerHTML = "<input type='checkbox' class='habitCheckbox'></input>";
+            cell2.innerHTML = habitString;
         }
         //Delete the textbox row because the user has added the habit now
         //Index 1 because index 0 is the header row with the button

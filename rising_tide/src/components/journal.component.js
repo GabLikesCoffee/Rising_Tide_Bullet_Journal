@@ -3,7 +3,10 @@
 import React, { Component } from 'react';
 import seashell from '../Assets/tempShell.PNG'
 
+//Value for if the habit input textbox is out or not
 let textBoxUp = false;
+
+//Function for counting how many characters are left in the daily affirmation
 const countChars = event => {
     //Value for an ! if the limit is reached
     let end = "";
@@ -27,30 +30,59 @@ const countChars = event => {
     document.getElementById("charactersLeft").innerHTML = fullString;
 }
 
+//Adds a new habit upon pressing the + button
 const addHabit = event => {
+    //Finds habit table element
     let habitTable = document.getElementById("habitTable");
+
+    //Temporary row and cell variables
+    var row;
     var cell1;
     var cell2;
-    var row;
+
+    //If the add habit textbox is not open, it will be opened so the user can add input
     if(textBoxUp === false){
+
+        //The textbox row is now up
         textBoxUp = true;
+
+        //creates a row
         row = habitTable.insertRow(1);
+
+        //inserts a cell into the new row
         cell1 = row.insertCell(0);
+
+        //Puts the textbox in the new row and focuses the user on the textbox
         cell1.innerHTML = "<input type='text' id='newHabitInput' placeholder='Enter New Habit!' maxlength=50></input>";
         document.getElementById("newHabitInput").focus();
     }
+    //Else the add habit textbox is already visible
     else{
+
+        //Set it to invisible
         textBoxUp = false;
+
+        //Finds the textbox and gets the user given input
         let newHabit = document.getElementById("newHabitInput").value;
+
+        //If the textbox wasn't empty
         if(newHabit.length > 0){
-            console.log(newHabit);
+
+            //Add a new row to the end of the table
             row = habitTable.insertRow(-1);
+
+            //Insert two cells into the row
             cell1 = row.insertCell(0);
             cell2 = row.insertCell(1);
     
+            //Cell one will have the text of the habit
             cell1.innerHTML = newHabit;
-            cell2.innerHTML = "<input type='checkbox'></input>";
+
+            //Cell two will have the checkbox
+            cell2.innerHTML = "<input type='checkbox' class='habitCheckbox'></input>";
         }
+        //Delete the textbox row because the user has added the habit now
+        //Index 1 because index 0 is the header row with the button
         habitTable.deleteRow(1);
 
     }

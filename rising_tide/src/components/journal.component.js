@@ -88,16 +88,15 @@ const addHabit = event => {
 
             //Sets up habit string for the text with an ID example habit1Text, habit2Text....
             habitTextString = "<span id='";
-            habitTextString += id + "Text'";
-            habitTextString += ">";
+            habitTextString += id + "Text'>";
             habitTextString += newHabit;
             habitTextString +="</span>";
-            console.log(habitTextString);
             
             //Sets habit row checkbox with individual ID
             habitCheckboxString = "<input type='checkbox' id='";
             habitCheckboxString += id;
             habitCheckboxString += "'></input>";
+            
     
             //Cell one will have the text of the habit
             cell1.innerHTML = habitTextString;

@@ -43,8 +43,9 @@ const addHabit = event => {
     //Saves ID for habit
     var id;
 
-    //Saves habit string for the table
-    var habitString;
+    //Saves habit checkbox string for the table
+    var habitCheckboxString;
+    var habitTextString;
 
     //If the add habit textbox is not open, it will be opened so the user can add input
     if(textBoxUp === false){
@@ -81,19 +82,28 @@ const addHabit = event => {
             cell1 = row.insertCell(0);
             cell2 = row.insertCell(1);
 
-            //Sets ID based on how many habits there are
-            id = (habitTable.rows.length - 2);
+            //Sets ID based on how many habits there are example: habit1, habit2....
+            id="habit"
+            id += (habitTable.rows.length - 2);
+
+            //Sets up habit string for the text with an ID example habit1Text, habit2Text....
+            habitTextString = "<span id='";
+            habitTextString += id + "Text'";
+            habitTextString += ">";
+            habitTextString += newHabit;
+            habitTextString +="</span>";
+            console.log(habitTextString);
             
             //Sets habit row checkbox with individual ID
-            habitString = "<input type='checkbox' id=";
-            habitString += id;
-            habitString += "></input>";
+            habitCheckboxString = "<input type='checkbox' id='";
+            habitCheckboxString += id;
+            habitCheckboxString += "'></input>";
     
             //Cell one will have the text of the habit
-            cell1.innerHTML = newHabit;
+            cell1.innerHTML = habitTextString;
 
             //Cell two will have the checkbox
-            cell2.innerHTML = habitString;
+            cell2.innerHTML = habitCheckboxString;
         }
         //Delete the textbox row because the user has added the habit now
         //Index 1 because index 0 is the header row with the button

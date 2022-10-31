@@ -6,6 +6,12 @@ import seashell from '../Assets/tempShell.PNG'
 //Value for if the habit input textbox is out or not
 let textBoxUp = false;
 
+//Creates array for habits (current habits should be loaded into this array from the database)
+let habitsArray = [];
+
+//Creates a date for this journal (should either be today or a day from the past week)
+let date = new Date().toString();
+
 //Function for counting how many characters are left in the daily affirmation
 const countChars = event => {
     //Value for an ! if the limit is reached
@@ -36,16 +42,22 @@ const addHabit = event => {
     let habitTable = document.getElementById("habitTable");
 
     //Temporary row and cell variables
-    var row;
-    var cell1;
-    var cell2;
+    let row;
+    let cell;
 
-    //Saves ID for habit
-    var id;
+    //Creates a habit object for the habit being added
+    let habitObject = {
+        activity: "",
+        activated: false,
+        isCompleted: false,
+        completionDate: "not completed"
+    }
+
+    //Saves ID for the habit
+    let id;
 
     //Saves habit checkbox string for the table
-    var habitCheckboxString;
-    var habitTextString;
+    let habitTextString;
 
     //If the add habit textbox is not open, it will be opened so the user can add input
     if(textBoxUp === false){
@@ -57,16 +69,16 @@ const addHabit = event => {
         row = habitTable.insertRow(1);
 
         //inserts a cell into the new row
-        cell1 = row.insertCell(0);
+        cell = row.insertCell(0);
 
         //Puts the textbox in the new row and focuses the user on the textbox
-        cell1.innerHTML = "<input type='text' id='newHabitInput' placeholder='Enter New Habit!' maxlength=50></input>";
+        cell.innerHTML = "<input type='text' id='newHabitInput' placeholder='Enter New Habit!' maxlength=50></input>";
         document.getElementById("newHabitInput").focus();
     }
     //Else the add habit textbox is already visible
     else{
 
-        //Set it to invisible
+        //Set textbox to invisible
         textBoxUp = false;
 
         //Finds the textbox and gets the user given input
@@ -75,39 +87,69 @@ const addHabit = event => {
         //If the textbox wasn't empty
         if(newHabit.length > 0){
 
+            //Adds information to the habit object
+            habitObject.activity = newHabit;
+            habitObject.activated = true;
+
+            //Pushes the new habit into the habit array
+            habitsArray.push(habitObject);
+
             //Add a new row to the end of the table
             row = habitTable.insertRow(-1);
 
             //Insert two cells into the row
-            cell1 = row.insertCell(0);
-            cell2 = row.insertCell(1);
+            cell = row.insertCell(0);
 
             //Sets ID based on how many habits there are example: habit1, habit2....
             id="habit"
             id += (habitTable.rows.length - 2);
 
-            //Sets up habit string for the text with an ID example habit1Text, habit2Text....
-            habitTextString = "<span id='";
-            habitTextString += id + "Text'>";
+            //Sets up habit with the checkbox string
+            habitTextString = "<label for='";
+            habitTextString += id + "'>";
             habitTextString += newHabit;
-            habitTextString +="</span>";
-            
-            //Sets habit row checkbox with individual ID
-            habitCheckboxString = "<input type='checkbox' id='";
-            habitCheckboxString += id;
-            habitCheckboxString += "'></input>";
-            
+            habitTextString +="</label><input type='checkbox' id='";
+            habitTextString +=id + "'></input>";
     
-            //Cell one will have the text of the habit
-            cell1.innerHTML = habitTextString;
-
-            //Cell two will have the checkbox
-            cell2.innerHTML = habitCheckboxString;
+            //The cell will have the text of the habit
+            cell.innerHTML = habitTextString;
         }
         //Delete the textbox row because the user has added the habit now
         //Index 1 because index 0 is the header row with the button
         habitTable.deleteRow(1);
+    }
 
+}
+
+//Checks for checked and unchecked habits as you click them
+const checkedHabit = event => {
+    //Creates an index from the id of the habit. ex. habit1 becomes 0 for the first index of the array
+    let index = event.target.id;
+
+    //If the id has a number in it
+    if(/\d/.test(index)){
+
+        //Remove 'habit' from the id and leave just the number
+        index = index.replaceAll('habit', '');
+
+        //Turn the string into a number
+        index = Number(index);
+
+        //Subtract 1 from our index
+        index -= 1;
+
+        //If it is now checked, set completion to true and add a date of completion
+        if(event.target.checked){
+            habitsArray[index].isCompleted = true;
+            habitsArray[index].completionDate = date;
+
+        }
+        //If it is now unchecked, set completion to false and remove date of completion
+        else{
+            habitsArray[index].isCompleted = false;
+            habitsArray[index].completionDate = "not completed";
+            
+        }
     }
 
 }
@@ -117,12 +159,14 @@ export default class Journal extends Component {
     constructor(props){
         super(props);
         
-        this.onChangeMood= this.onChangeMood.bind(this);
-        this.onChangeDailyText= this.onChangeDailyText.bind(this);
+        this.onChangeMood = this.onChangeMood.bind(this);
+        this.onChangeHabit = this.onChangeHabit(this);
+        this.onChangeDailyText = this.onChangeDailyText.bind(this);
         
         this.onSubmit=this.onSubmit.bind(this);
         this.state={
-            mood:"",//mood radio buttons
+            mood: "",//mood radio buttons
+            habit: habitsArray, //array of habits
             dailyAffirmation: "",//daily affirmation text
         };
     }
@@ -131,6 +175,13 @@ export default class Journal extends Component {
         this.setState({
             mood: e.target.value
       });
+    }
+
+    onChangeHabit = e =>{
+        this.setState({
+            habit: habitsArray
+      });
+
     }
 
     onChangeDailyText = e =>{
@@ -143,6 +194,7 @@ export default class Journal extends Component {
         e.preventDefault();
         let journal = {
             mood: this.state.mood,
+            habit: this.state.habit,
             dailyAffirmation: this.state.dailyAffirmation
         };
         
@@ -168,62 +220,65 @@ export default class Journal extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div id="moodTrackingDiv">
                         <table id="moodTable">
-                            <tr>
-                                <td>
-                                    <center>
-                                        <img src={seashell} height="200px" alt="seashell"/>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center  onChange={this.onChangeMood}>
-                                        <input type="radio" id="mtNeutral" name="moodTracker" value="neutral" className="moodTracker"></input>
-                                        <label for="mtNeutral">Neutral</label><br/>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <center>
+                                            <img src={seashell} height="200px" alt="seashell"/>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center  onChange={this.onChangeMood}>
+                                            <input type="radio" id="mtNeutral" name="moodTracker" value="neutral" className="moodTracker"></input>
+                                            <label htmlFor="mtNeutral">Neutral</label><br/>
 
-                                        <input type="radio" id="mtHappy" name="moodTracker" value="happy" className="moodTracker"></input>
-                                        <label for="mtHappy">Happy</label><br/>
+                                            <input type="radio" id="mtHappy" name="moodTracker" value="happy" className="moodTracker"></input>
+                                            <label htmlFor="mtHappy">Happy</label><br/>
 
-                                        <input type="radio" id="mtEcstatic" name="moodTracker" value="ecstatic" className="moodTracker"></input>
-                                        <label for="mtEcstatic">Ecstatic</label><br/>
+                                            <input type="radio" id="mtEcstatic" name="moodTracker" value="ecstatic" className="moodTracker"></input>
+                                            <label htmlFor="mtEcstatic">Ecstatic</label><br/>
 
-                                        <input type="radio" id="mtExcited" name="moodTracker" value="excited" className="moodTracker"></input>
-                                        <label for="mtExcited">Excited</label><br/>
-                                        
-                                        <input type="radio" id="mtSad" name="moodTracker" value="sad" className="moodTracker"></input>
-                                        <label for="mtSad">Sad</label><br/>
-                                    </center>
-                                </td>
+                                            <input type="radio" id="mtExcited" name="moodTracker" value="excited" className="moodTracker"></input>
+                                            <label htmlFor="mtExcited">Excited</label><br/>
+                                            
+                                            <input type="radio" id="mtSad" name="moodTracker" value="sad" className="moodTracker"></input>
+                                            <label htmlFor="mtSad">Sad</label><br/>
+                                        </center>
+                                    </td>
 
-                                <td>
-                                    <center  onChange={this.onChangeMood}>
-                                        <input type="radio" id="mtDepressed" name="moodTracker" value="depressed" className="moodTracker"></input>
-                                        <label for="mtDepressed">Depressed</label><br/>
+                                    <td>
+                                        <center  onChange={this.onChangeMood}>
+                                            <input type="radio" id="mtDepressed" name="moodTracker" value="depressed" className="moodTracker"></input>
+                                            <label htmlFor="mtDepressed">Depressed</label><br/>
 
-                                        <input type="radio" id="mtHopeless" name="moodTracker" value="hopeless" className="moodTracker"></input>
-                                        <label for="mtHopeless">Hopeless</label><br/>
+                                            <input type="radio" id="mtHopeless" name="moodTracker" value="hopeless" className="moodTracker"></input>
+                                            <label htmlFor="mtHopeless">Hopeless</label><br/>
 
-                                        <input type="radio" id="mtMad" name="moodTracker" value="mad" className="moodTracker"></input>
-                                        <label for="mtMad">Mad</label><br/>
+                                            <input type="radio" id="mtMad" name="moodTracker" value="mad" className="moodTracker"></input>
+                                            <label htmlFor="mtMad">Mad</label><br/>
 
-                                        <input type="radio" id="mtAngry" name="moodTracker" value="angry" className="moodTracker"></input>
-                                        <label for="mtAngry">Angry</label><br/>
+                                            <input type="radio" id="mtAngry" name="moodTracker" value="angry" className="moodTracker"></input>
+                                            <label htmlFor="mtAngry">Angry</label><br/>
 
-                                        <input type="radio" id="mtDisgusted" name="moodTracker" value="disgusted" className="moodTracker"></input>
-                                        <label for="mtDisgusted">Disgusted</label><br/>
-                                    </center>
-                                </td>
-                            </tr>
+                                            <input type="radio" id="mtDisgusted" name="moodTracker" value="disgusted" className="moodTracker"></input>
+                                            <label htmlFor="mtDisgusted">Disgusted</label><br/>
+                                        </center>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     <br/>
                         <div id="habitWidget">
                             <table id="habitTable">
-                                <tr>
-                                    <th>
-                                        <button type="button" id="addHabitButton" onClick={addHabit}>+</button>
-                                        <p id="habitsLabel">Habits</p>
-                                    </th>
-                                </tr>
-
+                                <tbody onClick={checkedHabit}>
+                                    <tr>
+                                        <th>
+                                            <button type="button" id="addHabitButton" onClick={addHabit}>+</button>
+                                            <p id="habitsLabel">Habits</p>
+                                        </th>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     <br/>

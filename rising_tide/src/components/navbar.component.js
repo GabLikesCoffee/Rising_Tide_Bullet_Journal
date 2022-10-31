@@ -13,7 +13,7 @@ export default class Navbar extends Component {
         let loggedIn = 2;
         if(loggedIn === 0){
             return(
-                <nav class="navbar navbar-expand-md py-4 navbar-light shadow-sm">
+                <nav className="navbar navbar-expand-md py-4 navbar-light shadow-sm">
                     <table id="navTable">
                         <tr>
                             <td>
@@ -47,7 +47,7 @@ export default class Navbar extends Component {
 
         else if(loggedIn === 1){
             return(
-                <nav class="navbar navbar-expand-md py-4 navbar-light shadow-sm">
+                <nav className="navbar navbar-expand-md py-4 navbar-light shadow-sm">
                     <table id="navTable">
                         <tr>
                             <td>
@@ -87,7 +87,7 @@ export default class Navbar extends Component {
 
         else{
             return(
-                <nav class="navbar navbar-expand-md py-4 navbar-light shadow-sm">
+                <nav className="navbar navbar-expand-md py-4 navbar-light shadow-sm">
                     <table id="navTable">
                         <tr>
                             <td>

@@ -114,8 +114,38 @@ const addHabit = event => {
 
 export default class Journal extends Component {
 
+    constructor(props){
+        super(props);
+        
+        this.onChangeMood= this.onChangeMood.bind(this);
+        this.onChangeDailyText= this.onChangeDailyText.bind(this);
+        
+        this.onSubmit=this.onSubmit.bind(this);
+        this.state={
+            mood:"",//mood radio buttons
+            dailyAffirmation: "",//daily affirmation text
+        };
+    }
+    
+    onChangeMood = e =>{
+        this.setState({
+            mood: e.target.value
+      });
+    }
+
+    onChangeDailyText = e =>{
+        this.setState({
+            dailyAffirmation: e.target.value
+      });
+    }
+
     onSubmit(e) {
         e.preventDefault();
+        let journal = {
+            mood: this.state.mood,
+            dailyAffirmation: this.state.dailyAffirmation
+        };
+        console.log(journal);
         //Placeholder text change when form is submitted
         document.getElementById("journalHeader").innerHTML = "<center>Submitted!</center>"
     }
@@ -123,7 +153,7 @@ export default class Journal extends Component {
     render() {
         return(
             <div className="container" id="container">
-                <h1 class="journalHeader" id="journalHeader"> 
+                <h1 className="journalHeader" id="journalHeader"> 
                     <center>
                     Rising Tide Bullet Journal
                     </center> 
@@ -139,39 +169,39 @@ export default class Journal extends Component {
                                     </center>
                                 </td>
                                 <td>
-                                    <center>
-                                        <input type="radio" id="mtNeutral" name="moodTracker" value="neutral"></input>
+                                    <center  onChange={this.onChangeMood}>
+                                        <input type="radio" id="mtNeutral" name="moodTracker" value="neutral" className="moodTracker"></input>
                                         <label for="mtNeutral">Neutral</label><br/>
 
-                                        <input type="radio" id="mtHappy" name="moodTracker" value="happy"></input>
+                                        <input type="radio" id="mtHappy" name="moodTracker" value="happy" className="moodTracker"></input>
                                         <label for="mtHappy">Happy</label><br/>
 
-                                        <input type="radio" id="mtEcstatic" name="moodTracker" value="ecstatic"></input>
+                                        <input type="radio" id="mtEcstatic" name="moodTracker" value="ecstatic" className="moodTracker"></input>
                                         <label for="mtEcstatic">Ecstatic</label><br/>
 
-                                        <input type="radio" id="mtExcited" name="moodTracker" value="excited"></input>
+                                        <input type="radio" id="mtExcited" name="moodTracker" value="excited" className="moodTracker"></input>
                                         <label for="mtExcited">Excited</label><br/>
                                         
-                                        <input type="radio" id="mtSad" name="moodTracker" value="sad"></input>
+                                        <input type="radio" id="mtSad" name="moodTracker" value="sad" className="moodTracker"></input>
                                         <label for="mtSad">Sad</label><br/>
                                     </center>
                                 </td>
 
                                 <td>
-                                    <center>
-                                        <input type="radio" id="mtDepressed" name="moodTracker" value="depressed"></input>
+                                    <center  onChange={this.onChangeMood}>
+                                        <input type="radio" id="mtDepressed" name="moodTracker" value="depressed" className="moodTracker"></input>
                                         <label for="mtDepressed">Depressed</label><br/>
 
-                                        <input type="radio" id="mtHopeless" name="moodTracker" value="hopeless"></input>
+                                        <input type="radio" id="mtHopeless" name="moodTracker" value="hopeless" className="moodTracker"></input>
                                         <label for="mtHopeless">Hopeless</label><br/>
 
-                                        <input type="radio" id="mtMad" name="moodTracker" value="mad"></input>
+                                        <input type="radio" id="mtMad" name="moodTracker" value="mad" className="moodTracker"></input>
                                         <label for="mtMad">Mad</label><br/>
 
-                                        <input type="radio" id="mtAngry" name="moodTracker" value="angry"></input>
+                                        <input type="radio" id="mtAngry" name="moodTracker" value="angry" className="moodTracker"></input>
                                         <label for="mtAngry">Angry</label><br/>
 
-                                        <input type="radio" id="mtDisgusted" name="moodTracker" value="disgusted"></input>
+                                        <input type="radio" id="mtDisgusted" name="moodTracker" value="disgusted" className="moodTracker"></input>
                                         <label for="mtDisgusted">Disgusted</label><br/>
                                     </center>
                                 </td>
@@ -192,7 +222,7 @@ export default class Journal extends Component {
                         </div>
                     <br/>
                     <center>
-                        <textarea onInput={countChars} placeholder="How was your day? How are you feeling?" maxLength={500} id="dailyAffText"></textarea>
+                        <textarea onInput={countChars} onChange={this.onChangeDailyText} placeholder="How was your day? How are you feeling?" maxLength={500} id="dailyAffText"></textarea>
                         <p id="charactersLeft">500 characters left</p>
                     
                         <button type="submit" id="journalSubmitBtn" className="btn btn-primary btn-block">Submit</button>
@@ -200,7 +230,6 @@ export default class Journal extends Component {
                         </center>
                 </form>
             </div>
-
         )
     }
 }

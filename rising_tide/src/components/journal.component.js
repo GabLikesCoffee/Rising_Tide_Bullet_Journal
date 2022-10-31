@@ -145,6 +145,12 @@ export default class Journal extends Component {
             mood: this.state.mood,
             dailyAffirmation: this.state.dailyAffirmation
         };
+        
+        if(journal.dailyAffirmation.length > 500)
+        {
+            console.log("journal is too long!")
+            return;
+        }
         console.log(journal);
         //Placeholder text change when form is submitted
         document.getElementById("journalHeader").innerHTML = "<center>Submitted!</center>"

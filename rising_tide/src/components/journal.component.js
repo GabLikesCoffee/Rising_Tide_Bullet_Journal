@@ -105,11 +105,11 @@ const addHabit = event => {
             id += (habitTable.rows.length - 2);
 
             //Sets up habit with the checkbox string
-            habitTextString = "<label for='";
+            habitTextString = "<label class='habitText'for='";
             habitTextString += id + "'>";
-            habitTextString += newHabit;
-            habitTextString +="</label><input type='checkbox' id='";
-            habitTextString +=id + "'></input>";
+            habitTextString +="<input type='checkbox' id='";
+            habitTextString +=id + "'></input>"
+            habitTextString += newHabit + "</label>";
     
             //The cell will have the text of the habit
             cell.innerHTML = habitTextString;

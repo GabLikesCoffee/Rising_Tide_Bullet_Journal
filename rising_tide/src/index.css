@@ -22,6 +22,10 @@ code {
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
+  
+}
+.navbarLink{
+  font-size: 2.3vw;
 }
 
 button{
@@ -34,13 +38,13 @@ input[type=textbox], input[type=password], input[type=email]{
   width: 40%
 }
 
-input[type=radio], label{
+input[type=radio], label, input[type=checkbox]{
   vertical-align: middle;
   margin-top: 10px;
 }
 
 label{
-  font-size: 20px;
+  font-size: 3vw;
   margin-left: 5px;
 }
 
@@ -73,6 +77,10 @@ label{
   
 }
 
+img{
+height: 20vw;
+}
+
 footer{
   background-color: lightblue;
 }
@@ -99,7 +107,7 @@ textarea{
 textarea{
   resize: none;
   display: block;
-  font-size: 16px;
+  font-size: 16vw;
   line-height: 25px;
   margin-left: auto;
   margin-right: auto;
@@ -138,6 +146,7 @@ button{
 
 #habitTable{
   width: 100%;
+  vertical-align: middle;
 }
 
 input:focus, textarea {
@@ -166,11 +175,13 @@ input:focus, textarea {
 }
 
 input[type=checkbox]{
-  width: 40px;
-  height: 40px;
+  width: 5vw;
+  height: 5vw;
+  vertical-align: middle;
   margin: 10px;
 }
 
 .signUpFormLabels{
   display: inline;
 }
+

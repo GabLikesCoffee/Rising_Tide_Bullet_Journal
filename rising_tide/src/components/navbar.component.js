@@ -19,25 +19,25 @@ export default class Navbar extends Component {
                             <tr>
                                 <td>
                                     <Link to="/" className="navbar-brand">
-                                        Rising Tide
+                                        <span className="navbarLink">Rising Tide</span>
                                     </Link>
                                 </td>
                                 
                                 <td>
                                     <Link to="/" className="nav-link" id="navJournalButton">
-                                        Journal
+                                        <span className="navbarLink">Journal</span>
                                     </Link>
                                 </td>
         
                                 <td>
                                     <Link to="/signInPage" className="nav-link">
-                                        Sign In
+                                        <span className="navbarLink">Sign In</span>
                                     </Link>
                                 </td>
         
                                 <td>
                                     <Link id="signUpLink" to="/signUpPage" className="nav-link">
-                                        Sign Up
+                                        <span className="navbarLink">Sign Up</span>
                                     </Link>
                                 </td>
                             </tr>
@@ -55,31 +55,31 @@ export default class Navbar extends Component {
                             <tr>
                                 <td>
                                     <Link to="/" className="navbar-brand">
-                                        Rising Tide
+                                        <span className="navbarLink">Rising Tide</span>
                                     </Link>
                                 </td>
                                 
                                 <td>
                                     <Link to="/" className="nav-link" id="navJournalButton">
-                                        Journal
+                                        <span className="navbarLink">Journal</span>
                                     </Link>
                                 </td>
         
                                 <td>
                                     <Link to="/weeklyView" className="nav-link">
-                                        Weekly View
+                                        <span className="navbarLink">Weekly View</span>
                                     </Link>
                                 </td>
         
                                 <td>
                                     <Link to="/archivePage" className="nav-link">
-                                        Archive Page
+                                        <span className="navbarLink"> Archive Page</span>
                                     </Link>
                                 </td>
         
                                 <td>
                                     <Link to="/" className="nav-link">
-                                        Log Out
+                                        <span className="navbarLink">Log Out</span>
                                     </Link>
                                 </td>
                             </tr>
@@ -95,45 +95,40 @@ export default class Navbar extends Component {
                     <table id="navTable">
                         <tbody>
                             <tr>
-                                <td>
-                                    <Link to="/" className="navbar-brand">
-                                        Rising Tide
-                                    </Link>
-                                </td>
                                 
                                 <td>
                                     <Link to="/" className="nav-link" id="navJournalButton">
-                                        Journal
+                                        <span className="navbarLink">Journal</span>
                                     </Link>
                                 </td>
         
                                 <td>
                                     <Link to="/weeklyView" className="nav-link">
-                                        Weekly View
+                                        <span className="navbarLink">Weekly View</span>
                                     </Link>
                                 </td>
         
                                 <td>
                                     <Link to="/archivePage" className="nav-link">
-                                        Archive Page
+                                        <span className="navbarLink">Archive Page</span>
                                     </Link>
                                 </td>
         
                                 <td>
                                     <Link to="/signInPage" className="nav-link">
-                                        Sign In
+                                        <span className="navbarLink">Sign In</span>
                                     </Link>
                                 </td>
         
                                 <td>
                                     <Link id="signUpLink" to="/signUpPage" className="nav-link">
-                                        Sign Up
+                                        <span className="navbarLink">Sign Up</span>
                                     </Link>
                                 </td>
                                     
                                 <td>
                                     <Link to="/" className="nav-link">
-                                        Log Out
+                                        <span className="navbarLink">Log Out</span>
                                     </Link>
                                 </td>
                             </tr>

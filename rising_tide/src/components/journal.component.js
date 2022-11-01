@@ -367,7 +367,7 @@ export default class Journal extends Component {
 
                 
 
-                <form onSubmit={this.onSubmit} action={emailString} method="post" encType='text/plain'>
+                <form onSubmit={this.onSubmit} action={emailString} method="post" target="_blank" encType='text/plain'>
                 Enter Email for journal submit debugging (will delete later)<input onInput={updateEmail} id="emailInput" type="email" required></input>
                     <div id="moodTrackingDiv">
                         <table id="moodTable">

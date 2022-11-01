@@ -10,10 +10,19 @@ let textBoxUp = false;
 let habitsArray = [];
 
 //Creates a date for this journal (should either be today or a day from the past week)
-let date = new Date().toString();
+let day = new Date().getDate().toString();
+let month = new Date().getMonth()
+month = month+1;
+month = month.toString();
+let year = new Date().getFullYear().toString();
+
+//False if not showing the delete buttons
+let showingDeleteButtons = false;
+
 
 //Function for counting how many characters are left in the daily affirmation
 const countChars = event => {
+
     //Value for an ! if the limit is reached
     let end = "";
 
@@ -33,11 +42,23 @@ const countChars = event => {
     let string = " characters left";
     let fullString = val + string + end;
 
+    //Display message
     document.getElementById("charactersLeft").innerHTML = fullString;
 }
 
 //Adds a new habit upon pressing the + button
 const addHabit = event => {
+
+    //Hides delete buttons
+    if(showingDeleteButtons === true){
+        showingDeleteButtons = false;
+        let buttons = document.getElementsByClassName("deleteButton");
+        let i;
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].setAttribute("hidden", true); 
+        }
+    }
+
     //Finds habit table element
     let habitTable = document.getElementById("habitTable");
 
@@ -50,14 +71,21 @@ const addHabit = event => {
         activity: "",
         activated: false,
         isCompleted: false,
-        completionDate: "not completed"
+        completionDate:{
+            day:0,
+            month:"",
+            year:0,
+        }
     }
 
     //Saves ID for the habit
     let id;
 
+    //Saves ID for delete buttons
+    let deleteId;
+
     //Saves habit checkbox string for the table
-    let habitTextString;
+    let habitHTMLString;
 
     //If the add habit textbox is not open, it will be opened so the user can add input
     if(textBoxUp === false){
@@ -96,6 +124,7 @@ const addHabit = event => {
 
             //Add a new row to the end of the table
             row = habitTable.insertRow(-1);
+            row.id = "tableRow" + (habitTable.rows.length - 2);
 
             //Insert two cells into the row
             cell = row.insertCell(0);
@@ -104,15 +133,19 @@ const addHabit = event => {
             id="habit"
             id += (habitTable.rows.length - 2);
 
+            //Sets delete button ID example delete1, delete2....
+            deleteId = "delete" + (habitTable.rows.length - 2);
+
             //Sets up habit with the checkbox string
-            habitTextString = "<label class='habitText'for='";
-            habitTextString += id + "'>";
-            habitTextString +="<input type='checkbox' id='";
-            habitTextString +=id + "'></input>"
-            habitTextString += newHabit + "</label>";
+            habitHTMLString = "<button type='button' hidden class='deleteButton' id='"
+            habitHTMLString += deleteId + "'>-</button><label class='habitText'for='";
+            habitHTMLString += id + "'>";
+            habitHTMLString +="<input type='checkbox' id='";
+            habitHTMLString +=id + "'></input>"
+            habitHTMLString += newHabit + "</label>";
     
             //The cell will have the text of the habit
-            cell.innerHTML = habitTextString;
+            cell.innerHTML = habitHTMLString;
         }
         //Delete the textbox row because the user has added the habit now
         //Index 1 because index 0 is the header row with the button
@@ -121,13 +154,32 @@ const addHabit = event => {
 
 }
 
+const toggleDeleteButton = event => {
+    if(showingDeleteButtons === false){
+        let i;
+        showingDeleteButtons=true;
+        let buttons = document.getElementsByClassName("deleteButton");
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].removeAttribute("hidden"); 
+        }
+    }
+    else{
+        showingDeleteButtons = false;
+        let buttons = document.getElementsByClassName("deleteButton");
+        let i;
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].setAttribute("hidden", true); 
+        }
+    }
+}
+
 //Checks for checked and unchecked habits as you click them
 const checkedHabit = event => {
     //Creates an index from the id of the habit. ex. habit1 becomes 0 for the first index of the array
     let index = event.target.id;
 
     //If the id has a number in it
-    if(/\d/.test(index)){
+    if(/\d/.test(index) && index.includes("habit")){
 
         //Remove 'habit' from the id and leave just the number
         index = index.replaceAll('habit', '');
@@ -141,15 +193,49 @@ const checkedHabit = event => {
         //If it is now checked, set completion to true and add a date of completion
         if(event.target.checked){
             habitsArray[index].isCompleted = true;
-            habitsArray[index].completionDate = date;
+            habitsArray[index].completionDate.day = day;
+            habitsArray[index].completionDate.month = month;
+            habitsArray[index].completionDate.year = year;
 
         }
         //If it is now unchecked, set completion to false and remove date of completion
         else{
             habitsArray[index].isCompleted = false;
-            habitsArray[index].completionDate = "not completed";
+            habitsArray[index].completionDate.day = "";
+            habitsArray[index].completionDate.month = "";
+            habitsArray[index].completionDate.year = "";
             
         }
+    }
+    else if(/\d/.test(index))
+    {
+        //Stores habit number and not the array index
+        let habitNumber;
+
+        //Remove 'delete' from the id and leave just the number
+        index = index.replaceAll('delete', '');
+
+        //Turn the string into a number
+        index = Number(index);
+        habitNumber = index;
+
+        //Subtract 1 from our index
+        index -= 1;
+
+        //Sets habit to no longer active
+        habitsArray[index].activated = false;
+
+        //Hides the delete buttons after row deletion
+        showingDeleteButtons = false;
+        let buttons = document.getElementsByClassName("deleteButton");
+        let i;
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].setAttribute("hidden", true); 
+        }
+
+        //Finds the habit row by id and hides it
+        document.getElementById("tableRow" + habitNumber).setAttribute("hidden", true);
+
     }
 
 }
@@ -164,11 +250,24 @@ export default class Journal extends Component {
         this.onChangeDailyText = this.onChangeDailyText.bind(this);
         
         this.onSubmit=this.onSubmit.bind(this);
+
         this.state={
-            mood: "",//mood radio buttons
-            habit: habitsArray, //array of habits
-            dailyAffirmation: "",//daily affirmation text
-        };
+			_id:"",//Username
+			password:"",
+			
+
+			habit:habitsArray,
+			
+			date:{
+				day:0,
+				month:"",
+				year:0,
+			},
+				
+			freeResponse:"",
+				
+			mood:""
+		}
     }
     
     onChangeMood = e =>{
@@ -186,24 +285,33 @@ export default class Journal extends Component {
 
     onChangeDailyText = e =>{
         this.setState({
-            dailyAffirmation: e.target.value
+            freeResponse: e.target.value
       });
     }
 
     onSubmit(e) {
         e.preventDefault();
         let journal = {
-            mood: this.state.mood,
-            habit: this.state.habit,
-            dailyAffirmation: this.state.dailyAffirmation
-        };
-        
-        if(journal.dailyAffirmation.length > 500)
+            date:{
+                day:day,
+                month:month,
+                year:year,
+            },
+            
+            freeResponse: this.state.freeResponse,
+            
+            mood: this.state.mood
+        }
+
+        let habitList = this.state.habit;
+
+        if(journal.freeResponse.length > 500)
         {
             console.log("journal is too long!")
             return;
         }
         console.log(journal);
+        console.log(habitList);
         //Placeholder text change when form is submitted
         document.getElementById("journalHeader").innerHTML = "<center>Submitted!</center>"
     }
@@ -275,6 +383,7 @@ export default class Journal extends Component {
                                     <tr>
                                         <th>
                                             <button type="button" id="addHabitButton" onClick={addHabit}>+</button>
+                                            <button type="button" id="deleteHabitButton" onClick={toggleDeleteButton}>-</button>
                                             <p id="habitsLabel">Habits</p>
                                         </th>
                                     </tr>

@@ -33,15 +33,10 @@ export default class SignUp extends Component {
 				
 				freeResponse:"",
 				
-				mood:[false]
+				mood:""
 				
 				
 			}]
-			
-			
-			
-		
-
 		}
 	}
     

@@ -185,3 +185,7 @@ input[type=checkbox]{
   display: inline;
 }
 
+#deleteHabitButton, #addHabitButton{
+  margin-left: 1vw;
+}
+

@@ -36,14 +36,7 @@ export default class SignIn extends Component {
 				freeResponse:"",
 				
 				mood:""
-				
-				
 			}]
-			
-			
-			
-		
-
 		}
 	}
     
@@ -68,9 +61,7 @@ export default class SignIn extends Component {
 			
 		}
 		e.preventDefault();
-	
-        
-        
+	  
         console.log(user)
         document.getElementById("p").innerHTML = "Logged in!"
         
@@ -90,7 +81,6 @@ export default class SignIn extends Component {
                         required 
                         value={this.state.username}
                         onChange={this.changeUsername}>
-
                         </input>
 
 						<label>Password:</label>
@@ -98,9 +88,7 @@ export default class SignIn extends Component {
                         required
                         value={this.state.password}
                         onChange={this.changePassword}>
-
                         </input>
-
                         <button type="submit" id="signUpBtn" className="btn btn-primary btn-block">Sign In</button>
                     </form>
                 </center>

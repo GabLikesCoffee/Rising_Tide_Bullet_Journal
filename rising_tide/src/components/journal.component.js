@@ -19,6 +19,9 @@ let year = new Date().getFullYear().toString();
 //False if not showing the delete buttons
 let showingDeleteButtons = false;
 
+//Temporary variables for the email and post commands
+let email, emailString;
+
 
 //Function for counting how many characters are left in the daily affirmation
 const countChars = event => {
@@ -154,6 +157,7 @@ const addHabit = event => {
 
 }
 
+//Hides or shows buttons if the delete button is pressed
 const toggleDeleteButton = event => {
     if(showingDeleteButtons === false){
         let i;
@@ -237,7 +241,12 @@ const checkedHabit = event => {
         document.getElementById("tableRow" + habitNumber).setAttribute("hidden", true);
 
     }
+}
 
+//Temporary function to update email
+const updateEmail = event => {
+    email = document.getElementById("emailInput");
+    emailString = "mailto:" + email.value;
 }
 
 export default class Journal extends Component {
@@ -289,8 +298,24 @@ export default class Journal extends Component {
       });
     }
 
+    //SUBMITTING
     onSubmit(e) {
-        e.preventDefault();
+
+        //Creates an array to store completed habits
+        let completedHabits = [];
+        for(let i = 0; i < habitsArray.length; i++){
+            if(habitsArray[i].isCompleted === true)
+            {
+                completedHabits.push(habitsArray[i].activity);
+            }
+        }
+        //Turns array into a string
+        completedHabits = completedHabits.toString();
+
+        //Sets the string to a hidden input value for email functionality
+        let habitString = document.getElementById("completedHabitsString");
+        habitString.value=completedHabits;
+
         let journal = {
             date:{
                 day:day,
@@ -325,7 +350,9 @@ export default class Journal extends Component {
                     </center> 
                 </h1>
 
-                <form onSubmit={this.onSubmit}>
+                Enter Email for journal submit debugging (will delete later)<input onInput={updateEmail} id="emailInput" type="email" required></input>
+
+                <form onSubmit={this.onSubmit} action={emailString} method="post">
                     <div id="moodTrackingDiv">
                         <table id="moodTable">
                             <tbody>
@@ -392,7 +419,8 @@ export default class Journal extends Component {
                         </div>
                     <br/>
                     <center>
-                        <textarea onInput={countChars} onChange={this.onChangeDailyText} placeholder="How was your day? How are you feeling?" maxLength={500} id="dailyAffText"></textarea>
+                        <input hidden id = "completedHabitsString" type="text" name="habits"></input>
+                        <textarea onInput={countChars} onChange={this.onChangeDailyText} placeholder="How was your day? How are you feeling?" maxLength={500} id="dailyAffText" name = "freeResponse" value={this.state.freeResponse}></textarea>
                         <p id="charactersLeft">500 characters left</p>
                     
                         <button type="submit" id="journalSubmitBtn" className="btn btn-primary btn-block">Submit</button>

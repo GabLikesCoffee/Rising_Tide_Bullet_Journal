@@ -22,6 +22,9 @@ let showingDeleteButtons = false;
 //Temporary variables for the email and post commands
 let email, emailString;
 
+//prevents an error from submitting multiple times
+let submitted = false;
+
 
 //Function for counting how many characters are left in the daily affirmation
 const countChars = event => {
@@ -300,7 +303,15 @@ export default class Journal extends Component {
 
     //SUBMITTING
     onSubmit(e) {
+        email = document.getElementById("emailInput");
 
+        //Submitting twice causes an error, so this prevents that
+        if(submitted === true){
+            e.preventDefault();
+            return;
+        }
+        submitted = true;
+        
         //Creates an array to store completed habits
         let completedHabits = [];
         for(let i = 0; i < habitsArray.length; i++){
@@ -339,6 +350,10 @@ export default class Journal extends Component {
         console.log(habitList);
         //Placeholder text change when form is submitted
         document.getElementById("journalHeader").innerHTML = "<center>Submitted!</center>"
+        if(email.value===""){
+            e.preventDefault();
+            return;
+        }
     }
 
     render() {
@@ -350,9 +365,10 @@ export default class Journal extends Component {
                     </center> 
                 </h1>
 
-                Enter Email for journal submit debugging (will delete later)<input onInput={updateEmail} id="emailInput" type="email" required></input>
+                
 
-                <form onSubmit={this.onSubmit} action={emailString} method="post">
+                <form onSubmit={this.onSubmit} action={emailString} method="post" encType='text/plain'>
+                Enter Email for journal submit debugging (will delete later)<input onInput={updateEmail} id="emailInput" type="email" required></input>
                     <div id="moodTrackingDiv">
                         <table id="moodTable">
                             <tbody>
@@ -419,13 +435,13 @@ export default class Journal extends Component {
                         </div>
                     <br/>
                     <center>
-                        <input hidden id = "completedHabitsString" type="text" name="habits"></input>
+                        <input hidden id = "completedHabitsString" type="text" name="completedHabits"></input>
                         <textarea onInput={countChars} onChange={this.onChangeDailyText} placeholder="How was your day? How are you feeling?" maxLength={500} id="dailyAffText" name = "freeResponse" value={this.state.freeResponse}></textarea>
                         <p id="charactersLeft">500 characters left</p>
                     
                         <button type="submit" id="journalSubmitBtn" className="btn btn-primary btn-block">Submit</button>
                     
-                        </center>
+                    </center>
                 </form>
             </div>
         )

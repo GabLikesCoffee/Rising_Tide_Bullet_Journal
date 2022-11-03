@@ -78,7 +78,7 @@ label{
 }
 
 img{
-height: 20vw;
+  height: 20vw;
 }
 
 footer{
@@ -94,7 +94,7 @@ footer{
   margin-left: 30px;
 }
 
-#navTable, #moodTable, #archivePageTable{
+#navTable, #moodTable, #archivePageTable, #weeklyViewTable{
   width: 100%;
   table-layout: fixed;
   text-align: center;
@@ -189,3 +189,15 @@ input[type=checkbox]{
   margin-left: 1vw;
 }
 
+.weeklyViewTableBorder{
+border-left: solid black;
+}
+
+#weeklyViewTable{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.weeklyShell{
+  margin: 10px;
+  height: 15vw;
+}

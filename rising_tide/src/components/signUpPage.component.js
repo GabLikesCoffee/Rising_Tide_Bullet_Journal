@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
+//import { useSelector,useDispatch } from 'react-redux';
 
-import { useNavigate } from 'react-router-dom';
-import { register,reset } from '../features/auth/authSlice';
+//import { useNavigate } from 'react-router-dom';
+//import { register,reset } from '../features/auth/authSlice';
 
 export default class SignUp extends Component {
 

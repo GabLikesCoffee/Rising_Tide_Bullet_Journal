@@ -1,4 +1,9 @@
+import axios from 'axios';
 import React, { Component } from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+
+import { useNavigate } from 'react-router-dom';
+import { register,reset } from '../features/auth/authSlice';
 
 export default class SignUp extends Component {
 
@@ -7,6 +12,7 @@ export default class SignUp extends Component {
         
         this.changeUsername= this.changeUsername.bind(this);
         this.changePassword= this.changePassword.bind(this);
+		this.changeEmail= this.changeEmail.bind(this);
         
         this.onSubmit=this.onSubmit.bind(this);
 		this.state={
@@ -48,6 +54,11 @@ export default class SignUp extends Component {
 			password: e.target.value
 		});
 	}
+	changeEmail = (e)=>{
+		this.setState({
+			email: e.target.value
+		});
+	}
 	
 	 
 
@@ -62,12 +73,22 @@ export default class SignUp extends Component {
 		}
 
         const user={
-			_id: this.state.username,
+			username: this.state.username,
 			password: this.state.password,
+			email: this.state.email
 			
 		}
+		
+			axios.post("http://localhost:5000/users/add", JSON.stringify(user),
+			{
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			.then(res=>console.log(res.data));
+			
+		
 		e.preventDefault();
-	
         
         
         console.log(user)
@@ -86,19 +107,21 @@ export default class SignUp extends Component {
                         <br/>
 
 						<label className="signUpFormLabels" for="signUpEmail">Email:</label>
-                        <input id="signUpEmail" type="email"  className="form-control" placeholder="Email" required></input>
+                        <input id="signUpEmail" type="email"  className="form-control" placeholder="Email" required
+						
+						onChange={this.changeEmail}></input>
 						
 						<label className="signUpFormLabels" for="signUpUsername" id="signUpUsernameLabel">Username:</label>
                         <input type="textbox" id="signUpUsername" className="form-control" placeholder="Username" 
                         required 
-                        value={this.state.username}
+                        
                         onChange={this.changeUsername}>
                         </input>
 
 						<label className="signUpFormLabels" for="SignUpPassword">Password: </label>
                         <input type="password" id="signUpPassword" className="form-control" placeholder="Password" 
                         required
-                        value={this.state.password}
+                        
                         onChange={this.changePassword}>
                         </input>
 

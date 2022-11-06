@@ -11,6 +11,7 @@ import ArchivePage from "./components/archivePage.component";
 import SignIn from "./components/signInPage.component";
 import SignUp from "./components/signUpPage.component";
 import Footer from "./components/footer.component";
+import Help from "./components/help.component";
 import {
   BrowserRouter, Routes, Route
 } from "react-router-dom";
@@ -30,6 +31,7 @@ root.render(
       <Route path = "/archivePage" element={<ArchivePage />}></Route>
       <Route path = "/signInPage" element={<SignIn />}></Route>
       <Route path = "/signUpPage" element={<SignUp />}></Route>
+      <Route path = "/helpPage" element={<Help />}></Route>
     </Routes>
 
     <Footer />

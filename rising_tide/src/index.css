@@ -73,6 +73,7 @@ label{
   display: flex;
   flex-flow: column;
   align-items: stretch;
+  padding-bottom: 20px;
   
 }
 
@@ -83,6 +84,7 @@ label{
   flex-flow: column;
   align-items: stretch;
   width: 60%;
+  padding-bottom: 20px;
 }
 
 /*Also includes archive page and weeklyview*/
@@ -230,4 +232,15 @@ border-left: solid #e7c7b4;
   .weeklyShell{
      height: 100px;
   }
+}
+
+.helpDiv{
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ece0c1;
+  border-radius: 5px;
+}
+
+.indented{
+  margin-left: 5vw;
 }

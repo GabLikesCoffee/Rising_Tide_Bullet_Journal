@@ -34,10 +34,14 @@ export default class Navbar extends Component {
                                         <span className="navbarLink">Sign In</span>
                                     </Link>
                                 </td>
-        
                                 <td>
                                     <Link id="signUpLink" to="/signUpPage" className="nav-link">
                                         <span className="navbarLink">Sign Up</span>
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link id="helpLink" to="/helpPage" className="nav-link">
+                                        <span className="navbarLink">Help</span>
                                     </Link>
                                 </td>
                             </tr>
@@ -80,6 +84,11 @@ export default class Navbar extends Component {
                                 <td>
                                     <Link to="/" className="nav-link">
                                         <span className="navbarLink">Log Out</span>
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link id="helpLink" to="/helpPage" className="nav-link">
+                                        <span className="navbarLink">Help</span>
                                     </Link>
                                 </td>
                             </tr>
@@ -129,6 +138,11 @@ export default class Navbar extends Component {
                                 <td>
                                     <Link to="/" className="nav-link">
                                         <span className="navbarLink">Log Out</span>
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link id="helpLink" to="/helpPage" className="nav-link">
+                                        <span className="navbarLink">Help</span>
                                     </Link>
                                 </td>
                             </tr>

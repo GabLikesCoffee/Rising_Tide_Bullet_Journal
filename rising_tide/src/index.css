@@ -27,6 +27,11 @@ code {
 .navbarLink{
   font-size: 2.3vw;
 }
+@media screen and (min-width: 900px) {
+  .navbarLink{
+     font-size: 25px;
+  }
+}
 
 button{
   background-color: lightblue;
@@ -47,6 +52,11 @@ label{
   font-size: 3vw;
   margin-left: 5px;
 }
+@media screen and (min-width: 900px) {
+  label{
+     font-size: 25px;
+  }
+}
 
 #moodTrackingDiv{
   border-radius: 20px;
@@ -66,6 +76,15 @@ label{
   
 }
 
+#weeklyViewContainer{
+  padding-top: 20px;
+  background-color: #f8f3de;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  width: 60%;
+}
+
 /*Also includes archive page and weeklyview*/
 #containerSignUpOrOut{
   padding-top: 20px;
@@ -79,6 +98,11 @@ label{
 
 img{
   height: 20vw;
+}
+@media screen and (min-width: 1000px) {
+  img{
+     height: 200px;
+  }
 }
 
 footer{
@@ -190,7 +214,8 @@ input[type=checkbox]{
 }
 
 .weeklyViewTableBorder{
-border-left: solid black;
+border-left: solid #e7c7b4;
+
 }
 
 #weeklyViewTable{
@@ -200,4 +225,9 @@ border-left: solid black;
 .weeklyShell{
   margin: 10px;
   height: 15vw;
+}
+@media screen and (min-width: 900px) {
+  .weeklyShell{
+     height: 100px;
+  }
 }

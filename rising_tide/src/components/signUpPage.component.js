@@ -1,9 +1,9 @@
-import axios from 'axios';
+//import axios from 'axios';
 import React, { Component } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
+//import { useSelector,useDispatch } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
-import { register,reset } from '../features/auth/authSlice';
+//import { register,reset } from '../features/auth/authSlice';
 
 export default class SignUp extends Component {
 
@@ -79,13 +79,13 @@ export default class SignUp extends Component {
 			
 		}
 		
-			axios.post("http://localhost:5000/users/add", JSON.stringify(user),
+			/*axios.post("http://localhost:5000/users/add", JSON.stringify(user),
 			{
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
-			.then(res=>console.log(res.data));
+			.then(res=>console.log(res.data));*/
 			
 		
 		e.preventDefault();

@@ -13,7 +13,8 @@ let rotateStrings = [];
 for(let i = 0; i < 7; i++){
 
     //Generates random number between 0 and 70
-    randomNumber = Math.floor(Math.random() * (70 + 1));
+    //randomNumber = Math.floor(Math.random() * (70 + 1));
+    randomNumber = 35;
 
     //Subtracts 35 so the degree of rotation is between -35 and +35
     randomNumber -= 35;

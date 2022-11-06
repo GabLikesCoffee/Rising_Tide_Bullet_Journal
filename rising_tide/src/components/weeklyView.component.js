@@ -32,11 +32,11 @@ export default class WeeklyView extends Component {
     render() {
         return(
             <div className="container" id="weeklyViewContainer">
-                <h1>
-                    <center>
+               <center>
+                    <h1>
                         Weekly View
-                    </center>
-                </h1>
+                    </h1>
+                </center>
                 <center>
                     <table id="weeklyViewTable">
                         <tbody>

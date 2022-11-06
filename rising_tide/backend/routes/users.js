@@ -1,4 +1,5 @@
 const router = require("express").Router();
+
 let User = require("../models/user.model");
 
 router.route("/").get((req, res) => {
@@ -7,15 +8,38 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/add").post((req, res) => {
-  const username = req.body.username;
-
-  const newUser = new User({ username });
-
-  newUser
+router.route("/add").post(async(req, res) => {
+  const {username,email,password}= req.body
+  const newUser =new User({ username, password,email });
+ 
+  if(!username || username==null){
+    res.status(400)
+    throw new Error("All fields not entered")
+  }
+ /* res.status(201)
+    newUser
+    .save()
+    */
+  const userExist= await User.findOne({username})
+  
+  if(userExist){
+    res.status(400)
+    throw new Error("User exists")
+  }
+  if(newUser){
+    res.status(201)
+    newUser
     .save()
     .then(() => res.json("User added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
+  }else{
+    res.status(400)
+    throw new Error("user DNE")
+  }
+
+  
+
+ 
+   
 });
 
 module.exports = router;

@@ -268,3 +268,10 @@ border-left: solid #e7c7b4;
 .indented{
   margin-left: 5vw;
 }
+
+#navTable td:hover{
+  background-color: rgb(150, 203, 221);
+  border-radius: 5px;
+  margin: 20px;
+}
+

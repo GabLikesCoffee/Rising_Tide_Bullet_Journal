@@ -484,7 +484,7 @@ export default class Journal extends Component {
                         <textarea required onInput={countChars} onChange={this.onChangeDailyText} placeholder="How was your day? How are you feeling?" maxLength={500} id="dailyAffText" name = "freeResponse" value={this.state.freeResponse}></textarea>
                         <p id="charactersLeft">500 characters left</p>
                     
-                        <button type="submit" id="journalSubmitBtn" className="btn btn-primary btn-block">Submit</button>
+                        <button type="submit" id="journalSubmitBtn" className="btn btn-primary">Submit</button>
                     
                     </center>
                 </form>

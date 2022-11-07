@@ -53,7 +53,7 @@ export default class ArchivePage extends Component {
                             </tr>
                         </table>
                         <br/>
-                        <button type="submit" id="archiveSubmitBtn" className="btn btn-primary btn-block">Submit</button>   
+                        <button type="submit" id="archiveSubmitBtn" className="btn btn-primary">Submit</button>   
                     </form>
                 </div>
                 </center>

@@ -102,7 +102,7 @@ export default class SignUp extends Component {
                         onChange={this.changePassword}>
                         </input>
 
-                        <button type="submit" id="signUpBtn" className="btn btn-primary btn-block">Sign Up</button>
+                        <button type="submit" id="signUpBtn" className="btn btn-primary">Sign Up</button>
                     </form>
                 </center>
             </div>

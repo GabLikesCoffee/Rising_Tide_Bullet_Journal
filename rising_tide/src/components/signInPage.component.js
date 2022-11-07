@@ -89,7 +89,7 @@ export default class SignIn extends Component {
                         value={this.state.password}
                         onChange={this.changePassword}>
                         </input>
-                        <button type="submit" id="signUpBtn" className="btn btn-primary btn-block">Sign In</button>
+                        <button type="submit" id="signUpBtn" className="btn btn-primary">Sign In</button>
                     </form>
                 </center>
             </div>

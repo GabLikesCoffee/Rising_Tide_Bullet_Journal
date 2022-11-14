@@ -42,21 +42,25 @@ export default class WeeklyView extends Component {
                         <tbody>
                             <tr>
                                 <td>
-                                    <label for="day1Shell">
-                                        Today
-                                    </label>
+                                    <Link to="/">
+                                        <label for="day1Shell">
+                                            Today
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
-                                        <img class="weeklyShell" name="day1Shell" src={seashell} alt="seashell" style={{transform: rotateStrings[0]}}></img>
+                                        <img class="weeklyShell" src={seashell} alt="seashell" style={{transform: rotateStrings[0]}}></img>
                                     </Link>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek + 6) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 6) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -66,9 +70,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek + 5) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 5) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -78,9 +84,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek + 4) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 4) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -90,9 +98,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek + 3) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 3) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -102,9 +112,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek + 2) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 2) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -114,9 +126,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek + 1) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 1) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">

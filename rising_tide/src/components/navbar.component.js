@@ -24,9 +24,9 @@ function App() {
             <Nav.Link href="/weeklyView">Weekly View</Nav.Link>
             <Nav.Link href="/archivePage">Archive Page</Nav.Link>
             <NavDropdown title="Account" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/signUpLink">Sign Up</NavDropdown.Item>
+              <NavDropdown.Item href="/signUpPage">Sign Up</NavDropdown.Item>
               <NavDropdown.Item href="/signInPage">Sign In</NavDropdown.Item>
-              <NavDropdown.Item href="/signOut">Sign Out</NavDropdown.Item>
+              <NavDropdown.Item href="/">Sign Out</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

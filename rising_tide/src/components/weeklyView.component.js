@@ -1,7 +1,7 @@
 //WEEKLY VIEW
 
 import React, { Component } from 'react';
-import seashell from '../Assets/shell.png';
+import seashell from '../Assets/shell.PNG';
 import { Link } from 'react-router-dom';
 
 //Stores a random number for random shell rotation

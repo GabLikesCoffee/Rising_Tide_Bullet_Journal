@@ -192,7 +192,7 @@ textarea{
 }
 
 /*Important buttons*/
-#journalSubmitBtn, #signUpBtn, #signInBtn, #archiveSubmitBtn{
+#journalSubmitBtn, #signUpBtn, #signInBtn, #archiveSubmitBtn, #archiveBackBtn{
   margin: 20px;
   background-color: rgb(133, 204, 227);
   border: none;

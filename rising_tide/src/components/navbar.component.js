@@ -1,143 +1,39 @@
-//NAVBAR FOR RISING TIDE
-
-import React, { Component } from 'react';
+import React from "react"
+//import './App.css';
+//Already installed bootstrap through the terminal so no need to do it again
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from 'react-router-dom';
+//Already installed react-router-dom through the terminal so no need to do it again
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
-//LOGGEDIN VALUES:
-//0 = not logged in, 1 = logged in, 2 = debug mode!
+//Not using App.js anymore
 
-export default class Navbar extends Component {
-    
-    render() {
-        let loggedIn = 2;
-        if(loggedIn === 0){
-            return(
-                <nav className="navbar navbar-expand-md py-4 navbar-light shadow-sm">
-                    <table id="navTable">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <Link to="/" className="nav-link" id="navJournalButton">
-                                        <span className="navbarLink">Journal</span>
-                                    </Link>
-                                </td>
-        
-                                <td>
-                                    <Link to="/signInPage" className="nav-link">
-                                        <span className="navbarLink">Sign In</span>
-                                    </Link>
-                                </td>
-                                <td>
-                                    <Link id="signUpLink" to="/signUpPage" className="nav-link">
-                                        <span className="navbarLink">Sign Up</span>
-                                    </Link>
-                                </td>
-                                <td>
-                                    <Link id="helpLink" to="/helpPage" className="nav-link">
-                                        <span className="navbarLink">Help</span>
-                                    </Link>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </nav>
-            );
-        }
-
-        else if(loggedIn === 1){
-            return(
-                <nav className="navbar navbar-expand-md py-4 navbar-light shadow-sm">
-                    <table id="navTable">
-                        <tbody>
-                            <tr>                               
-                                <td>
-                                    <Link to="/" className="nav-link" id="navJournalButton">
-                                        <span className="navbarLink">Journal</span>
-                                    </Link>
-                                </td>
-        
-                                <td>
-                                    <Link to="/weeklyView" className="nav-link">
-                                        <span className="navbarLink">Weekly View</span>
-                                    </Link>
-                                </td>
-        
-                                <td>
-                                    <Link to="/archivePage" className="nav-link">
-                                        <span className="navbarLink"> Archive Page</span>
-                                    </Link>
-                                </td>
-        
-                                <td>
-                                    <Link to="/" className="nav-link">
-                                        <span className="navbarLink">Log Out</span>
-                                    </Link>
-                                </td>
-                                <td>
-                                    <Link id="helpLink" to="/helpPage" className="nav-link">
-                                        <span className="navbarLink">Help</span>
-                                    </Link>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </nav>
-            );
-        }
-
-        else{
-            return(
-                <nav className="navbar navbar-expand-md py-4 navbar-light shadow-sm">
-                    <table id="navTable">
-                        <tbody>
-                            <tr>
-                                
-                                <td>
-                                    <Link to="/" className="nav-link" id="navJournalButton">
-                                        <span className="navbarLink">Journal</span>
-                                    </Link>
-                                </td>
-        
-                                <td>
-                                    <Link to="/weeklyView" className="nav-link">
-                                        <span className="navbarLink">Weekly View</span>
-                                    </Link>
-                                </td>
-        
-                                <td>
-                                    <Link to="/archivePage" className="nav-link">
-                                        <span className="navbarLink">Archive Page</span>
-                                    </Link>
-                                </td>
-        
-                                <td>
-                                    <Link to="/signInPage" className="nav-link">
-                                        <span className="navbarLink">Sign In</span>
-                                    </Link>
-                                </td>
-        
-                                <td>
-                                    <Link id="signUpLink" to="/signUpPage" className="nav-link">
-                                        <span className="navbarLink">Sign Up</span>
-                                    </Link>
-                                </td>
-                                    
-                                <td>
-                                    <Link to="/" className="nav-link">
-                                        <span className="navbarLink">Log Out</span>
-                                    </Link>
-                                </td>
-                                <td>
-                                    <Link id="helpLink" to="/helpPage" className="nav-link">
-                                        <span className="navbarLink">Help</span>
-                                    </Link>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </nav>
-            );
-        }
-    }
+function App() {
+  return (
+    <div className="App">
+            <Navbar collapseOnSelect expand="lg" bg="lightblue" variant="light">
+      <Container>
+        <Navbar.Brand href="/">Rising Tide</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+          </Nav>
+          <Nav>
+            <Nav.Link href="/weeklyView">Weekly View</Nav.Link>
+            <Nav.Link href="/archivePage">Archive Page</Nav.Link>
+            <NavDropdown title="Account" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="/signUpPage">Sign Up</NavDropdown.Item>
+              <NavDropdown.Item href="/signInPage">Sign In</NavDropdown.Item>
+              <NavDropdown.Item href="/">Sign Out</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+    </div>
+  );
 }
+
+export default App;

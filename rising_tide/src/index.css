@@ -1,11 +1,36 @@
+:root{
+  /*--font: "Copperplate";*/
+  --color: rgb(165, 79, 42);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+
     background-color: #e4f5ff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+p{
+  font-family: var(--font);
+  color: var(--color);
+}
+h1{
+  font-family: var(--font);
+  color: var(--color);
+}
+
+h2{
+  font-family: var(--font);
+  color: var(--color);
+}
+
+h3{
+  font-family: var(--font);
+  color: var(--color);
 }
 
 code {
@@ -13,36 +38,47 @@ code {
     monospace;
 }
 
+/*The navbar box*/
 .navbar {
   background-color: lightblue;
   
 }
 
+/*Navbar text*/
 .nav-link{
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
   
 }
+
+/*Navbar text overriding bootstrap*/
 .navbarLink{
-  font-size: 2.3vw;
+  font-size: 2.2vw;
+  font-family: var(--font);
+  color: rgb(62, 110, 158);
 }
+
+/*Navbar text conditional to screen width*/
 @media screen and (min-width: 900px) {
   .navbarLink{
-     font-size: 25px;
+     font-size: 24px;
   }
 }
 
+/*General button css*/
 button{
   background-color: lightblue;
   border-radius: 10px;
 }
 
+/*Text box css (not textarea)*/
 input[type=textbox], input[type=password], input[type=email]{
   margin-bottom: 10px;
   width: 40%
 }
 
+/*Radio button and checkbox css*/
 input[type=radio], label, input[type=checkbox]{
   vertical-align: middle;
   margin-top: 10px;
@@ -51,13 +87,18 @@ input[type=radio], label, input[type=checkbox]{
 label{
   font-size: 3vw;
   margin-left: 5px;
+  font-family: var(--font);
+  color: var(--color);
 }
+
+/*Label css conditional to screen size*/
 @media screen and (min-width: 900px) {
   label{
      font-size: 25px;
   }
 }
 
+/*Box in the journal page for mood tracking*/
 #moodTrackingDiv{
   border-radius: 20px;
   background-color:#fefcf0;
@@ -66,16 +107,18 @@ label{
   
 }
 
-/*Middle box*/
+/*Generalmiddle box*/
 #container{
   padding-top: 20px;
   background-color: #f8f3de;
   display: flex;
   flex-flow: column;
   align-items: stretch;
+  padding-bottom: 20px;
   
 }
 
+/*Middle box for the weekly view*/
 #weeklyViewContainer{
   padding-top: 20px;
   background-color: #f8f3de;
@@ -83,9 +126,10 @@ label{
   flex-flow: column;
   align-items: stretch;
   width: 60%;
+  padding-bottom: 20px;
 }
 
-/*Also includes archive page and weeklyview*/
+/*Also includes archive page*/
 #containerSignUpOrOut{
   padding-top: 20px;
   background-color: #f8f3de;
@@ -96,38 +140,36 @@ label{
   
 }
 
+/*Picture css*/
 img{
   height: 20vw;
 }
+
+/*Picture css conditional to screen size*/
 @media screen and (min-width: 1000px) {
   img{
      height: 200px;
   }
 }
 
+/*Company footer box*/
 footer{
   background-color: lightblue;
 }
 
-/*The true background*/
+/*The actual background*/
 #root{
   background-color: #e7c7b4;
 }
 
-#navJournalButton{
-  margin-left: 30px;
-}
-
+/*Table css for centered items*/
 #navTable, #moodTable, #archivePageTable, #weeklyViewTable{
   width: 100%;
   table-layout: fixed;
   text-align: center;
 }
 
-textarea{
-  resize: none;
-}
-
+/*Jounal daily affirmation textarea*/
 textarea{
   resize: none;
   display: block;
@@ -149,12 +191,14 @@ textarea{
   margin-bottom: 40px;
 }
 
+/*Important buttons*/
 #journalSubmitBtn, #signUpBtn, #signInBtn, #archiveSubmitBtn{
   margin: 20px;
   background-color: rgb(133, 204, 227);
   border: none;
 }
 
+/*General buttons*/
 button{
   margin: 8px;
   background-color: rgb(133, 204, 227);
@@ -162,6 +206,7 @@ button{
   border-radius: 10px;
 }
 
+/*Box for habit section of the journal page*/
 #habitWidget{
   border-radius: 10px;
   background-color:#fefcf0;
@@ -173,17 +218,20 @@ button{
   vertical-align: middle;
 }
 
+/*Gets rid of annoying outlines when you click on a textbox*/
 input:focus, textarea {
   outline: none;
 }
 
+/*Row for typing a new habit in*/
 #newHabitInput{
-  width: 500px;
+  width: 100%;
   border-radius: 10px;
   border: none;
   background-color: #fefcf0;
 }
 
+/*Each row of the habit table*/
 #habitTable tr {
   border-bottom: solid #e7c7b4;
   font-size: 20px;
@@ -230,4 +278,21 @@ border-left: solid #e7c7b4;
   .weeklyShell{
      height: 100px;
   }
+}
+
+.helpDiv{
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ece0c1;
+  border-radius: 5px;
+}
+
+.indented{
+  margin-left: 5vw;
+}
+
+#navTable td:hover{
+  background-color: rgb(150, 203, 221);
+  border-radius: 5px;
+  margin: 20px;
 }

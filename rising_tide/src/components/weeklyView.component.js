@@ -1,7 +1,7 @@
 //WEEKLY VIEW
 
 import React, { Component } from 'react';
-import seashell from '../Assets/shell.PNG';
+import seashell from '../Assets/shell.png';
 import { Link } from 'react-router-dom';
 
 //Stores a random number for random shell rotation
@@ -13,8 +13,7 @@ let rotateStrings = [];
 for(let i = 0; i < 7; i++){
 
     //Generates random number between 0 and 70
-    //randomNumber = Math.floor(Math.random() * (70 + 1));
-    randomNumber = 35;
+    randomNumber = Math.floor(Math.random() * (70 + 1));
 
     //Subtracts 35 so the degree of rotation is between -35 and +35
     randomNumber -= 35;
@@ -33,31 +32,35 @@ export default class WeeklyView extends Component {
     render() {
         return(
             <div className="container" id="weeklyViewContainer">
-                <h1>
-                    <center>
+               <center>
+                    <h1>
                         Weekly View
-                    </center>
-                </h1>
+                    </h1>
+                </center>
                 <center>
                     <table id="weeklyViewTable">
                         <tbody>
                             <tr>
                                 <td>
-                                    <label for="day1Shell">
-                                        Today
-                                    </label>
+                                    <Link to="/">
+                                        <label for="day1Shell">
+                                            Today
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
-                                        <img class="weeklyShell" name="day1Shell" src={seashell} alt="seashell" style={{transform: rotateStrings[0]}}></img>
+                                        <img class="weeklyShell" src={seashell} alt="seashell" style={{transform: rotateStrings[0]}}></img>
                                     </Link>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek+1) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 6) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -67,9 +70,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek+2) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 5) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -79,9 +84,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek+3) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 4) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -91,9 +98,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek+4) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 3) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -103,9 +112,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek+5) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 2) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">
@@ -115,9 +126,11 @@ export default class WeeklyView extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        {weekDay[(dayOfTheWeek+6) % 7]}
-                                    </label>
+                                    <Link to="/">
+                                        <label>
+                                            {weekDay[(dayOfTheWeek + 1) % 7]}
+                                        </label>
+                                    </Link>
                                 </td>
                                 <td class="weeklyViewTableBorder">
                                     <Link to="/">

@@ -1,17 +1,7 @@
 //JOURNAL PAGE
 
 import React, { Component } from 'react';
-import seashell from '../Assets/shell.PNG'
-import happy from '../Assets/happy.PNG'
-import ecstatic from '../Assets/ecstatic.PNG'
-import excited from '../Assets/excited.PNG'
-import sad from '../Assets/sad.PNG'
-import depressed from '../Assets/depressed.PNG'
-import hopeless from '../Assets/hopeless.PNG'
-import mad from '../Assets/mad.PNG'
-import angry from '../Assets/angry.PNG'
-import disgusted from '../Assets/disgusted.PNG'
-
+import seashell from '../Assets/tempShell.PNG'
 
 //Value for if the habit input textbox is out or not
 let textBoxUp = false;
@@ -293,50 +283,6 @@ export default class Journal extends Component {
         this.setState({
             mood: e.target.value
       });
-      let shellImage = document.getElementById("seashellImg");
-      switch (e.target.value) {
-        case "neutral":
-            shellImage.src = seashell;
-            break;
-        case "happy":
-            shellImage.src = happy;
-            break;
-        case "ecstatic":
-            shellImage.src = ecstatic;
-            break;
-
-        case "excited":
-            shellImage.src = excited;
-            break;
-
-        case "sad":
-            shellImage.src = sad;
-            break;
-        case "depressed":
-            shellImage.src = depressed;
-            break;
-
-        case "hopeless":
-            shellImage.src = hopeless;
-            break;
-
-        case "mad":
-            shellImage.src = mad;
-            break;
-
-        case "angry":
-            shellImage.src = angry;
-            break;
-
-        case "disgusted":
-            shellImage.src = disgusted;
-            break;
-
-        default:
-            shellImage.src = seashell;     
-      }
-      
-      console.log(happy);
     }
 
     onChangeHabit = e =>{
@@ -405,30 +351,29 @@ export default class Journal extends Component {
             <div className="container" id="container">
                 <h1 className="journalHeader" id="journalHeader"> 
                     <center>
-                        Rising Tide Bullet Journal
+                    Rising Tide Bullet Journal
                     </center> 
                 </h1>
 
                 
 
                 <form onSubmit={this.onSubmit} action={emailString} method="post" target="_blank" encType='text/plain'>
-                <center>Enter Email for journal submit debugging (will delete later)</center>
-                <center><input onInput={updateEmail} id="emailInput" type="email" required></input></center>
+                Enter Email for journal submit debugging (will delete later)<input onInput={updateEmail} id="emailInput" type="email" required></input>
                     <div id="moodTrackingDiv">
                         <table id="moodTable">
                             <tbody>
                                 <tr>
                                     <td>
                                         <center>
-                                            <img id="seashellImg" src={seashell} height="200px" alt="seashell"/>
+                                            <img src={seashell} height="200px" alt="seashell"/>
                                         </center>
                                     </td>
                                     <td>
                                         <center  onChange={this.onChangeMood}>
-                                            <input type="radio" id="mtNeutral" name="moodTracker" value="neutral" className="moodTracker" img={seashell}></input>
+                                            <input type="radio" id="mtNeutral" name="moodTracker" value="neutral" className="moodTracker"></input>
                                             <label htmlFor="mtNeutral">Neutral</label><br/>
 
-                                            <input type="radio" id="mtHappy" name="moodTracker" value="happy" className="moodTracker" img={happy}></input>
+                                            <input type="radio" id="mtHappy" name="moodTracker" value="happy" className="moodTracker"></input>
                                             <label htmlFor="mtHappy">Happy</label><br/>
 
                                             <input type="radio" id="mtEcstatic" name="moodTracker" value="ecstatic" className="moodTracker"></input>

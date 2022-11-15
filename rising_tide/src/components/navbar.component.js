@@ -18,12 +18,6 @@ export default class Navbar extends Component {
                         <tbody>
                             <tr>
                                 <td>
-                                    <Link to="/" className="navbar-brand">
-                                        <span className="navbarLink">Rising Tide</span>
-                                    </Link>
-                                </td>
-                                
-                                <td>
                                     <Link to="/" className="nav-link" id="navJournalButton">
                                         <span className="navbarLink">Journal</span>
                                     </Link>
@@ -34,10 +28,14 @@ export default class Navbar extends Component {
                                         <span className="navbarLink">Sign In</span>
                                     </Link>
                                 </td>
-        
                                 <td>
                                     <Link id="signUpLink" to="/signUpPage" className="nav-link">
                                         <span className="navbarLink">Sign Up</span>
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link id="helpLink" to="/helpPage" className="nav-link">
+                                        <span className="navbarLink">Help</span>
                                     </Link>
                                 </td>
                             </tr>
@@ -52,13 +50,7 @@ export default class Navbar extends Component {
                 <nav className="navbar navbar-expand-md py-4 navbar-light shadow-sm">
                     <table id="navTable">
                         <tbody>
-                            <tr>
-                                <td>
-                                    <Link to="/" className="navbar-brand">
-                                        <span className="navbarLink">Rising Tide</span>
-                                    </Link>
-                                </td>
-                                
+                            <tr>                               
                                 <td>
                                     <Link to="/" className="nav-link" id="navJournalButton">
                                         <span className="navbarLink">Journal</span>
@@ -80,6 +72,11 @@ export default class Navbar extends Component {
                                 <td>
                                     <Link to="/" className="nav-link">
                                         <span className="navbarLink">Log Out</span>
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link id="helpLink" to="/helpPage" className="nav-link">
+                                        <span className="navbarLink">Help</span>
                                     </Link>
                                 </td>
                             </tr>
@@ -129,6 +126,11 @@ export default class Navbar extends Component {
                                 <td>
                                     <Link to="/" className="nav-link">
                                         <span className="navbarLink">Log Out</span>
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link id="helpLink" to="/helpPage" className="nav-link">
+                                        <span className="navbarLink">Help</span>
                                     </Link>
                                 </td>
                             </tr>

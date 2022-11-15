@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import axios from 'axios';
+
 import register from '../features/auth/AuthService';
 
+
 export default class SignUp extends Component {
+	
 
     constructor(props){
 		super(props);
@@ -42,6 +44,7 @@ export default class SignUp extends Component {
 		}
 	}
     
+	
 	changeUsername = (e)=>{
 		this.setState({
 			username: e.target.value
@@ -61,7 +64,10 @@ export default class SignUp extends Component {
 	 
 
     onSubmit= (e)=>{
-        
+        //const { errorDetected,success,isLoading,message}=  useSelector((state)=>state.auth);
+		
+		
+
 		if(this.state.username.length < 3){
 			let usernameLabel = document.getElementById("signUpUsernameLabel")
 			usernameLabel.innerHTML = "Username should be at least 3 characters long"
@@ -69,26 +75,30 @@ export default class SignUp extends Component {
 			e.preventDefault();
 			return;
 		}
-		const user={
+		
+        const user={
 			username: this.state.username,
 			password: this.state.password,
 			email: this.state.email
 			
 		}
 		
-			axios.post("http://localhost:5000/users/add", JSON.stringify(user),
+		
+		
+			/*axios.post("http://localhost:5000/users/add", JSON.stringify(user),
 			{
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
-			.then(res=>console.log(res.data));
+			.then(res=>console.log(res.data));*/
 			
+		register(user);
 		
 		e.preventDefault();
         
-        	register(user);
-        	console.log(user)
+        
+        //console.log(user)
 		document.getElementById("signUpUsernameLabel").style = "color: black";
 		document.getElementById("signUpUsernameLabel").innerHTML = "Username:";
         document.getElementById("signup").innerHTML = "Welcome, new user!";
@@ -105,6 +115,7 @@ export default class SignUp extends Component {
 
 						<label className="signUpFormLabels" for="signUpEmail">Email:</label>
                         <input id="signUpEmail" type="email"  className="form-control" placeholder="Email" required
+						
 						onChange={this.changeEmail}></input>
 						
 						<label className="signUpFormLabels" for="signUpUsername" id="signUpUsernameLabel">Username:</label>
@@ -129,3 +140,5 @@ export default class SignUp extends Component {
         )
     }
 }
+
+

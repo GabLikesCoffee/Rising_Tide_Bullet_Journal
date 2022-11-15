@@ -34,6 +34,7 @@ root.render(
       <Route path = "/archivePage" element={<ArchivePage />}></Route>
       <Route path = "/signInPage" element={<SignIn />}></Route>
       <Route path = "/signUpPage" element={<SignUp />}></Route>
+      <Route path = "/helpPage" element={<Help />}></Route>
     </Routes>
 
     <Footer />

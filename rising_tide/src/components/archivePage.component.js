@@ -2,14 +2,27 @@
 
 import React, { Component } from 'react';
 
+const onBackButton = event => {
+    let archivePageShift1 = document.getElementById("archivePageShift1");
+    let archivePageShift2 = document.getElementById("archivePageShift2");
+    archivePageShift2.setAttribute("hidden", true);
+    archivePageShift1.removeAttribute("hidden"); 
+    //Placeholder text change when form is submitted
+    //document.getElementById("archiveHeader").innerHTML = "Submitted";
+}
+
 export default class ArchivePage extends Component {
 
     today = new Date().toISOString().split("T")[0];
 
     onSubmit(e) {
         e.preventDefault();
+        let archivePageShift1 = document.getElementById("archivePageShift1");
+        let archivePageShift2 = document.getElementById("archivePageShift2");
+        archivePageShift1.setAttribute("hidden", true);
+        archivePageShift2.removeAttribute("hidden"); 
         //Placeholder text change when form is submitted
-        document.getElementById("archiveHeader").innerHTML = "Submitted";
+        //document.getElementById("archiveHeader").innerHTML = "Submitted";
     }
 
     render() {
@@ -21,7 +34,7 @@ export default class ArchivePage extends Component {
                     </h1>
                 
                 
-                <div>
+                <div id="archivePageShift1">
                     <br/>
                     <br/>
                     <h3>Enter to and from dates to view past journals</h3>
@@ -57,6 +70,13 @@ export default class ArchivePage extends Component {
                     </form>
                 </div>
                 </center>
+                <div id="archivePageShift2" hidden>
+                <button type="button" onClick={onBackButton} id="archiveBackButton" className="btn btn-primary">Back</button>   
+                    <center>
+                    insert journal info here
+                    </center>
+                </div>
+
             </div>
 
         )

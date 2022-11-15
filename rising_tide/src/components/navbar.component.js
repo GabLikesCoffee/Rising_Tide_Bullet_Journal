@@ -59,7 +59,7 @@ function App() {
           <Nav>
             <Nav.Link href="/weeklyView">Weekly View</Nav.Link>
             <Nav.Link href="/archivePage">Archive Page</Nav.Link>
-            <Nav.Link href="/helpPage">Help Page</Nav.Link>
+            <Nav.Link href="/helpPage">Help</Nav.Link>
             <NavDropdown title="Account" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/signUpPage">Sign Up</NavDropdown.Item>
               <NavDropdown.Item href="/signInPage">Sign In</NavDropdown.Item>

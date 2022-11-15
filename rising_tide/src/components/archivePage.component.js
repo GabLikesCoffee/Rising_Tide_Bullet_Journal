@@ -21,6 +21,10 @@ export default class ArchivePage extends Component {
         let archivePageShift2 = document.getElementById("archivePageShift2");
         archivePageShift1.setAttribute("hidden", true);
         archivePageShift2.removeAttribute("hidden"); 
+
+        let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
+        archiveEntriesDiv.innerHTML = "<div><h3>Insert Journal Data Here<h3></div>";
+
         //Placeholder text change when form is submitted
         //document.getElementById("archiveHeader").innerHTML = "Submitted";
     }
@@ -71,9 +75,11 @@ export default class ArchivePage extends Component {
                 </div>
                 </center>
                 <div id="archivePageShift2" hidden>
-                <button type="button" onClick={onBackButton} id="archiveBackButton" className="btn btn-primary">Back</button>   
+                <button type="button" onClick={onBackButton} id="archiveBackBtn" className="btn btn-primary">Back</button>   
                     <center>
-                    insert journal info here
+                        <div id="archiveEntriesDiv">
+                            
+                        </div>
                     </center>
                 </div>
 

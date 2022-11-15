@@ -43,7 +43,7 @@ export default class WeeklyView extends Component {
                             <tr>
                                 <td>
                                     <Link to="/">
-                                        <label for="day1Shell">
+                                        <label htmlFor="day1Shell">
                                             Today
                                         </label>
                                     </Link>

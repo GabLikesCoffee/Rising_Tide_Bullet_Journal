@@ -44,30 +44,32 @@ export default class ArchivePage extends Component {
                     <h3>Enter to and from dates to view past journals</h3>
                     <form onSubmit={this.onSubmit}>
                         <table id="archivePageTable">
-                            <tr>
-                                <th><label for="start">Start Date:</label></th>
-                                <th><label for="end">End Date:</label></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                <input type="date" 
-                                    id="start" 
+                            <tbody>
+                                <tr>
+                                    <th><label htmlFor="start">Start Date:</label></th>
+                                    <th><label htmlFor="end">End Date:</label></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <input type="date" 
+                                        id="start" 
 
-                                    min="2022-09-01" 
-                                    max={this.today}>
-                                </input>
-                                </td>
+                                        min="2022-09-01" 
+                                        max={this.today}>
+                                    </input>
+                                    </td>
 
-                                <td>
-                                <input type="date" 
-                                    id="end" 
-                                    name="trip-start" 
+                                    <td>
+                                    <input type="date" 
+                                        id="end" 
+                                        name="trip-start" 
 
-                                    min="2022-09-01" 
-                                    max={this.today}>
-                                </input>
-                                </td>
-                            </tr>
+                                        min="2022-09-01" 
+                                        max={this.today}>
+                                    </input>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                         <br/>
                         <button type="submit" id="archiveSubmitBtn" className="btn btn-primary">Submit</button>   

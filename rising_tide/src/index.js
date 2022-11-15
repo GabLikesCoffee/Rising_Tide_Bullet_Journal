@@ -9,8 +9,11 @@ import Journal from "./components/journal.component";
 import WeeklyView from "./components/weeklyView.component";
 import ArchivePage from "./components/archivePage.component";
 import SignIn from "./components/signInPage.component";
+import { Provider } from 'react-redux'
 import SignUp from "./components/signUpPage.component";
 import Footer from "./components/footer.component";
+import { store } from './features/auth/store';
+import Help from "./components/help.component";
 import {
   BrowserRouter, Routes, Route
 } from "react-router-dom";
@@ -20,6 +23,7 @@ import {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
 
     <Navbar />
@@ -34,6 +38,7 @@ root.render(
 
     <Footer />
     </BrowserRouter>
+  </Provider>
   </React.StrictMode>
 );
 

@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-//import { useSelector,useDispatch } from 'react-redux';
-
-//import { useNavigate } from 'react-router-dom';
-//import { register,reset } from '../features/auth/authSlice';
+import axios from 'axios';
+import register from '../features/auth/AuthService';
 
 export default class SignUp extends Component {
 
@@ -71,8 +69,7 @@ export default class SignUp extends Component {
 			e.preventDefault();
 			return;
 		}
-
-        const user={
+		const user={
 			username: this.state.username,
 			password: this.state.password,
 			email: this.state.email
@@ -90,8 +87,8 @@ export default class SignUp extends Component {
 		
 		e.preventDefault();
         
-        
-        console.log(user)
+        	register(user);
+        	console.log(user)
 		document.getElementById("signUpUsernameLabel").style = "color: black";
 		document.getElementById("signUpUsernameLabel").innerHTML = "Username:";
         document.getElementById("signup").innerHTML = "Welcome, new user!";
@@ -108,7 +105,6 @@ export default class SignUp extends Component {
 
 						<label className="signUpFormLabels" for="signUpEmail">Email:</label>
                         <input id="signUpEmail" type="email"  className="form-control" placeholder="Email" required
-						
 						onChange={this.changeEmail}></input>
 						
 						<label className="signUpFormLabels" for="signUpUsername" id="signUpUsernameLabel">Username:</label>

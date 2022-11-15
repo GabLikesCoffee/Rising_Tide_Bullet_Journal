@@ -30,7 +30,7 @@ router.route("/add").post(async(req, res) => {
     res.status(201)
     newUser
     .save()
-    .then(() => res.json("User added!"))
+    .then(() => res.json(newUser))
   }else{
     res.status(400)
     throw new Error("user DNE")

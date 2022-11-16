@@ -151,7 +151,7 @@ const addHabit = event => {
 
             //Sets up habit with the checkbox string
             habitHTMLString = "<button type='button' hidden class='deleteButton' id='"
-            habitHTMLString += deleteId + "'>-</button><label class='habitText'for='";
+            habitHTMLString += deleteId + "'>-</button><label class='habitText'htmlFor='";
             habitHTMLString += id + "'>";
             habitHTMLString +="<input type='checkbox' id='";
             habitHTMLString +=id + "'></input>"

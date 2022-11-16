@@ -85,17 +85,17 @@ export default class SignUp extends Component {
                         <h2 id="signup">Sign Up Here!</h2>
                         <br/>
 
-						<label className="signUpFormLabels" for="signUpEmail">Email:</label>
+						<label className="signUpFormLabels" htmlFor="signUpEmail">Email:</label>
                         <input id="signUpEmail" type="email"  className="form-control" placeholder="Email" required></input>
 						
-						<label className="signUpFormLabels" for="signUpUsername" id="signUpUsernameLabel">Username:</label>
+						<label className="signUpFormLabels" htmlFor="signUpUsername" id="signUpUsernameLabel">Username:</label>
                         <input type="textbox" id="signUpUsername" className="form-control" placeholder="Username" 
                         required 
                         value={this.state.username}
                         onChange={this.changeUsername}>
                         </input>
 
-						<label className="signUpFormLabels" for="SignUpPassword">Password: </label>
+						<label className="signUpFormLabels" htmlFor="SignUpPassword">Password: </label>
                         <input type="password" id="signUpPassword" className="form-control" placeholder="Password" 
                         required
                         value={this.state.password}

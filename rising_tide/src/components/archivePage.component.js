@@ -19,6 +19,16 @@ export default class ArchivePage extends Component {
         e.preventDefault();
         let archivePageShift1 = document.getElementById("archivePageShift1");
         let archivePageShift2 = document.getElementById("archivePageShift2");
+        let startDate = document.getElementById("start");
+        let endDate = document.getElementById("end");
+        let errorMsg = document.getElementById("dateErrorMsg");
+
+        if(endDate.value < startDate.value){
+            errorMsg.style = "color: red";
+            errorMsg.removeAttribute("hidden"); 
+            return;
+        }
+        errorMsg.setAttribute("hidden", true)
         archivePageShift1.setAttribute("hidden", true);
         archivePageShift2.removeAttribute("hidden"); 
 
@@ -42,6 +52,7 @@ export default class ArchivePage extends Component {
                     <br/>
                     <br/>
                     <h3>Enter to and from dates to view past journals</h3>
+                    <p id="dateErrorMsg" hidden>Start date must be before the end date!</p>
                     <form onSubmit={this.onSubmit}>
                         <table id="archivePageTable">
                             <tbody>
@@ -55,7 +66,7 @@ export default class ArchivePage extends Component {
                                         id="start" 
 
                                         min="2022-09-01" 
-                                        max={this.today}>
+                                        max={this.today} required>
                                     </input>
                                     </td>
 
@@ -65,7 +76,7 @@ export default class ArchivePage extends Component {
                                         name="trip-start" 
 
                                         min="2022-09-01" 
-                                        max={this.today}>
+                                        max={this.today} required>
                                     </input>
                                     </td>
                                 </tr>

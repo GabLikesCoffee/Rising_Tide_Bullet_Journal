@@ -19,18 +19,28 @@ p{
   color: var(--color);
 }
 h1{
+  font-size: 32px;
   font-family: var(--font);
   color: var(--color);
+}
+.bigH1{
+  font-size: 42px;
 }
 
 h2{
   font-family: var(--font);
   color: var(--color);
 }
+.bigH2{
+  font-size: 36px;
+}
 
 h3{
   font-family: var(--font);
   color: var(--color);
+}
+.bigH3{
+  font-size: 29px;
 }
 
 code {
@@ -90,11 +100,21 @@ label{
   font-family: var(--font);
   color: var(--color);
 }
+.bigLabel{
+  font-size: 3.3vw;
+  margin-left: 5px;
+  font-family: var(--font);
+  color: var(--color);
+}
+
 
 /*Label css conditional to screen size*/
 @media screen and (min-width: 900px) {
   label{
      font-size: 25px;
+  }
+  .bigLabel{
+    font-size: 35px;
   }
 }
 
@@ -297,3 +317,7 @@ border-left: solid #e7c7b4;
   margin: 20px;
 }
 
+#footer{
+  display: inline;
+  color: black;
+}

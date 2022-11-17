@@ -14,31 +14,52 @@ const toggleFontSize = event => {
   let fontSizeBtn = document.getElementById("fontSizeBtn");
   let labels = document.getElementsByTagName("label");
   let paragraphs = document.getElementsByTagName("p");
-  let headers = document.getElementsByTagName("h1");
+  let header1 = document.getElementsByTagName("h1");
+  let header2 = document.getElementsByTagName("h2");
+  let header3 = document.getElementsByTagName("h3");
+  let textarea = document.getElementsByTagName("textarea");
 
   if(bigFont === false){
     fontSizeBtn.innerHTML = "Reduce Font Size"
 
     for(let l of labels){
-      l.style = "font-size: 3.3vw"
+      l.classList.add("bigLabel");
     }
     for(let p of paragraphs){
-      p.style = "font-size: 26px"
+      p.style = "font-size: 20px"
     }
-    for(let h of headers){
-      h.style = "font-size: 42px"
+    for(let h1 of header1){
+      h1.classList.add("bigH1");
+    }
+    for(let h2 of header2){
+      h2.classList.add("bigH2");
+    }
+    for(let h3 of header3){
+      h3.classList.add("bigH3");
+    }
+    for(let ta of textarea){
+      ta.style = "font-size: 2.2vw"
     }
   }
   else{
     fontSizeBtn.innerHTML = "Increase Font Size"
     for(let l of labels){
-      l.style = "font-size: 3vw"
+      l.classList.remove("bigLabel");
     }
     for(let p of paragraphs){
       p.style = "font-size: 16px"
     }
-    for(let h of headers){
-      h.style = "font-size: 32px"
+    for(let h1 of header1){
+      h1.classList.remove("bigH1");
+    }
+    for(let h2 of header2){
+      h2.classList.remove("bigH2");
+    }
+    for(let h3 of header3){
+      h3.classList.remove("bigH3");
+    }
+    for(let ta of textarea){
+      ta.style = "font-size: 2vw"
     }
   }
   bigFont = !bigFont;

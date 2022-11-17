@@ -472,7 +472,7 @@ export default class Journal extends Component {
                                         <th>
                                             <button type="button" id="addHabitButton" onClick={addHabit}>+</button>
                                             <button type="button" id="deleteHabitButton" onClick={toggleDeleteButton}>-</button>
-                                            <p id="habitsLabel">Habits</p>
+                                            <label id="habitsLabel">Habits</label>
                                         </th>
                                     </tr>
                                 </tbody>

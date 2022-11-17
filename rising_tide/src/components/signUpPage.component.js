@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 
+import {register} from '../features/auth/AuthService';
+
+
 export default class SignUp extends Component {
+	
 
     constructor(props){
 		super(props);
         
         this.changeUsername= this.changeUsername.bind(this);
         this.changePassword= this.changePassword.bind(this);
+		this.changeEmail= this.changeEmail.bind(this);
         
         this.onSubmit=this.onSubmit.bind(this);
 		this.state={
@@ -38,6 +43,7 @@ export default class SignUp extends Component {
 		}
 	}
     
+	
 	changeUsername = (e)=>{
 		this.setState({
 			username: e.target.value
@@ -48,11 +54,19 @@ export default class SignUp extends Component {
 			password: e.target.value
 		});
 	}
+	changeEmail = (e)=>{
+		this.setState({
+			email: e.target.value
+		});
+	}
 	
 	 
 
     onSubmit= (e)=>{
-        
+        //const { errorDetected,success,isLoading,message}=  useSelector((state)=>state.auth);
+		
+		
+
 		if(this.state.username.length < 3){
 			let usernameLabel = document.getElementById("signUpUsernameLabel")
 			usernameLabel.innerHTML = "Username should be at least 3 characters long"
@@ -60,17 +74,30 @@ export default class SignUp extends Component {
 			e.preventDefault();
 			return;
 		}
-
+		
         const user={
-			_id: this.state.username,
+			username: this.state.username,
 			password: this.state.password,
+			email: this.state.email
 			
 		}
+		
+		
+		
+			/*axios.post("http://localhost:5000/users/add", JSON.stringify(user),
+			{
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			.then(res=>console.log(res.data));*/
+			
+		register(user);
+		
 		e.preventDefault();
-	
         
         
-        console.log(user)
+        //console.log(user)
 		document.getElementById("signUpUsernameLabel").style = "color: black";
 		document.getElementById("signUpUsernameLabel").innerHTML = "Username:";
         document.getElementById("signup").innerHTML = "Welcome, new user!";
@@ -85,24 +112,26 @@ export default class SignUp extends Component {
                         <h2 id="signup">Sign Up Here!</h2>
                         <br/>
 
-						<label className="signUpFormLabels" htmlFor="signUpEmail">Email:</label>
-                        <input id="signUpEmail" type="email"  className="form-control" placeholder="Email" required></input>
+						<label className="signUpFormLabels" for="signUpEmail">Email:</label>
+                        <input id="signUpEmail" type="email"  className="form-control" placeholder="Email" required
 						
-						<label className="signUpFormLabels" htmlFor="signUpUsername" id="signUpUsernameLabel">Username:</label>
+						onChange={this.changeEmail}></input>
+						
+						<label className="signUpFormLabels" for="signUpUsername" id="signUpUsernameLabel">Username:</label>
                         <input type="textbox" id="signUpUsername" className="form-control" placeholder="Username" 
                         required 
-                        value={this.state.username}
+                        
                         onChange={this.changeUsername}>
                         </input>
 
-						<label className="signUpFormLabels" htmlFor="SignUpPassword">Password: </label>
+						<label className="signUpFormLabels" for="SignUpPassword">Password: </label>
                         <input type="password" id="signUpPassword" className="form-control" placeholder="Password" 
                         required
-                        value={this.state.password}
+                        
                         onChange={this.changePassword}>
                         </input>
 
-                        <button type="submit" id="signUpBtn" className="btn btn-primary">Sign Up</button>
+                        <button type="submit" id="signUpBtn" className="btn btn-primary btn-block">Sign Up</button>
                     </form>
                 </center>
             </div>

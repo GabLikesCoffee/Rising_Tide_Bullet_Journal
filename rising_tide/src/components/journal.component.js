@@ -11,7 +11,7 @@ import hopeless from '../Assets/hopeless.PNG'
 import mad from '../Assets/mad.PNG'
 import angry from '../Assets/angry.PNG'
 import disgusted from '../Assets/disgusted.PNG'
-
+import {addHabitPost,addJournalPost} from "../features/RequestUserData"
 
 //Value for if the habit input textbox is out or not
 let textBoxUp = false;
@@ -392,6 +392,8 @@ export default class Journal extends Component {
         }
         console.log(journal);
         console.log(habitList);
+        addHabitPost(habitList);
+        addJournalPost(journal);
         //Placeholder text change when form is submitted
         document.getElementById("journalHeader").innerHTML = "<center>Submitted!</center>"
         if(email.value===""){

@@ -1,6 +1,8 @@
 //ARCHIVE PAGE
 
+import { get } from 'mongoose';
 import React, { Component } from 'react';
+import {getHabitPost,getJournalPost} from "../features/RequestUserData"
 
 const onBackButton = event => {
     let archivePageShift1 = document.getElementById("archivePageShift1");
@@ -11,17 +13,59 @@ const onBackButton = event => {
     //document.getElementById("archiveHeader").innerHTML = "Submitted";
 }
 
+const requestPerDate=(beginDate,endDate)=>{
+	
+	let dateList=[];
+    let journalList=[];
+	let calenderMonth=beginDate.month;
+	for(let currentYear=beginDate.year; currentYear<=endDate.year; currentYear++){
+		for(let monthCounter= calenderMonth; monthCounter<=12; monthCounter++){
+			calenderMonth%=12
+			calenderMonth++
+			for(let dayCounter=beginDate.day; dayCounter<=31; dayCounter++){
+				
+				let currentDate={
+					day:dayCounter, 
+					month:monthCounter,
+					year:currentYear
+				}
+				let temp= getJournalPost(currentDate);
+                if(temp){
+                    journalList.push(temp);
+
+                }
+
+				if(JSON.stringify(endDate)===JSON.stringify(currentDate)){
+					dateList.push(currentDate);
+					return journalList;
+					
+                }else{
+                    dateList.push(currentDate);
+                    
+                    }
+				
+				
+			}
+		}
+		
+	}
+}
 export default class ArchivePage extends Component {
 
     today = new Date().toISOString().split("T")[0];
 
     onSubmit(e) {
+        
         e.preventDefault();
         let archivePageShift1 = document.getElementById("archivePageShift1");
         let archivePageShift2 = document.getElementById("archivePageShift2");
         let startDate = document.getElementById("start");
         let endDate = document.getElementById("end");
         let errorMsg = document.getElementById("dateErrorMsg");
+
+        //Posts request for journals given a start and end date
+        console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
+
 
         if(endDate.value < startDate.value){
             errorMsg.style = "color: red";

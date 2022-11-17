@@ -1,12 +1,35 @@
 const router = require("express").Router();
-let User = require("../models/user.model");
+const jwt = require('jsonwebtoken')
+const User = require("../models/user.model");
 
-router.route("/").get((req, res) => {
-  User.find()
-    .then((users) => res.json(users))
-    .catch((err) => res.status(400).json("Error: " + err));
+router.route("/logIn").post(async(req, res) => {
+  const {username,password}= req.body;
+  try{
+    if(!username || username==null){
+      res.status(400);
+      throw new Error("All fields not entered "+ username);
+    }
+  const userExist=  await User.findOne(
+    {
+      "username" : username, 
+      "password": password
+    }
+    );
+    if(userExist){
+        res.json(createToken({
+          "username" : username, 
+          "password": password
+        }));
+        res.status(201);
+
+    }else{
+      res.status(401)
+      throw new Error("Username and password is incorrect")
+    }
+  }catch(Error){
+    res.json(Error.message);
+  }
 });
-
 router.route("/add").post(async(req, res) => {
   const {username,email,password}= req.body;
   const newUser =new User({ username, password,email });

@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {logOut} from "../features/auth/AuthService"
 
 let bigFont = false;
 
@@ -84,7 +85,7 @@ function App() {
             <NavDropdown title="Account" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/signUpPage">Sign Up</NavDropdown.Item>
               <NavDropdown.Item href="/signInPage">Sign In</NavDropdown.Item>
-              <NavDropdown.Item href="/">Sign Out</NavDropdown.Item>
+              <NavDropdown.Item href="/" onClick={logOut()}>Sign Out</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link id="fontSizeBtn" onClick={toggleFontSize}>Increase Font Size</Nav.Link>
           </Nav>

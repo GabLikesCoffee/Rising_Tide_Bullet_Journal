@@ -1,6 +1,6 @@
 import axios from "axios"
 
-//const API_URL="http://localhost:5000/users/add"
+const API_URL="http://localhost:5000/users/add"
 
 
  export const register=(user)=>{
@@ -42,5 +42,9 @@ export const  logIn=(user)=>{
             })
 }
 
-
+export const logOut=()=>{
+    localStorage.removeItem("user");
+    if(!localStorage.getItem("user"))
+         return "User sucessfully logged out";
+}
 

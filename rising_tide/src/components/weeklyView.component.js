@@ -27,7 +27,13 @@ for(let i = 0; i < 7; i++){
 let dayOfTheWeek = new Date().getDate();
 let weekDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
+
 export default class WeeklyView extends Component {
+
+
+
+
+    
 
     render() {
         return(

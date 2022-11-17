@@ -1,6 +1,8 @@
 import React, { Component }from 'react';
 
 
+import {logIn} from '../features/auth/AuthService';
+
 export default class SignIn extends Component {
     
 	
@@ -15,28 +17,8 @@ export default class SignIn extends Component {
 			_id:"",//Username
 			password:"",
 			
+		
 
-			habit:[{
-				activity:"",
-				isCompleted: false,
-				completionDate:{
-					day:0,
-					month:"",
-					year:0,
-				}
-			}],
-			
-			Journal:[{
-				date:{
-					day:0,
-					month:"",
-					year:0,
-				},
-				
-				freeResponse:"",
-				
-				mood:""
-			}]
 		}
 	}
     
@@ -56,15 +38,19 @@ export default class SignIn extends Component {
     onSubmit= (e)=>{
         
         const user={
-			_id: this.state.username,
-			password: this.state.password,
+			username: this.state.username,
+			password: this.state.password
 			
 		}
-		e.preventDefault();
-	  
-        console.log(user)
-        document.getElementById("p").innerHTML = "Logged in!"
+		
+	
         
+        logIn(user);
+        console.log(user);
+        
+        
+        document.getElementById("p").innerHTML = "Logged in!"
+        e.preventDefault();
 		
     }
 
@@ -76,20 +62,21 @@ export default class SignIn extends Component {
                     <form onSubmit={this.onSubmit}>
                         <h2 id="p">Log in Here!</h2>
                         <br/>
-						<label>Username:</label>
                         <input type="textbox"  className="form-control" placeholder="Username" 
                         required 
                         value={this.state.username}
                         onChange={this.changeUsername}>
+
                         </input>
 
-						<label>Password:</label>
                         <input type="password"  className="form-control" placeholder="Password" 
                         required
                         value={this.state.password}
                         onChange={this.changePassword}>
+
                         </input>
-                        <button type="submit" id="signUpBtn" className="btn btn-primary">Sign In</button>
+
+                        <button type="submit" className="btn btn-primary btn-block">Sign In</button>
                     </form>
                 </center>
             </div>

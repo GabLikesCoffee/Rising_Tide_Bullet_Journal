@@ -63,35 +63,37 @@ export default class ArchivePage extends Component {
         let endDate = document.getElementById("end");
         let errorMsg = document.getElementById("dateErrorMsg");
 
-        let startDateDate = new Date(startDate.value);
-        let endDateDate = new Date(endDate.value);
-
-
-        let startDateObject={
-            day:startDateDate.getDate() + 1, 
-            month:startDateDate.getMonth() + 1,
-            year:startDateDate.getFullYear()
-        }
-
-        let endDateObject={
-            day:endDateDate.getDate() + 1, 
-            month:endDateDate.getMonth() + 1,
-            year:endDateDate.getFullYear()
-        }
-        console.log( "Start Date: ")
-        console.log(startDateObject)
-        console.log( "End Date: ")
-        console.log(endDateObject)
-
-        //Posts request for journals given a start and end date
-        console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
-
-
         if(endDate.value < startDate.value){
             errorMsg.style = "color: red";
             errorMsg.removeAttribute("hidden"); 
             return;
         }
+
+        let startDateDate =startDate.value;
+        let endDateDate = endDate.value;
+
+
+        let startDateObject={
+            day:Number(startDateDate.substring(8, 10)),
+            month:Number(startDateDate.substring(5, 7)),
+            year:Number(startDateDate.substring(0, 4))
+        }
+
+        let endDateObject={
+            day:Number(endDateDate.substring(8, 10)), 
+            month:Number(endDateDate.substring(5, 7)),
+            year:Number(endDateDate.substring(0, 4))
+        }
+        console.log( "Start Date: ")
+        console.log(startDate.value)
+        console.log(startDateObject)
+        console.log( "End Date: ")
+        console.log(endDate.value)
+        console.log(endDateObject)
+
+        //Posts request for journals given a start and end date
+        console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
+
         errorMsg.setAttribute("hidden", true)
         archivePageShift1.setAttribute("hidden", true);
         archivePageShift2.removeAttribute("hidden"); 

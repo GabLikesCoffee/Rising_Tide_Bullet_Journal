@@ -63,6 +63,24 @@ export default class ArchivePage extends Component {
         let endDate = document.getElementById("end");
         let errorMsg = document.getElementById("dateErrorMsg");
 
+        let startDateDate = new Date(startDate.value);
+        let endDateDate = new Date(endDate.value);
+
+
+        let startDateObject={
+            day:startDateDate.getDate(), 
+            month:startDateDate.getMonth(),
+            year:startDateDate.getFullYear()
+        }
+
+        let endDateObject={
+            day:endDateDate.getDate(), 
+            month:endDateDate.getMonth(),
+            year:endDateDate.getFullYear()
+        }
+        console.log(startDateObject)
+        console.log(endDateObject)
+
         //Posts request for journals given a start and end date
         console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
 

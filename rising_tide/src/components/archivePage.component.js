@@ -1,8 +1,8 @@
 //ARCHIVE PAGE
 
-import { get } from 'mongoose';
+//import { get } from 'mongoose';
 import React, { Component } from 'react';
-import {getHabitPost,getJournalPost} from "../features/RequestUserData"
+import {getJournalPost} from "../features/RequestUserData"
 
 const onBackButton = event => {
     let archivePageShift1 = document.getElementById("archivePageShift1");

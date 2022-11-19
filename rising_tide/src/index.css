@@ -12,6 +12,7 @@ body {
     background-color: #e4f5ff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 p{
@@ -156,7 +157,7 @@ label{
   display: flex;
   flex-flow: column;
   align-items: stretch;
-  height: 100vh;
+  min-height: 100vh;
   
 }
 

@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import {getJournalPost} from "../features/RequestUserData"
 
 const onBackButton = event => {
+    let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
+    archiveEntriesDiv.innerHTML = " ";
     let archivePageShift1 = document.getElementById("archivePageShift1");
     let archivePageShift2 = document.getElementById("archivePageShift2");
     archivePageShift2.setAttribute("hidden", true);
@@ -100,7 +102,8 @@ export default class ArchivePage extends Component {
 
         let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
 
-        //For each journal in the array of journals given (not yet implemented)
+        //For each journal in the array of journals given (not yet implemented) replace 4 with the length of the given journal array
+        for(let i = 0; i < 5; i++){
             //Create elements to add to archive div
             let journalDate = document.createElement('h3');
             let mood = document.createElement('p');
@@ -131,6 +134,7 @@ export default class ArchivePage extends Component {
             archiveEntriesDiv.appendChild(mood);
             archiveEntriesDiv.appendChild(completedHabits);
             archiveEntriesDiv.appendChild(dailyAffirmation);
+        }
         //end for loop for each journal
 
         //Placeholder text change when form is submitted
@@ -189,7 +193,7 @@ export default class ArchivePage extends Component {
                 <button type="button" onClick={onBackButton} id="archiveBackBtn" className="btn btn-primary">Back</button>   
                     <center>
                         <div id="archiveEntriesDiv">
-                            
+
                         </div>
                     </center>
                 </div>

@@ -99,7 +99,39 @@ export default class ArchivePage extends Component {
         archivePageShift2.removeAttribute("hidden"); 
 
         let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
-        archiveEntriesDiv.innerHTML = "<div><h3>Insert Journal Data Here<h3></div>";
+
+        //For each journal in the array of journals given (not yet implemented)
+            //Create elements to add to archive div
+            let journalDate = document.createElement('h3');
+            let mood = document.createElement('p');
+            let completedHabits = document.createElement('p');
+            let dailyAffirmation = document.createElement('p');
+            
+            //These should add from the values of each journal 
+            //Create text to put inside created elements above
+            let journalDateString = "Journal Date: "
+            let moodString = "Mood: "
+            let habitString = "Habits: "
+            let dailyAffirmationString = "Daily Affirmation: "
+
+            //Creates texts nodes for the elements and fills it with the strings created above
+            let journalDateTextNode = document.createTextNode(journalDateString);
+            let moodTextNode = document.createTextNode(moodString);
+            let completedHabitsTextNode = document.createTextNode(habitString);
+            let dailyAffirmationTextNode = document.createTextNode(dailyAffirmationString);
+
+            //Adds the text nodes to their corresponding element
+            journalDate.appendChild(journalDateTextNode);
+            mood.appendChild(moodTextNode);
+            completedHabits.appendChild(completedHabitsTextNode);
+            dailyAffirmation.appendChild(dailyAffirmationTextNode);
+
+            //Adds the full text elements to the archive div
+            archiveEntriesDiv.appendChild(journalDate);
+            archiveEntriesDiv.appendChild(mood);
+            archiveEntriesDiv.appendChild(completedHabits);
+            archiveEntriesDiv.appendChild(dailyAffirmation);
+        //end for loop for each journal
 
         //Placeholder text change when form is submitted
         //document.getElementById("archiveHeader").innerHTML = "Submitted";

@@ -187,9 +187,10 @@ let loadJournalEditPage = function(){
     let displayMood = document.getElementById("displayMood");
     let displayHabits = document.getElementById("displayHabits");
     let displayTextInput = document.getElementById("displayTextInput");
-    displayMood.innerHTML = "Mood: <p>" + mood + "</p>";
-    displayHabits.innerHTML = "Completed Habits: <p>" + completedHabits + "</p>";
-    displayTextInput.innerHTML = "Daily Affirmation: <textarea>" + dailyAffirmation + "</textarea>";
+    let capitalizedMood = mood.charAt(0).toUpperCase() + mood.slice(1);
+    displayMood.innerHTML = capitalizedMood;
+    displayHabits.innerHTML = completedHabits;
+    displayTextInput.innerHTML = "<textarea>" + dailyAffirmation + "</textarea>";
 }
 
 const onBackButton = event => {
@@ -306,11 +307,22 @@ export default class WeeklyView extends Component {
                     </center>
                 </div>
                 <div id="weeklyViewEditPage" hidden>
-                <button type="button" onClick={onBackButton} id="weeklyViewBackBtn" className="btn btn-primary">Back</button>
-                    <h3 id="displayMood">Mood:</h3>
-                    <h3 id="displayHabits">Habits:</h3>
-                    <h3 id="displayTextInput">Self Reflection:</h3>
-                    <button type="button" onClick={onSubmitJournalEdit} id="weeklyViewEditJournalBtn" className="btn btn-primary">Edit Journal</button>
+
+                    <button type="button" onClick={onBackButton} id="weeklyViewBackBtn" className="btn btn-primary">Back</button>
+                    <center>
+                        <h3>Mood:</h3>
+                        <p id="displayMood"></p>
+                        <br></br>
+
+                        <h3>Habits:</h3>
+                        <p id="displayHabits"></p>
+                        <br></br>
+
+                        <h3>Self Reflection:</h3>
+                        <p id="displayTextInput"></p>
+                        <br></br>
+                        <button type="button" onClick={onSubmitJournalEdit} id="weeklyViewEditJournalBtn" className="btn btn-primary">Edit Journal</button>
+                    </center>
                 </div>
 
             </div>

@@ -164,12 +164,18 @@ label{
 img{
   height: 20vw;
 }
+button[type=image], .shellButton{
+  height: 20vw;
+}
 
 /*Picture css conditional to screen size*/
 @media screen and (min-width: 1000px) {
   img{
      height: 200px;
   }
+  button[type=image], .shellButton{
+    height: 200px;
+ }
 }
 
 /*Company footer box*/
@@ -212,7 +218,7 @@ textarea{
 }
 
 /*Important buttons*/
-#journalSubmitBtn, #signUpBtn, #signInBtn, #archiveSubmitBtn, #archiveBackBtn{
+#journalSubmitBtn, #signUpBtn, #signInBtn, #archiveSubmitBtn, #archiveBackBtn, #weeklyViewBackBtn, #weeklyViewEditJournalBtn{
   margin: 20px;
   background-color: rgb(133, 204, 227);
   border: none;
@@ -290,12 +296,12 @@ border-left: solid #e7c7b4;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.weeklyShell{
+.weeklyShell, .shellButton{
   margin: 10px;
   height: 15vw;
 }
 @media screen and (min-width: 900px) {
-  .weeklyShell{
+  .weeklyShell, .shellButton{
      height: 100px;
   }
 }

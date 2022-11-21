@@ -369,7 +369,7 @@ export default class Journal extends Component {
 
         //Sets the string to a hidden input value for email functionality
         let habitString = document.getElementById("completedHabitsString");
-        habitString.value=completedHabits;
+        habitString.value=completedHabits.replaceAll(',', ', ');
 
         let journal = {
             date:{

@@ -12,6 +12,7 @@ body {
     background-color: #e4f5ff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 p{
@@ -156,12 +157,15 @@ label{
   display: flex;
   flex-flow: column;
   align-items: stretch;
-  height: 100vh;
+  min-height: 100vh;
   
 }
 
 /*Picture css*/
 img{
+  height: 20vw;
+}
+button[type=image], .shellButton{
   height: 20vw;
 }
 
@@ -170,6 +174,9 @@ img{
   img{
      height: 200px;
   }
+  button[type=image], .shellButton{
+    height: 200px;
+ }
 }
 
 /*Company footer box*/
@@ -212,7 +219,7 @@ textarea{
 }
 
 /*Important buttons*/
-#journalSubmitBtn, #signUpBtn, #signInBtn, #archiveSubmitBtn, #archiveBackBtn{
+#journalSubmitBtn, #signUpBtn, #signInBtn, #archiveSubmitBtn, #archiveBackBtn, #weeklyViewBackBtn, #weeklyViewEditJournalBtn{
   margin: 20px;
   background-color: rgb(133, 204, 227);
   border: none;
@@ -290,12 +297,12 @@ border-left: solid #e7c7b4;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.weeklyShell{
+.weeklyShell, .shellButton{
   margin: 10px;
   height: 15vw;
 }
 @media screen and (min-width: 900px) {
-  .weeklyShell{
+  .weeklyShell, .shellButton{
      height: 100px;
   }
 }

@@ -2,12 +2,35 @@
 
 import React, { Component } from 'react';
 import seashell from '../Assets/shell.PNG';
-import { Link } from 'react-router-dom';
 
 //Stores a random number for random shell rotation
 let randomNumber;
 //Stores the style string for each rotation
 let rotateStrings = [];
+
+//Starts list of days from today on moves on from there
+//Keeps track of the day of the week
+let dayOfTheWeek = new Date().getDate();
+let weekDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+let last7Days=[]
+
+//GLOBAL VARIABLES THAT WE FILL WITH DATABASE INFORMATION
+let mood
+let completedHabits
+let dailyAffirmation
+
+//Finds the last 7 days, turns it into an object and pushes it to an array to be used in the onEditPage functions
+for(let i = 0; i < 7; i++){
+    let date = new Date();
+    date.setDate(date.getDate() - i)
+    
+    let last7DaysObject = {
+        day: date.getDate(), 
+        month: date.getMonth() + 1,
+        year: date.getFullYear()
+    }
+    last7Days.push(last7DaysObject);
+}
 
 //Allows for random rotating of the shells so they don't look so boring
 for(let i = 0; i < 7; i++){
@@ -22,10 +45,12 @@ for(let i = 0; i < 7; i++){
     rotateStrings[i] = "rotate(" + randomNumber + "deg)";
 }
 
-//Starts list of days from today on moves on from there
-//Keeps track of the day of the week
-let dayOfTheWeek = new Date().getDate();
-let weekDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+//1 is for yesterday, 2 is for the day before yesterday, etc
+const onEditPage1 = event => {
+    let weeklyViewPage = document.getElementById("weeklyView");
+    let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
+    weeklyViewPage.setAttribute("hidden", true);
+    weeklyViewEditPage.removeAttribute("hidden"); 
 
 export default class WeeklyView extends Component {
 
@@ -33,114 +58,106 @@ export default class WeeklyView extends Component {
         return(
             <div className="container" id="weeklyViewContainer">
                <center>
-                    <h1>
+                    <h1 id = "weeklyViewHeader">
                         Weekly View
                     </h1>
                 </center>
-                <center>
-                    <table id="weeklyViewTable">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <Link to="/">
+                <div id="weeklyView">
+                    <center>
+                        <table id="weeklyViewTable">
+                            <tbody>
+                                <tr>
+                                    <td>
                                         <label htmlFor="day1Shell">
                                             Today
                                         </label>
-                                    </Link>
-                                </td>
-                                <td class="weeklyViewTableBorder">
-                                    <Link to="/">
-                                        <img class="weeklyShell" src={seashell} alt="seashell" style={{transform: rotateStrings[0]}}></img>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <Link to="/">
+                                    </td>
+                                    <td className="weeklyViewTableBorder">
+                                        <input class = "shellButton" onClick={onEditPage1} type="image" src={seashell} style={{transform: rotateStrings[0]}} alt="seashell"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <label>
                                             {weekDay[(dayOfTheWeek + 6) % 7]}
                                         </label>
-                                    </Link>
-                                </td>
-                                <td class="weeklyViewTableBorder">
-                                    <Link to="/">
-                                        <img class="weeklyShell" src={seashell} alt="seashell" style={{transform: rotateStrings[1]}}></img>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <Link to="/">
+                                    </td>
+                                    <td className="weeklyViewTableBorder">
+                                        <input class = "shellButton" onClick={onEditPage2} type="image" src={seashell} style={{transform: rotateStrings[1]}} alt="seashell"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <label>
                                             {weekDay[(dayOfTheWeek + 5) % 7]}
                                         </label>
-                                    </Link>
-                                </td>
-                                <td class="weeklyViewTableBorder">
-                                    <Link to="/">
-                                        <img class="weeklyShell" src={seashell} alt="seashell" style={{transform: rotateStrings[2]}}></img>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <Link to="/">
+                                    </td>
+                                    <td className="weeklyViewTableBorder">
+                                        <input class = "shellButton" onClick={onEditPage3} type="image" src={seashell} style={{transform: rotateStrings[2]}} alt="seashell"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <label>
                                             {weekDay[(dayOfTheWeek + 4) % 7]}
                                         </label>
-                                    </Link>
-                                </td>
-                                <td class="weeklyViewTableBorder">
-                                    <Link to="/">
-                                        <img class="weeklyShell" src={seashell} alt="seashell" style={{transform: rotateStrings[3]}}></img>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <Link to="/">
+                                    </td>
+                                    <td className="weeklyViewTableBorder">
+                                        <input class = "shellButton" onClick={onEditPage4} type="image" src={seashell} style={{transform: rotateStrings[3]}} alt="seashell"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <label>
                                             {weekDay[(dayOfTheWeek + 3) % 7]}
                                         </label>
-                                    </Link>
-                                </td>
-                                <td class="weeklyViewTableBorder">
-                                    <Link to="/">
-                                        <img class="weeklyShell" src={seashell} alt="seashell" style={{transform: rotateStrings[4]}}></img>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <Link to="/">
+                                    </td>
+                                    <td className="weeklyViewTableBorder">
+                                        <input class = "shellButton" onClick={onEditPage5} type="image" src={seashell} style={{transform: rotateStrings[4]}} alt="seashell"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <label>
                                             {weekDay[(dayOfTheWeek + 2) % 7]}
                                         </label>
-                                    </Link>
-                                </td>
-                                <td class="weeklyViewTableBorder">
-                                    <Link to="/">
-                                    <img class="weeklyShell" src={seashell} alt="seashell" style={{transform: rotateStrings[5]}}></img>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <Link to="/">
+                                    </td>
+                                    <td className="weeklyViewTableBorder">
+                                        <input class = "shellButton" onClick={onEditPage6} type="image" src={seashell} style={{transform: rotateStrings[5]}} alt="seashell"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <label>
                                             {weekDay[(dayOfTheWeek + 1) % 7]}
                                         </label>
-                                    </Link>
-                                </td>
-                                <td class="weeklyViewTableBorder">
-                                    <Link to="/">
-                                        <img class="weeklyShell" src={seashell} alt="seashell" style={{transform: rotateStrings[6]}}></img>
-                                    </Link>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </center>
+                                    </td>
+                                    <td className="weeklyViewTableBorder">
+                                        <input class = "shellButton" onClick={onEditPage7} type="image" src={seashell} style={{transform: rotateStrings[6]}} alt="seashell"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+                <div id="weeklyViewEditPage" hidden>
+
+                    <button type="button" onClick={onBackButton} id="weeklyViewBackBtn" className="btn btn-primary">Back</button>
+                    <center>
+                        <h3>Mood:</h3>
+                        <p id="displayMood"></p>
+                        <br></br>
+
+                        <h3>Habits:</h3>
+                        <p id="displayHabits"></p>
+                        <br></br>
+
+                        <h3>Self Reflection:</h3>
+                        <p id="displayTextInput"></p>
+                        <br></br>
+                        <button type="button" onClick={onSubmitJournalEdit} id="weeklyViewEditJournalBtn" className="btn btn-primary">Edit Journal</button>
+                    </center>
+                </div>
 
             </div>
 

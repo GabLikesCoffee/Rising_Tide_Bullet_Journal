@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 
 const onBackButton = event => {
+    let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
+    archiveEntriesDiv.innerHTML = " ";
     let archivePageShift1 = document.getElementById("archivePageShift1");
     let archivePageShift2 = document.getElementById("archivePageShift2");
     archivePageShift2.setAttribute("hidden", true);
@@ -28,12 +30,72 @@ export default class ArchivePage extends Component {
             errorMsg.removeAttribute("hidden"); 
             return;
         }
+
+        let startDateDate =startDate.value;
+        let endDateDate = endDate.value;
+
+
+        let startDateObject={
+            day:Number(startDateDate.substring(8, 10)),
+            month:Number(startDateDate.substring(5, 7)),
+            year:Number(startDateDate.substring(0, 4))
+        }
+
+        let endDateObject={
+            day:Number(endDateDate.substring(8, 10)), 
+            month:Number(endDateDate.substring(5, 7)),
+            year:Number(endDateDate.substring(0, 4))
+        }
+        console.log( "Start Date: ")
+        console.log(startDate.value)
+        console.log(startDateObject)
+        console.log( "End Date: ")
+        console.log(endDate.value)
+        console.log(endDateObject)
+
+        //Posts request for journals given a start and end date
+        console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
+
         errorMsg.setAttribute("hidden", true)
         archivePageShift1.setAttribute("hidden", true);
         archivePageShift2.removeAttribute("hidden"); 
 
         let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
-        archiveEntriesDiv.innerHTML = "<div><h3>Insert Journal Data Here<h3></div>";
+
+        //For each journal in the array of journals given (not yet implemented) replace 4 with the length of the given journal array
+        for(let i = 0; i < 5; i++){
+            //Create elements to add to archive div
+            let journalDate = document.createElement('h3');
+            let mood = document.createElement('p');
+            let completedHabits = document.createElement('p');
+            let dailyAffirmation = document.createElement('p');
+            
+            //These should add from the values of each journal 
+            //Create text to put inside created elements above
+            let journalDateString = "Journal Date: "
+            let moodString = "Mood: "
+            let habitString = "Habits: "
+            let dailyAffirmationString = "Daily Affirmation: "
+
+            //Creates texts nodes for the elements and fills it with the strings created above
+            let journalDateTextNode = document.createTextNode(journalDateString);
+            let moodTextNode = document.createTextNode(moodString);
+            let completedHabitsTextNode = document.createTextNode(habitString);
+            let dailyAffirmationTextNode = document.createTextNode(dailyAffirmationString);
+
+            //Adds the text nodes to their corresponding element
+            journalDate.appendChild(journalDateTextNode);
+            mood.appendChild(moodTextNode);
+            completedHabits.appendChild(completedHabitsTextNode);
+            dailyAffirmation.appendChild(dailyAffirmationTextNode);
+
+            //Adds the full text elements to the archive div
+            archiveEntriesDiv.appendChild(journalDate);
+            archiveEntriesDiv.appendChild(mood);
+            archiveEntriesDiv.appendChild(completedHabits);
+            archiveEntriesDiv.appendChild(dailyAffirmation);
+        }
+        //end for loop for each journal
 
         //Placeholder text change when form is submitted
         //document.getElementById("archiveHeader").innerHTML = "Submitted";
@@ -91,7 +153,7 @@ export default class ArchivePage extends Component {
                 <button type="button" onClick={onBackButton} id="archiveBackBtn" className="btn btn-primary">Back</button>   
                     <center>
                         <div id="archiveEntriesDiv">
-                            
+
                         </div>
                     </center>
                 </div>

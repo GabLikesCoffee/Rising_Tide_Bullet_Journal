@@ -20,7 +20,7 @@ let completedHabits
 let dailyAffirmation
 
 //Finds the last 7 days, turns it into an object and pushes it to an array to be used in the onEditPage functions
-for(let i = 0; i < 7; i++){
+for(let i = 0; i < 8; i++){
     let date = new Date();
     date.setDate(date.getDate() - i)
     
@@ -33,7 +33,7 @@ for(let i = 0; i < 7; i++){
 }
 
 //Allows for random rotating of the shells so they don't look so boring
-for(let i = 0; i < 7; i++){
+for(let i = 0; i < 8; i++){
 
     //Generates random number between 0 and 70
     randomNumber = Math.floor(Math.random() * (70 + 1));
@@ -183,6 +183,25 @@ const onEditPage7 = event => {
     loadJournalEditPage();
 }
 
+const onEditPage8 = event => {
+    let weeklyViewPage = document.getElementById("weeklyView");
+    let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
+    weeklyViewPage.setAttribute("hidden", true);
+    weeklyViewEditPage.removeAttribute("hidden"); 
+
+    let loadDate = last7Days[7];
+    console.log(loadDate);
+
+    //mood = find info from database TEMPORARY VALUE BELOW
+    mood = "happy"
+    //completedHabits = find info from database TEMPORARY VALUE BELOW
+    completedHabits = "Jog, Walk Dog, Take meds"
+    //dailyAffirmation = find info from database TEMPORARY VALUE BELOW
+    dailyAffirmation = "Today was a good day."
+
+    loadJournalEditPage();
+}
+
 let loadJournalEditPage = function(){
     let displayMood = document.getElementById("displayMood");
     let displayHabits = document.getElementById("displayHabits");
@@ -221,7 +240,7 @@ const onSubmitJournalEdit = event => {
     dailyAffirmation = "";
 
     //Show submitted to confirm submission
-    document.getElementById("weeklyViewHeader").innerHTML = "Submitted!";
+    document.getElementById("weeklyViewHeader").innerHTML = "Updated!";
 }
 
 export default class WeeklyView extends Component {
@@ -306,6 +325,16 @@ export default class WeeklyView extends Component {
                                     </td>
                                     <td className="weeklyViewTableBorder">
                                         <input class = "shellButton" onClick={onEditPage7} type="image" src={seashell} style={{transform: rotateStrings[6]}} alt="seashell"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>
+                                            {weekDay[(dayOfTheWeek) % 7]}
+                                        </label>
+                                    </td>
+                                    <td className="weeklyViewTableBorder">
+                                        <input class = "shellButton" onClick={onEditPage8} type="image" src={seashell} style={{transform: rotateStrings[7]}} alt="seashell"/>
                                     </td>
                                 </tr>
                             </tbody>

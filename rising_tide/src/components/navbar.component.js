@@ -90,7 +90,7 @@ function App() {
             <NavDropdown title="Account" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/signUpPage">Sign Up</NavDropdown.Item>
               <NavDropdown.Item href="/signInPage">Sign In</NavDropdown.Item>
-              <NavDropdown.Item onClick={signOut()}>Sign Out</NavDropdown.Item>
+              <NavDropdown.Item href="/" onClick={signOut}>Sign Out</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link id="fontSizeBtn" onClick={toggleFontSize}>Increase Font Size</Nav.Link>
           </Nav>

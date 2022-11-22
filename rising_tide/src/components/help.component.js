@@ -32,6 +32,13 @@ export default class SignIn extends Component {
                         <h3>Logging out</h3>
                         <p>Log out with the "Log out" button in the Account dropdown in the navigation bar above.</p>
                     </div>
+                    <div className="helpDiv">
+                        <h3>Printing Journals as a PDF</h3>
+                        <p>You can print past journal entries using the archive page! </p>
+                            <p className="indented">Simply generate your journal list page by entering two dates and clicking the "submit" button.</p>
+                            <p className="indented"> When your journal list page loads, right click the page, and select "Print..."</p>
+                            <p className="indented">From there, you can click save and your PDF will download.</p>
+                    </div>
             </div>
 
         )

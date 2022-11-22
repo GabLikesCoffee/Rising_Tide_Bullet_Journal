@@ -335,8 +335,6 @@ export default class Journal extends Component {
         default:
             shellImage.src = seashell;     
       }
-      
-      console.log(happy);
     }
 
     onChangeHabit = e =>{
@@ -355,6 +353,14 @@ export default class Journal extends Component {
     //SUBMITTING
     onSubmit(e) {
         email = document.getElementById("emailInput");
+
+        if (window.confirm("Would you like to send an email with your journal entry?")) {
+            console.log("sending email...");
+          } else {
+            //txt = "You pressed Cancel!";
+            console.log("no email");
+            e.preventDefault();
+          }
         
         //Creates an array to store completed habits
         let completedHabits = [];

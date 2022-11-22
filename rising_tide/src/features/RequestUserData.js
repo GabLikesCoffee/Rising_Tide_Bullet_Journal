@@ -6,7 +6,7 @@ export const addJournalPost=(journal)=>{
     //token contains encrypted username and password
 
 
-    let token=localStorage.getItem("user");
+    let token=JSON.parse(localStorage.getItem("user"));
     axios.post("http://localhost:5000/journals/add", JSON.stringify({journal,token}),
     {
         headers: {
@@ -27,7 +27,7 @@ export const addJournalPost=(journal)=>{
 
 //Give a date to get a journal entry
 export const getJournalPost=(date)=>{
-    let token=localStorage.getItem("user");
+    let token=JSON.parse(localStorage.getItem("user"));
     axios.post("http://localhost:5000/journals/get", JSON.stringify({date,token}),
     {
         headers: {
@@ -47,7 +47,7 @@ export const getJournalPost=(date)=>{
 }
 //Returns all user habits
 export const getHabitPost=()=>{
-    let token=localStorage.getItem("user");
+    let token=JSON.parse(localStorage.getItem("user"));
     axios.post("http://localhost:5000/habits/get", JSON.stringify(token),
     {
         headers: {
@@ -66,7 +66,7 @@ export const getHabitPost=()=>{
        
 }
 export const addHabitPost=(habit)=>{
-    let token=localStorage.getItem("user");
+    let token=JSON.parse(localStorage.getItem("user"));
     axios.post("http://localhost:5000/habits/add", JSON.stringify({habit,token}),
     {
         headers: {

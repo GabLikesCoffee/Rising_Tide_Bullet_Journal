@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const journal = require("../models/journal.model");
+const middleware=require("../middleware/authMiddleware");
 let Journal = require("../models/journal.model");
 
 // router.route("/").get((req, res) => {
@@ -8,21 +8,42 @@ let Journal = require("../models/journal.model");
 //     .catch((err) => res.status(400).json("Error: " + err));
 // });
 
-router.route("/add").post((req, res) => {
-  const freeReponse = req.body.freeReponse;
-  const mood = req.body.moodTracker;
-  const date = Date.now(req.body.date);
+router.route("/add").post(async (req, res) => {
 
-  const newJournal = new Journal({
-    freeReponse,
-    mood,
-    date,
-  });
+  //Gets user inputted data
+  const freeResponse = req.body.journal.freeResponse;
 
-  newJournal
-    .save()
-    .then(() => res.json("Journal Added"))
-    .catch((err) => res.status(400).json("Error: " + err));
+  const mood = req.body.journal.mood;
+
+  const date = new Date(req.body.journal.date.year, req.body.journal.date.month-1,req.body.journal.date.day,12);
+
+  const username=  await middleware.isValidToken(req.body.token);
+  
+  try{
+    
+    if(freeResponse==null){
+      throw new Error("No input given")
+    }
+    const newJournal = new Journal({
+      username: username,
+      freeResponse: freeResponse,
+      mood: mood,
+      date: date,
+    });
+
+    //Deletes duplicate journal entry in database
+    await Journal.findOneAndDelete(
+      {username:username,
+        date:date
+      })
+      
+    newJournal
+      .save()
+      .then(() => res.status(201).json("Journal Added for user "+ username))
+      .catch((err) => res.status(400).json("Error: " + err));
+  }catch(Error){
+      res.status(401).json("Error: " + Error)
+  }
 });
 
 router.route("/addHabit").post((req, res) => {

@@ -402,7 +402,9 @@ export default class Journal extends Component {
         }
         console.log(journal);
         console.log(habitList);
-        addHabitPost(habitList);
+        console.log(habitList.length);
+        for(let i=0;i<habitList.length;i++)
+            addHabitPost(habitList[i]);
         addJournalPost(journal);
         //Placeholder text change when form is submitted
         document.getElementById("journalHeader").innerHTML = "<center>Submitted!</center>"

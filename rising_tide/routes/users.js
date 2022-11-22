@@ -68,8 +68,6 @@ router.route("/add").post(async (req, res) => {
   }
 });
 const createToken = (user) => {
-  return jwt.sign({ user }, process.env.JWT_SECRET, {
-    expiresIn: "30d",
-  });
+  return jwt.sign({ user }, process.env.JWT_SECRET);
 };
 module.exports = router;

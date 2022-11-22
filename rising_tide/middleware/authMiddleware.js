@@ -3,25 +3,34 @@ const jwt = require("jsonwebtoken");
 
 const User= require("../models/user.model");
 
-function isValidToken(req){
-    let token;
+async function isValidToken(req,res,nex){
+    
+    let token=req;
 
     
+       if(token==null){
+        return null;
+       }
+        
+       try{
+        if(jwt.verify(token, process.env.JWT_SECRET)==null)
+            return false;
+        const decoded =  jwt.decode(token, process.env.JWT_SECRET);
        
-        token= req;
-
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        user= User.find({username: decoded.id, password: decoded.password});
-        if(user){
-            return decoded.id;
-        }
-
+        const user= await User.find({username: decoded.user.username, password: decoded.user.password});
+        if(user!=null){
+            return decoded.user.username;
+        }else
+             return null;
+    }catch(error){
         
         return null;
+    }
+
+        
      
     
 
     
 }
-module.exports= {protect}
+module.exports= {isValidToken}

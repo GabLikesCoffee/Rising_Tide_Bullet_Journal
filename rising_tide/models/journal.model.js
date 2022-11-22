@@ -9,9 +9,11 @@ const Schema = mongoose.Schema;
 // });
 const journalSchema = new Schema(
   {
-    freeReponse: { type: String, required: true },
-    moodTracker: { type: [Boolean], required: true },
+    username:{type: String, required: true},
     date: { type: Date, required: true },
+    freeResponse: { type: String, required: true },
+    mood: { type: String, required: true }
+    
   },
   {
     timestamps: true,

@@ -20,11 +20,10 @@ let textBoxUp = false;
 let habitsArray = [];
 
 //Creates a date for this journal (should either be today or a day from the past week)
-let day = new Date().getDate().toString();
+let day = new Date().getDate();
 let month = new Date().getMonth()
 month = month+1;
-month = month.toString();
-let year = new Date().getFullYear().toString();
+let year = new Date().getFullYear();
 
 //False if not showing the delete buttons
 let showingDeleteButtons = false;
@@ -86,7 +85,7 @@ const addHabit = event => {
         isCompleted: false,
         completionDate:{
             day:0,
-            month:"",
+            month:0,
             year:0,
         }
     }
@@ -214,10 +213,11 @@ const checkedHabit = event => {
         }
         //If it is now unchecked, set completion to false and remove date of completion
         else{
+            //0 means not completed
             habitsArray[index].isCompleted = false;
-            habitsArray[index].completionDate.day = "";
-            habitsArray[index].completionDate.month = "";
-            habitsArray[index].completionDate.year = "";
+            habitsArray[index].completionDate.day = 0;
+            habitsArray[index].completionDate.month = 0;
+            habitsArray[index].completionDate.year = 0;
             
         }
     }
@@ -279,7 +279,7 @@ export default class Journal extends Component {
 			
 			date:{
 				day:0,
-				month:"",
+				month:0,
 				year:0,
 			},
 				
@@ -345,8 +345,12 @@ export default class Journal extends Component {
     }
 
     onChangeDailyText = e =>{
+
+        let textAreaText = e.target.value;
+
         this.setState({
-            freeResponse: e.target.value
+            freeResponse: textAreaText.replaceAll(/[^\x00-\x7F]/g, '')
+            
       });
     }
 

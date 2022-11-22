@@ -211,7 +211,8 @@ const onSubmitJournalEdit = event => {
 
     //Gets the value of the textarea so it can be resubmitted
     let newJournalTextString = document.getElementById("weeklyViewTextArea").value;
-    console.log(newJournalTextString);
+    let nonAscii = newJournalTextString.replaceAll(/[^\x00-\x7F]/g, '');
+    console.log(nonAscii);
 
     weeklyViewEditPage.setAttribute("hidden", true);
     weeklyViewPage.removeAttribute("hidden"); 

@@ -28,7 +28,7 @@ router.route("/add").post((req, res) => {
 router.route("/addHabit").post((req, res) => {
   const activity = req.body.activity;
   const isCompleted = req.body.isCompleted;
-  const date = Date.now(req.body.date);
+  const date = Date.parse(req.body.date);
 
   const newHabit = new Habit({
     activity,

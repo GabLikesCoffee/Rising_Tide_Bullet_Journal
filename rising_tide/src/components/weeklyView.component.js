@@ -210,8 +210,8 @@ const onSubmitJournalEdit = event => {
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
 
     //Gets the value of the textarea so it can be resubmitted
-    let textArea = document.getElementById("weeklyViewTextArea").value;
-    console.log(textArea);
+    let newJournalTextString = document.getElementById("weeklyViewTextArea").value;
+    console.log(newJournalTextString);
 
     weeklyViewEditPage.setAttribute("hidden", true);
     weeklyViewPage.removeAttribute("hidden"); 

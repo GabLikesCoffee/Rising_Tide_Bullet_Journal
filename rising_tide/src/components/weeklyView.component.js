@@ -190,7 +190,7 @@ let loadJournalEditPage = function(){
     let capitalizedMood = mood.charAt(0).toUpperCase() + mood.slice(1);
     displayMood.innerHTML = capitalizedMood;
     displayHabits.innerHTML = completedHabits;
-    displayTextInput.innerHTML = "<textarea>" + dailyAffirmation + "</textarea>";
+    displayTextInput.innerHTML = "<textarea id ='weeklyViewTextArea'>" + dailyAffirmation + "</textarea>";
 }
 
 const onBackButton = event => {
@@ -208,6 +208,11 @@ const onSubmitJournalEdit = event => {
     //Go back to weekly view page
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
+
+    //Gets the value of the textarea so it can be resubmitted
+    let textArea = document.getElementById("weeklyViewTextArea").value;
+    console.log(textArea);
+
     weeklyViewEditPage.setAttribute("hidden", true);
     weeklyViewPage.removeAttribute("hidden"); 
     mood = "";

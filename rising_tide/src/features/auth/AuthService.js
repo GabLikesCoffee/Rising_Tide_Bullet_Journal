@@ -10,8 +10,11 @@ import axios from "axios"
             'Content-Type': 'application/json'
         }
     }).then(res=>{
-                if (res.data) {
-                    localStorage.setItem("user", JSON.stringify(res.data));
+                if (res.data ) {
+                    if(localStorage.getItem("user")==null){
+                        localStorage.setItem("user", JSON.stringify(res.data));
+                    }
+                    
                     console.log("Locally saved");
                 }else{
                     console.log("error");
@@ -33,7 +36,9 @@ export const  logIn=(user)=>{
     },
     }).then(res=>{
                 if (res.data) {
-                    localStorage.setItem("user", JSON.stringify(res.data));
+                    if(localStorage.getItem("user")==null){
+                        window.localStorage.setItem("user", JSON.stringify(res.data));
+                    }
                     console.log("Locally saved and lgoin is sucessful");
                 }else{
                     console.log("error");

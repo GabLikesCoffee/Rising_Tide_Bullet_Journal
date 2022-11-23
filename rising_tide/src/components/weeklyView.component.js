@@ -2,13 +2,19 @@
 
 import React, { Component } from 'react';
 import seashell from '../Assets/shell.PNG';
+
 //Commented out to avoid warnings since we're not using it right now
 //import {getJournalPost} from "../features/RequestUserData"
+//import {addJournalPost} from "../features/RequestUserData"
 
 //Stores a random number for random shell rotation
 let randomNumber;
 //Stores the style string for each rotation
 let rotateStrings = [];
+
+//Holds current journal for submission
+let currentJournal;
+let journalDay;
 
 //Starts list of days from today on moves on from there
 //Keeps track of the day of the week
@@ -49,6 +55,10 @@ for(let i = 0; i < 8; i++){
 
 //1 is for today, 2 is for yesterday, 3 is for the day before yesterday, etc
 const onEditPage1 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[0];
+
     /*comment to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
@@ -65,7 +75,12 @@ const onEditPage1 = event => {
 
     //COPY PASTE ALL CODE PAST THIS POINT IN THIS FUNCTION TO THE OTHER onEditPage functions once it works
 
+    //Grabs journal from the database
     /*let journal = getJournalPost(loadDate);
+
+    //Sets the journal to a variable that the submission function can grab
+    currentJournal = journal;
+
         //If the journal isnt empty we switch to the journal view
         if(journal){
             console.log("Switching views...");
@@ -73,7 +88,7 @@ const onEditPage1 = event => {
             //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE I GUESS
 
             //Grabs array of habits from server(ask for more details on the function from backend)
-            let habitArray = habit.find(username, journal.date)
+            let habitArray = habit.find(username, loadDate)
 
             let habitString = "";
 
@@ -134,6 +149,10 @@ const onEditPage1 = event => {
 }
 
 const onEditPage2 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[1];
+
     /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
@@ -150,6 +169,10 @@ const onEditPage2 = event => {
 }
 
 const onEditPage3 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[2];
+
     /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
@@ -165,6 +188,10 @@ const onEditPage3 = event => {
 }
 
 const onEditPage4 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[3];
+
     /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
@@ -180,6 +207,10 @@ const onEditPage4 = event => {
 }
 
 const onEditPage5 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[4];
+
     /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
@@ -195,6 +226,10 @@ const onEditPage5 = event => {
 }
 
 const onEditPage6 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[5];
+
     /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
@@ -211,6 +246,10 @@ const onEditPage6 = event => {
 }
 
 const onEditPage7 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[6];
+
     /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
@@ -226,6 +265,10 @@ const onEditPage7 = event => {
 }
 
 const onEditPage8 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[7];
+
     /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
@@ -256,6 +299,9 @@ const onBackButton = event => {
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
     weeklyViewEditPage.setAttribute("hidden", true);
     weeklyViewPage.removeAttribute("hidden"); 
+
+    document.getElementById("weeklyViewHeader").innerHTML = "Weekly View!";
+
     mood = "no mood";
     completedHabits = "no completed habits";
     dailyAffirmation = "no daily affirmation";
@@ -269,8 +315,31 @@ const onSubmitJournalEdit = event => {
 
     //Gets the value of the textarea so it can be resubmitted
     let newJournalTextString = document.getElementById("weeklyViewTextArea").value;
-    let nonAscii = newJournalTextString.replaceAll(/[^\x00-\x7F]/g, '');
-    console.log(nonAscii);
+
+    //Removes non-ascii characters
+    let nonAsciiInput = newJournalTextString.replaceAll(/[^\x00-\x7F]/g, '');
+    console.log(nonAsciiInput);
+    /*
+    //If current journal is not null
+    if(currentJournal)
+        currentJournal.freeResonse = newJournalTextString;
+    }
+    //else make a new journal
+    else{
+        let newJournal = {
+            date:{
+                day:journalDay.day,
+                month:journalDay.month,
+                year:journalDay.year,
+            },
+                
+            freeResponse: nonAsciiInput,
+                
+            mood: mood
+        }
+         addJournalPost(newJournal);
+    }
+    */
 
     weeklyViewEditPage.setAttribute("hidden", true);
     weeklyViewPage.removeAttribute("hidden"); 

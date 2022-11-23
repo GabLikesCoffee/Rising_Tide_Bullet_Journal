@@ -4,17 +4,25 @@
 import React, { Component } from 'react';
 import {getJournalPost} from "../features/RequestUserData"
 
+//When the back button is pressed after viewing a journal
 const onBackButton = event => {
+
+    //Finds and empties the journal view
     let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
     archiveEntriesDiv.innerHTML = " ";
+
+    //Finds the shell view (archivePageShift1) and journal view (2) and switches them to show shell view
     let archivePageShift1 = document.getElementById("archivePageShift1");
     let archivePageShift2 = document.getElementById("archivePageShift2");
+
+    //Hides journal view
     archivePageShift2.setAttribute("hidden", true);
+
+    //Shows shell view
     archivePageShift1.removeAttribute("hidden"); 
-    //Placeholder text change when form is submitted
-    //document.getElementById("archiveHeader").innerHTML = "Submitted";
 }
 
+//Cycles through grabbing each journal object by day and returns an array of journals
 const requestPerDate=(beginDate,endDate)=>{
 	
 	let dateList=[];
@@ -44,37 +52,40 @@ const requestPerDate=(beginDate,endDate)=>{
                 }else{
                     dateList.push(currentDate);
                     
-                    }
-				
-				
+                }
 			}
 		}
-		
 	}
 }
+
 export default class ArchivePage extends Component {
 
+    //Gives today's date so the user can't request future journals
     today = new Date().toISOString().split("T")[0];
 
     onSubmit(e) {
         
         e.preventDefault();
+
         let archivePageShift1 = document.getElementById("archivePageShift1");
         let archivePageShift2 = document.getElementById("archivePageShift2");
         let startDate = document.getElementById("start");
         let endDate = document.getElementById("end");
         let errorMsg = document.getElementById("dateErrorMsg");
 
+        //Displays error is end date is before start date
         if(endDate.value < startDate.value){
             errorMsg.style = "color: red";
             errorMsg.removeAttribute("hidden"); 
             return;
         }
 
-        let startDateDate =startDate.value;
+        //Sets variables given the start and end date
+        let startDateDate = startDate.value;
         let endDateDate = endDate.value;
 
 
+        //Creates date objects from the variables
         let startDateObject={
             day:Number(startDateDate.substring(8, 10)),
             month:Number(startDateDate.substring(5, 7)),
@@ -86,6 +97,8 @@ export default class ArchivePage extends Component {
             month:Number(endDateDate.substring(5, 7)),
             year:Number(endDateDate.substring(0, 4))
         }
+
+        //Debug console logs
         console.log( "Start Date: ")
         console.log(startDate.value)
         console.log(startDateObject)
@@ -94,24 +107,53 @@ export default class ArchivePage extends Component {
         console.log(endDateObject)
 
         //Posts request for journals given a start and end date
+        //REPLACE CONSOLE LOG TEST CODE WITH COMMENTED CODE BELOW 
+        //let journalList = requestPerDate(startDateObject, endDateObject);
         console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
 
-        errorMsg.setAttribute("hidden", true)
+        //Hides error message as the user will try again (if an error occured)
+        errorMsg.setAttribute("hidden", true);
+
+        //Switches to the journal view
         archivePageShift1.setAttribute("hidden", true);
         archivePageShift2.removeAttribute("hidden"); 
 
+        //Creates a div inside journal view to generate the journal text
         let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
 
         //For each journal in the array of journals given (not yet implemented) replace 4 with the length of the given journal array
+        //REPLACE DEBUG FOR LOOP WITH BELOW COMMENTED FOR LOOP
+        //for(let i = 0; i < journalList.length; i++){
         for(let i = 0; i < 5; i++){
+
             //Create elements to add to archive div
             let journalDate = document.createElement('h3');
             let mood = document.createElement('p');
             let completedHabits = document.createElement('p');
             let dailyAffirmation = document.createElement('p');
+
+            //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE I GUESS
+            //Grabs array of habits from server(ask for more details on the function from backend)
+                //let habitArray = habit.find(username, journal[i].date)
+
+                //let habitString = "";
+
+            //For each habit in the list
+                /*for (let j = 0; j < habitArray.length; j++){
+                    
+                    //Adds a comma and space to the string of habits after the first habit
+                    if(j > 0){
+                         habitString += ", "
+                    }
+
+                    habitString += habitArray[j].activity;
+
+                }*/
+
             
-            //These should add from the values of each journal 
             //Create text to put inside created elements above
+            //ADD THE VALUES FROM journalList[i] HERE FOR EXAMPLE:
+            // let journalDateString = "Journal Date: " + journalList[i].mood
             let journalDateString = "Journal Date: "
             let moodString = "Mood: "
             let habitString = "Habits: "
@@ -136,9 +178,6 @@ export default class ArchivePage extends Component {
             archiveEntriesDiv.appendChild(dailyAffirmation);
         }
         //end for loop for each journal
-
-        //Placeholder text change when form is submitted
-        //document.getElementById("archiveHeader").innerHTML = "Submitted";
     }
 
     render() {

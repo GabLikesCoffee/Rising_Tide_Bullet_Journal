@@ -28,7 +28,7 @@ router.route("/get").post(async (req, res) => {
 
       res.status(201).json(journal)
   }catch(Error){
-    res.json(Error)
+    res.json(null)
   };
 })
 router.route("/add").post(async (req, res) => {
@@ -65,7 +65,7 @@ router.route("/add").post(async (req, res) => {
       .then(() => res.status(201).json("Journal Added for user "+ username))
       .catch((err) => res.status(400).json("Error: " + err));
   }catch(Error){
-      res.status(401).json("Error: " + Error)
+      res.status(401).json(null)
   }
 });
 

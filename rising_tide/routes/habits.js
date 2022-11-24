@@ -26,7 +26,7 @@ router.route("/get").post(async (req, res) => {
 
       res.status(201).json(habit)
   }catch(Error){
-    res.json(Error)
+    res.json(null)
   };
 })
 
@@ -65,10 +65,10 @@ router.route("/add").post(async (req, res) => {
       newHabit
         .save()
         .then(() => res.status(201).json("Habit Added"))
-        .catch((err) => res.status(400).json("Error: " + err));
+        .catch((err) => res.status(400).json(null));
 
     }catch(Error){
-        res.json(Error)
+        res.json(null)
     }
 });
 

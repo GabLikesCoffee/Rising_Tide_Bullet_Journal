@@ -2,6 +2,34 @@ const router = require("express").Router();
 let Habit = require("../models/habit.model");
 const middleware=require("../middleware/authMiddleware");
 
+
+router.route("/get").post(async (req, res) => {
+  const date= new Date(req.body.date.year, req.body.date.month-1, req.body.date.day,12);
+  const username=  await middleware.isValidToken(req.body.token);
+  try{
+
+    if(username==null){
+      res.status(401)
+      throw new Error("Invalid username");
+    }
+
+    habit= await Habit.find({
+        username: username, 
+        date: date,
+        isCompleted: true
+
+      });
+
+      if(habit==null){
+        res.status(201).json(null);
+      }
+
+      res.status(201).json(habit)
+  }catch(Error){
+    res.json(Error)
+  };
+})
+
 router.route("/add").post(async (req, res) => {
 
     //Gets user inputted data

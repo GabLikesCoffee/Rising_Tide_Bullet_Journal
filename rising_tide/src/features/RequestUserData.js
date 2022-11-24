@@ -37,6 +37,7 @@ export const getJournalPost=(date)=>{
                 if (res.data) {
                     
                     console.log("Journal received "+ res.data);
+                    return res.data[0];
                 }else{
                     console.log("error");
                 }
@@ -46,9 +47,9 @@ export const getJournalPost=(date)=>{
        
 }
 //Returns all user habits
-export const getHabitPost=()=>{
+export const getHabitPost=(date)=>{
     let token=JSON.parse(localStorage.getItem("user"));
-    axios.post("http://localhost:5000/habits/get", JSON.stringify(token),
+    axios.post("http://localhost:5000/habits/get", JSON.stringify({token,date}),
     {
         headers: {
             'Content-Type': 'application/json'
@@ -56,7 +57,12 @@ export const getHabitPost=()=>{
     }).then(res=>{
                 if (res.data) {
                     
-                    console.log("Habit received");
+                    
+                    let completedHabits= res.data[0].activity;
+                    for(let i=1;i< res.data.length;i++){
+                        completedHabits+=(", "+(res.data[i].activity));
+                    }
+                    console.log("Habit received" + completedHabits);
                 }else{
                     console.log("error");
                 }

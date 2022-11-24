@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import seashell from '../Assets/shell.PNG';
+import {addHabitPost,addJournalPost,getHabitPost,getJournalPost} from "../features/RequestUserData"
 
 //Stores a random number for random shell rotation
 let randomNumber;
@@ -51,14 +52,15 @@ const onEditPage1 = event => {
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
     weeklyViewPage.setAttribute("hidden", true);
     weeklyViewEditPage.removeAttribute("hidden"); 
-
+    
     let loadDate = last7Days[0]
+    getHabitPost(loadDate);
 
     //Debug purposes shows date given
     console.log(loadDate)
-
+    
     //mood = find info from database TEMPORARY VALUE BELOW
-    mood = "happy"
+    mood = "happy";
     //completedHabits = find info from database TEMPORARY VALUE BELOW
     completedHabits = "Jog, Walk Dog, Take meds"
     //dailyAffirmation = find info from database TEMPORARY VALUE BELOW

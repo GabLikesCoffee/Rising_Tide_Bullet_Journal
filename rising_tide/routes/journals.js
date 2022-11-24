@@ -7,7 +7,30 @@ let Journal = require("../models/journal.model");
 //     .then((journals) => res.json(journals))
 //     .catch((err) => res.status(400).json("Error: " + err));
 // });
+router.route("/get").post(async (req, res) => {
+  const date= new Date(req.body.date.year, req.body.date.month-1, req.body.date.day,12);
+  const username=  await middleware.isValidToken(req.body.token);
+  try{
 
+    if(username==null){
+      res.status(401)
+      throw new Error("Invalid username");
+    }
+
+    journal= await Journal.find({
+        username: username, 
+        date: date
+      });
+
+      if(journal==null){
+        res.status(201).json(null);
+      }
+
+      res.status(201).json(journal)
+  }catch(Error){
+    res.json(Error)
+  };
+})
 router.route("/add").post(async (req, res) => {
 
   //Gets user inputted data

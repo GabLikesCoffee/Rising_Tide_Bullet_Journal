@@ -9,6 +9,10 @@ let randomNumber;
 //Stores the style string for each rotation
 let rotateStrings = [];
 
+//Holds current journal for submission
+let currentJournal;
+let journalDay;
+
 //Starts list of days from today on moves on from there
 //Keeps track of the day of the week
 let dayOfTheWeek = new Date().getDate();
@@ -16,9 +20,9 @@ let weekDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday
 let last7Days=[]
 
 //GLOBAL VARIABLES THAT WE FILL WITH DATABASE INFORMATION
-let mood
-let completedHabits
-let dailyAffirmation
+let mood = "no mood";
+let habits = "no habits";
+let dailyAffirmation = "no daily affirmation";
 
 //Finds the last 7 days, turns it into an object and pushes it to an array to be used in the onEditPage functions
 for(let i = 0; i < 8; i++){
@@ -46,162 +50,228 @@ for(let i = 0; i < 8; i++){
     rotateStrings[i] = "rotate(" + randomNumber + "deg)";
 }
 
-//1 is for yesterday, 2 is for the day before yesterday, etc
+//1 is for today, 2 is for yesterday, 3 is for the day before yesterday, etc
 const onEditPage1 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[0];
+
+    /*comment to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    weeklyViewPage.setAttribute("hidden", true);
-    weeklyViewEditPage.removeAttribute("hidden"); 
-    
-    let loadDate = last7Days[0]
-    getHabitPost(loadDate);
+    */
 
-    //Debug purposes shows date given
-    console.log(loadDate)
-    
-    //mood = find info from database TEMPORARY VALUE BELOW
-    mood = "happy";
-    //completedHabits = find info from database TEMPORARY VALUE BELOW
-    completedHabits = "Jog, Walk Dog, Take meds"
-    //dailyAffirmation = find info from database TEMPORARY VALUE BELOW
-    dailyAffirmation = "Today was a good day."
+    //Sets date chosen
+    let loadDate = last7Days[0];
 
-    loadJournalEditPage();
+    //Debug view date
+    console.log(loadDate);
+
+//COPY PASTE ALL CODE PAST THIS POINT IN THIS FUNCTION TO THE OTHER onEditPage functions once it works
+
+    //Grabs journal from the database
+    /*let journal = getJournalPost(loadDate);
+
+    //Sets the journal to a variable that the submission function can grab
+    currentJournal = journal;
+
+        //If the journal isnt empty we switch to the journal view
+        if(journal){
+
+            console.log("Switching views...");
+
+            //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
+
+            //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
+            let habitArray = getHabitPost(loadDate);
+
+            let habitString = "";
+
+            //For each habit in the list
+            for (let i = 0; i < habitArray.length; i++){
+                    
+                //Adds a comma and space to the string of habits after the first habit
+                if(i > 0){
+                    habitString += ", "
+                }
+
+                //Adds activity to the string
+                habitString += habitArray[i].activity;
+
+                //If the habit is completed add a space and a checkmark, if not, a space and an x
+                if(habitArray[i].isCompleted === true){
+                    habitString+= " " + &check;
+                }
+                else{
+                    habitString+=  " x";
+                }
+
+            }
+
+            //sets mood to journal mood
+            mood = journal.mood;
+
+            //Sets habits to the habits string we made from the journal habits
+            habits = habitString;
+
+            //sets daily affirmation to journal text
+            dailyAffirmation = journal.freeResponse;
+
+            //Switches to the journal view 
+            weeklyViewPage.setAttribute("hidden", true);
+            weeklyViewEditPage.removeAttribute("hidden"); 
+
+            //Loads journal page with the information given
+            loadJournalEditPage();
+
+        }
+        //else we load a default journal for editing if the user desires
+        else {
+                //Switches to the journal view 
+                weeklyViewPage.setAttribute("hidden", true);
+                weeklyViewEditPage.removeAttribute("hidden"); 
+
+                //Loads journal page with default values
+                loadJournalEditPage();
+        }
+    */
+   //END COPY PASTE
 }
 
 const onEditPage2 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[1];
+
+    /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    weeklyViewPage.setAttribute("hidden", true);
-    weeklyViewEditPage.removeAttribute("hidden"); 
+    */
 
-    let loadDate = last7Days[1]
+    //Sets date chosen
+    let loadDate = last7Days[1];
 
-    //Debug purposes shows date given
-    console.log(loadDate)
+    //Debug view date
+    console.log(loadDate);
 
-    //mood = find info from database TEMPORARY VALUE BELOW
-    mood = "happy"
-    //completedHabits = find info from database TEMPORARY VALUE BELOW
-    completedHabits = "Jog, Walk Dog, Take meds"
-    //dailyAffirmation = find info from database TEMPORARY VALUE BELOW
-    dailyAffirmation = "Today was a good day."
+    //COPY PASTE onEditPage1 CODE HERE
 
-    loadJournalEditPage();
 }
 
 const onEditPage3 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[2];
+
+    /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    weeklyViewPage.setAttribute("hidden", true);
-    weeklyViewEditPage.removeAttribute("hidden"); 
+    */
 
-    let loadDate = last7Days[2]
-    console.log(loadDate)
+    //Sets date chosen
+    let loadDate = last7Days[2];
 
-    //mood = find info from database TEMPORARY VALUE BELOW
-    mood = "happy"
-    //completedHabits = find info from database TEMPORARY VALUE BELOW
-    completedHabits = "Jog, Walk Dog, Take meds"
-    //dailyAffirmation = find info from database TEMPORARY VALUE BELOW
-    dailyAffirmation = "Today was a good day."
+    //Debug view date
+    console.log(loadDate);
 
-    loadJournalEditPage();
+    //COPY PASTE onEditPage1 CODE HERE
 }
 
 const onEditPage4 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[3];
+
+    /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    weeklyViewPage.setAttribute("hidden", true);
-    weeklyViewEditPage.removeAttribute("hidden"); 
+    */
 
-    let loadDate = last7Days[3]
-    console.log(loadDate)
+    //Sets date chosen
+    let loadDate = last7Days[3];
 
-    //mood = find info from database TEMPORARY VALUE BELOW
-    mood = "happy"
-    //completedHabits = find info from database TEMPORARY VALUE BELOW
-    completedHabits = "Jog, Walk Dog, Take meds"
-    //dailyAffirmation = find info from database TEMPORARY VALUE BELOW
-    dailyAffirmation = "Today was a good day."
+    //Debug view date
+    console.log(loadDate);
 
-    loadJournalEditPage();
+    //COPY PASTE onEditPage1 CODE HERE
 }
 
 const onEditPage5 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[4];
+
+    /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    weeklyViewPage.setAttribute("hidden", true);
-    weeklyViewEditPage.removeAttribute("hidden"); 
+    */
 
-    let loadDate = last7Days[4]
-    console.log(loadDate)
+    //Sets date chosen
+    let loadDate = last7Days[4];
 
-    //mood = find info from database TEMPORARY VALUE BELOW
-    mood = "happy"
-    //completedHabits = find info from database TEMPORARY VALUE BELOW
-    completedHabits = "Jog, Walk Dog, Take meds"
-    //dailyAffirmation = find info from database TEMPORARY VALUE BELOW
-    dailyAffirmation = "Today was a good day."
+    //Debug view date
+    console.log(loadDate);
 
-    loadJournalEditPage();
+    //COPY PASTE onEditPage1 CODE HERE
 }
 
 const onEditPage6 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[5];
+
+    /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    weeklyViewPage.setAttribute("hidden", true);
-    weeklyViewEditPage.removeAttribute("hidden"); 
+    */
 
-    let loadDate = last7Days[5]
-    console.log(loadDate)
+    //Sets date chosen
+    let loadDate = last7Days[5];
 
-    //mood = find info from database TEMPORARY VALUE BELOW
-    mood = "happy"
-    //completedHabits = find info from database TEMPORARY VALUE BELOW
-    completedHabits = "Jog, Walk Dog, Take meds"
-    //dailyAffirmation = find info from database TEMPORARY VALUE BELOW
-    dailyAffirmation = "Today was a good day."
+    //Debug view date
+    console.log(loadDate);
 
-    loadJournalEditPage();
+    //COPY PASTE onEditPage1 CODE HERE
+
 }
 
 const onEditPage7 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[6];
+
+    /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    weeklyViewPage.setAttribute("hidden", true);
-    weeklyViewEditPage.removeAttribute("hidden"); 
+    */
 
+    //Sets date chosen
     let loadDate = last7Days[6]
-    console.log(loadDate)
 
-    //mood = find info from database TEMPORARY VALUE BELOW
-    mood = "happy"
-    //completedHabits = find info from database TEMPORARY VALUE BELOW
-    completedHabits = "Jog, Walk Dog, Take meds"
-    //dailyAffirmation = find info from database TEMPORARY VALUE BELOW
-    dailyAffirmation = "Today was a good day."
+    //Debug view date
+    console.log(loadDate);
 
-    loadJournalEditPage();
+    //COPY PASTE onEditPage1 CODE HERE
 }
 
 const onEditPage8 = event => {
+
+    //Variable for the journal day so the submission function can get it
+    journalDay = last7Days[7];
+
+    /*comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    weeklyViewPage.setAttribute("hidden", true);
-    weeklyViewEditPage.removeAttribute("hidden"); 
+    */
 
+    //Sets date chosen
     let loadDate = last7Days[7];
+
+    //Debug view date
     console.log(loadDate);
 
-    //mood = find info from database TEMPORARY VALUE BELOW
-    mood = "happy"
-    //completedHabits = find info from database TEMPORARY VALUE BELOW
-    completedHabits = "Jog, Walk Dog, Take meds"
-    //dailyAffirmation = find info from database TEMPORARY VALUE BELOW
-    dailyAffirmation = "Today was a good day."
+    //COPY PASTE onEditPage1 CODE HERE
 
-    loadJournalEditPage();
 }
 
 let loadJournalEditPage = function(){
@@ -210,7 +280,7 @@ let loadJournalEditPage = function(){
     let displayTextInput = document.getElementById("displayTextInput");
     let capitalizedMood = mood.charAt(0).toUpperCase() + mood.slice(1);
     displayMood.innerHTML = capitalizedMood;
-    displayHabits.innerHTML = completedHabits;
+    displayHabits.innerHTML = habits;
     displayTextInput.innerHTML = "<textarea id ='weeklyViewTextArea'>" + dailyAffirmation + "</textarea>";
 }
 
@@ -219,27 +289,63 @@ const onBackButton = event => {
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
     weeklyViewEditPage.setAttribute("hidden", true);
     weeklyViewPage.removeAttribute("hidden"); 
-    mood = "";
-    completedHabits = "";
-    dailyAffirmation = "";
+
+    document.getElementById("weeklyViewHeader").innerHTML = "Weekly View";
+
+    mood = "no mood";
+    habits = "no habits";
+    dailyAffirmation = "no daily affirmation";
 
 }
 
 const onSubmitJournalEdit = event => {
-    //Go back to weekly view page
+    //Grab page elements
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
 
     //Gets the value of the textarea so it can be resubmitted
     let newJournalTextString = document.getElementById("weeklyViewTextArea").value;
-    let nonAscii = newJournalTextString.replaceAll(/[^\x00-\x7F]/g, '');
-    console.log(nonAscii);
 
+    //Removes non-ascii characters
+    let nonAsciiInput = newJournalTextString.replaceAll(/[^\x00-\x7F]/g, '');
+    console.log(nonAsciiInput);
+
+    /*
+    //If current journal is not null
+    if(currentJournal)
+        //Updates the journal's free response to the new one
+        currentJournal.freeResonse = nonAsciiInput;
+
+        //Submits this journal again with the new data
+        addJournalPost(currentJournal);
+    }
+    //else make a new journal
+    else{
+        let newJournal = {
+            date:{
+                day:journalDay.day,
+                month:journalDay.month,
+                year:journalDay.year,
+            },
+                
+            freeResponse: nonAsciiInput,
+                
+            mood: mood
+        }
+
+        //Adds a new journal with the set values
+         addJournalPost(newJournal);
+    }
+    */
+
+    //Switch back to the weekly view page
     weeklyViewEditPage.setAttribute("hidden", true);
     weeklyViewPage.removeAttribute("hidden"); 
-    mood = "";
-    completedHabits = "";
-    dailyAffirmation = "";
+
+    //Set globals back to dafault values
+    let mood = "no mood";
+    let habits = "no habits";
+    let dailyAffirmation = "no daily affirmation";
 
     //Show submitted to confirm submission
     document.getElementById("weeklyViewHeader").innerHTML = "Updated!";

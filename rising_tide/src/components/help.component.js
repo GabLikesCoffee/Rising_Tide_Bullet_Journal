@@ -17,7 +17,7 @@ export default class SignIn extends Component {
                     <div class="helpDiv">
                         <h3>Creating a Journal</h3>
                         <p>There are three sections to your journal:</p>
-                            <p className="indented"><strong>Mood Section:</strong> This section allows you to select a mood for the day. Click on one to select your mood.</p>
+                            <p className="indented"><strong>Mood Section:</strong> This section allows you to select a mood for the day. Click on one to select your mood. Don't like the mood selection? You can type in your exact mood in the weekly view page!</p>
                             <p className="indented"><strong>Habits Section:</strong> This section allows you record what you do daily. You can add and delete habits at any time with the "+" or "-" widget buttons. Check them to indicate that you have completed the daily habit.</p>
                             <p className="indented"><strong>Self-Reflection Section:</strong> This section allows you write anything you want. Write about your day, or what you've accomplished to keep track of your life in this journal!</p>
                     </div>

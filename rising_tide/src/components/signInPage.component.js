@@ -76,7 +76,7 @@ export default class SignIn extends Component {
 
                         </input>
 
-                        <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+                        <button type="submit" id="signInBtn" className="btn btn-primary btn-block">Sign In</button>
                     </form>
                 </center>
             </div>

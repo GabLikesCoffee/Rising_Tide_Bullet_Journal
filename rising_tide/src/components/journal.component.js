@@ -358,7 +358,7 @@ export default class Journal extends Component {
     onSubmit(e) {
         email = document.getElementById("emailInput");
 
-        if (window.confirm("Would you like to send an email with your journal entry?")) {
+        if (window.confirm("Would you like to send an email with your journal entry? Select 'Cancel' if not.")) {
             console.log("sending email...");
           } else {
             //txt = "You pressed Cancel!";

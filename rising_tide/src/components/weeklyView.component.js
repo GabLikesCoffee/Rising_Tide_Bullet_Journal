@@ -1,5 +1,6 @@
 //WEEKLY VIEW
 
+import { get } from 'mongoose';
 import React, { Component } from 'react';
 import seashell from '../Assets/shell.PNG';
 import {addHabitPost,addJournalPost,getHabitPost,getJournalPost} from "../features/RequestUserData"
@@ -49,17 +50,15 @@ for(let i = 0; i < 8; i++){
     //Creates the style string for the rotation
     rotateStrings[i] = "rotate(" + randomNumber + "deg)";
 }
-
 //1 is for today, 2 is for yesterday, 3 is for the day before yesterday, etc
 const onEditPage1 = event => {
 
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[0];
 
-    /*comment to silence warnings but uncomment when you start coding
+    //comment to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    */
 
     //Sets date chosen
     let loadDate = last7Days[0];
@@ -70,10 +69,16 @@ const onEditPage1 = event => {
 //COPY PASTE ALL CODE PAST THIS POINT IN THIS FUNCTION TO THE OTHER onEditPage functions once it works
 
     //Grabs journal from the database
-    /*let journal = getJournalPost(loadDate);
+    let journal = getJournalPost(loadDate);
+    console.log("Grabs journal from the database");
 
     //Sets the journal to a variable that the submission function can grab
     currentJournal = journal;
+    //let journalInfo = JSON.stringify(journal);
+    //console.log(journalInfo);
+    //console.log(journalInfo[0])
+    console.log(journal);
+
 
         //If the journal isnt empty we switch to the journal view
         if(journal){
@@ -81,26 +86,20 @@ const onEditPage1 = event => {
             console.log("Switching views...");
 
             //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
-
             //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
             let habitArray = getHabitPost(loadDate);
-
-            let habitString = "";
+            let habitString = getHabitPost(loadDate);
 
             //For each habit in the list
             for (let i = 0; i < habitArray.length; i++){
-                    
-                //Adds a comma and space to the string of habits after the first habit
-                if(i > 0){
-                    habitString += ", "
-                }
 
                 //Adds activity to the string
                 habitString += habitArray[i].activity;
 
                 //If the habit is completed add a space and a checkmark, if not, a space and an x
                 if(habitArray[i].isCompleted === true){
-                    habitString+= " " + &check;
+                    habitString+= " O";
+                    //habitString+= " " + &check;
                 }
                 else{
                     habitString+=  " x";
@@ -125,7 +124,9 @@ const onEditPage1 = event => {
             loadJournalEditPage();
 
         }
+        
         //else we load a default journal for editing if the user desires
+        
         else {
                 //Switches to the journal view 
                 weeklyViewPage.setAttribute("hidden", true);
@@ -134,9 +135,10 @@ const onEditPage1 = event => {
                 //Loads journal page with default values
                 loadJournalEditPage();
         }
-    */
    //END COPY PASTE
 }
+
+
 
 const onEditPage2 = event => {
 

@@ -1,6 +1,6 @@
 //ARCHIVE PAGE
 
-//import { get } from 'mongoose';
+import { get } from 'mongoose';
 import React, { Component } from 'react';
 import {getJournalPost} from "../features/RequestUserData"
 import {getHabitPost} from "../features/RequestUserData"
@@ -109,8 +109,8 @@ export default class ArchivePage extends Component {
 
         //Posts request for journals given a start and end date
         //REPLACE CONSOLE LOG TEST CODE WITH COMMENTED CODE BELOW 
-        //let journalList = requestPerDate(startDateObject, endDateObject);
-        console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
+        let journalList = requestPerDate(startDateObject, endDateObject);
+        //console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
 
         //Hides error message as the user will try again (if an error occured)
         errorMsg.setAttribute("hidden", true);
@@ -124,8 +124,8 @@ export default class ArchivePage extends Component {
 
         //For each journal in the array of journals given (not yet implemented) replace 4 with the length of the given journal array
         //REPLACE DEBUG FOR LOOP WITH BELOW COMMENTED FOR LOOP mostly replace the 5 with journalList.length
-        //for(let i = 0; i < journalList.length; i++){
-        for(let i = 0; i < 5; i++){
+        for(let i = 0; i < journalList.length; i++){
+        //for(let i = 0; i < 5; i++){
 
             //Create elements to add to archive div
             let journalDate = document.createElement('h3');
@@ -135,16 +135,16 @@ export default class ArchivePage extends Component {
 
             //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
             //Grabs array of habits from server(ask for more details on the function from backend)
-            //let habitArray = getHabitPost(journalList[i].date)
+            let habitArray = getHabitPost(journalList[i].date)
 
-            //let habitString = "";
+            let habitString = "";
 
             //For each habit in the list
-                /*for (let j = 0; j < habitArray.length; j++){
+                for (let j = 0; j < habitArray.length; j++){
                     
                    //Adds a comma and space to the string of habits after the first habit
                     if(j > 0){
-                        habitString += ", "
+                        habitString += ", ";
                     }
 
                     //Adds activity to the string
@@ -152,15 +152,16 @@ export default class ArchivePage extends Component {
 
                     //If the habit is completed add a space and a checkmark, if not, a space and an x
                     if(habitArray[j].isCompleted === true){
-                        habitString+= " " + &check;
+                        habitString+= " O";
+                        //habitString+= " " + &check;
                     }
                     else{
                         habitString+=  " x";
                     }
 
-                }*/
+                }
 
-            /*
+            
             //Create text to put inside created elements above
             //Adding the values from the journalList[i]
             let journalDateString = "Journal Date: " + journalList[i].date.month + "-" + journalList[i].date.day + "-" +  journalList[i].date.year;
@@ -189,7 +190,7 @@ export default class ArchivePage extends Component {
             archiveEntriesDiv.appendChild(completedHabits);
             archiveEntriesDiv.appendChild(dailyAffirmation);
 
-            */
+            
         }
         //end for loop for each journal
     }

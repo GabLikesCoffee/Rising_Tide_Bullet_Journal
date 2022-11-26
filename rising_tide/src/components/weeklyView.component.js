@@ -279,7 +279,7 @@ let loadJournalEditPage = function(){
     let displayHabits = document.getElementById("displayHabits");
     let displayTextInput = document.getElementById("displayTextInput");
     let capitalizedMood = mood.charAt(0).toUpperCase() + mood.slice(1);
-    displayMood.innerHTML = capitalizedMood;
+    displayMood.innerHTML = "<input type='text' id='weeklyViewMoodInput' value='" + capitalizedMood + "'></input>";
     displayHabits.innerHTML = habits;
     displayTextInput.innerHTML = "<textarea id ='weeklyViewTextArea'>" + dailyAffirmation + "</textarea>";
 }
@@ -305,16 +305,20 @@ const onSubmitJournalEdit = event => {
 
     //Gets the value of the textarea so it can be resubmitted
     let newJournalTextString = document.getElementById("weeklyViewTextArea").value;
+    let newJournalMoodString = document.getElementById("weeklyViewMoodInput").value;
 
     //Removes non-ascii characters
     let nonAsciiInput = newJournalTextString.replaceAll(/[^\x00-\x7F]/g, '');
+    let nonAsciiMood = newJournalMoodString.replaceAll(/[^\x00-\x7F]/g, '');
     console.log(nonAsciiInput);
+    console.log(nonAsciiMood);
 
     /*
     //If current journal is not null
     if(currentJournal)
-        //Updates the journal's free response to the new one
+        //Updates the journal's free response and mood to the new ones
         currentJournal.freeResonse = nonAsciiInput;
+        currentJournal.mood = nonAsciiMood;
 
         //Submits this journal again with the new data
         addJournalPost(currentJournal);
@@ -330,7 +334,7 @@ const onSubmitJournalEdit = event => {
                 
             freeResponse: nonAsciiInput,
                 
-            mood: mood
+            mood: nonAsciiMood
         }
 
         //Adds a new journal with the set values

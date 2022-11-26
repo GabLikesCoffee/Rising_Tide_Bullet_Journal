@@ -334,3 +334,8 @@ border-left: solid #e7c7b4;
      visibility: hidden;
   }
 }
+
+#weeklyViewMoodInput{
+  border-radius: 4px;
+  border-color: rgb(135, 210, 231);
+}

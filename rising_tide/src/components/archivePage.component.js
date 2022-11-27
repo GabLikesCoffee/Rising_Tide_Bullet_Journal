@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import {getJournalPost} from "../features/RequestUserData"
 import {getHabitPost} from "../features/RequestUserData"
 
+let listJournals = [] 
+
 //When the back button is pressed after viewing a journal
 const onBackButton = event => {
 
@@ -43,6 +45,8 @@ const requestPerDate= async (beginDate,endDate)=>{
 				let temp = await getJournalPost(currentDate);
                 if(temp){
                     journalList.push(temp);
+                    listJournals.push(temp);
+                    //console.log(temp);
 
                 }
 
@@ -104,8 +108,9 @@ const onSubmit = async event => {
 
     //Posts request for journals given a start and end date
     //REPLACE CONSOLE LOG TEST CODE WITH COMMENTED CODE BELOW 
-    //let journalList = requestPerDate(startDateObject, endDateObject);
-    console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
+    let journalList = await requestPerDate(startDateObject, endDateObject);
+    journalList = listJournals;
+    //console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
 
     //Hides error message as the user will try again (if an error occured)
     errorMsg.setAttribute("hidden", true);
@@ -118,9 +123,8 @@ const onSubmit = async event => {
     let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
 
     //For each journal in the array of journals given (not yet implemented) replace 4 with the length of the given journal array
-    //REPLACE DEBUG FOR LOOP WITH BELOW COMMENTED FOR LOOP mostly replace the 5 with journalList.length
-    //for(let i = 0; i < journalList.length; i++){
-    for(let i = 0; i < 5; i++){
+    for(let i = 0; i < journalList.length; i++){
+    //for(let i = 0; i < 5; i++){
 
         //Create elements to add to archive div
         let journalDate = document.createElement('h3');
@@ -128,38 +132,26 @@ const onSubmit = async event => {
         let completedHabits = document.createElement('p');
         let dailyAffirmation = document.createElement('p');
 
+        let dateForObject = new Date(journalList[i].date);
+        let dateObject = {
+            day: dateForObject.getDate(),
+            month: dateForObject.getMonth() + 1,
+            year: dateForObject.getFullYear()
+        }
+        console.log(dateObject); 
+
+
         //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
         //Grabs array of habits from server(ask for more details on the function from backend)
         //let habitArray = getHabitPost(journalList[i].date)
-
-        //let habitString = "";
-
-        //For each habit in the list
-            /*for (let j = 0; j < habitArray.length; j++){
-                
-               //Adds a comma and space to the string of habits after the first habit
-                if(j > 0){
-                    habitString += ", "
-                }
-
-                //Adds activity to the string
-                habitString += habitArray[j].activity;
-
-                //If the habit is completed add a space and a checkmark, if not, a space and an x
-                if(habitArray[j].isCompleted === true){
-                    habitString+= " " + &check;
-                }
-                else{
-                    habitString+=  " x";
-                }
-
-            }*/
-
-        /*
+        //let habitString = await getHabitPost(journalList[i].date)
+        let habitString = await getHabitPost(dateObject)
+        //let habitArray = await getHabitPost(dateObject)
+        
         //Create text to put inside created elements above
         //Adding the values from the journalList[i]
-        let journalDateString = "Journal Date: " + journalList[i].date.month + "-" + journalList[i].date.day + "-" +  journalList[i].date.year;
-
+        //let journalDateString = "Journal Date: " + (journalList[i].date.getMonth()+1) + "-" + journalList[i].date.getDay() + "-" +  journalList[i].date.getYear();
+        let journalDateString = "Journal Date: " + journalList[i].date;
         let moodString = "Mood: " +  journalList[i].mood;
         let habitFullString = "Habits: " + habitString;
         let dailyAffirmationString = "Daily Affirmation: " +  journalList[i].freeResponse;
@@ -184,7 +176,6 @@ const onSubmit = async event => {
         archiveEntriesDiv.appendChild(completedHabits);
         archiveEntriesDiv.appendChild(dailyAffirmation);
 
-        */
     }
     //end for loop for each journal
 }

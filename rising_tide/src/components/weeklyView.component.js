@@ -56,11 +56,10 @@ const onEditPage1 = async event => {
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[0];
 
-    /*comment to silence warnings but uncomment when you start coding
+    //comment to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    */
-
+    
     //Sets date chosen
     let loadDate = last7Days[0];
 
@@ -70,7 +69,7 @@ const onEditPage1 = async event => {
 //COPY PASTE ALL CODE PAST THIS POINT IN THIS FUNCTION TO THE OTHER onEditPage functions once it works
 
     //Grabs journal from the database
-    /*let journal = await getJournalPost(loadDate);
+    let journal = await getJournalPost(loadDate);
 
     //Sets the journal to a variable that the submission function can grab
     currentJournal = journal;
@@ -83,30 +82,7 @@ const onEditPage1 = async event => {
             //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
 
             //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
-            let habitArray = await getHabitPost(loadDate);
-
-            let habitString = "";
-
-            //For each habit in the list
-            for (let i = 0; i < habitArray.length; i++){
-                    
-                //Adds a comma and space to the string of habits after the first habit
-                if(i > 0){
-                    habitString += ", "
-                }
-
-                //Adds activity to the string
-                habitString += habitArray[i].activity;
-
-                //If the habit is completed add a space and a checkmark, if not, a space and an x
-                if(habitArray[i].isCompleted === true){
-                    habitString+= " " + &check;
-                }
-                else{
-                    habitString+=  " x";
-                }
-
-            }
+            let habitString = await getHabitPost(loadDate);
 
             //sets mood to journal mood
             mood = journal.mood;
@@ -134,7 +110,6 @@ const onEditPage1 = async event => {
                 //Loads journal page with default values
                 loadJournalEditPage();
         }
-    */
    //END COPY PASTE
 }
 
@@ -143,10 +118,9 @@ const onEditPage2 = async event => {
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[1];
 
-    /*comment out to silence warnings but uncomment when you start coding
+    //comment to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    */
 
     //Sets date chosen
     let loadDate = last7Days[1];
@@ -154,7 +128,48 @@ const onEditPage2 = async event => {
     //Debug view date
     console.log(loadDate);
 
-    //COPY PASTE onEditPage1 CODE HERE
+    //Grabs journal from the database
+    let journal = await getJournalPost(loadDate);
+
+    //Sets the journal to a variable that the submission function can grab
+    currentJournal = journal;
+
+        //If the journal isnt empty we switch to the journal view
+        if(journal){
+
+            console.log("Switching views...");
+
+            //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
+
+            //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
+            let habitString = await getHabitPost(loadDate);
+
+            //sets mood to journal mood
+            mood = journal.mood;
+
+            //Sets habits to the habits string we made from the journal habits
+            habits = habitString;
+
+            //sets daily affirmation to journal text
+            dailyAffirmation = journal.freeResponse;
+
+            //Switches to the journal view 
+            weeklyViewPage.setAttribute("hidden", true);
+            weeklyViewEditPage.removeAttribute("hidden"); 
+
+            //Loads journal page with the information given
+            loadJournalEditPage();
+
+        }
+        //else we load a default journal for editing if the user desires
+        else {
+                //Switches to the journal view 
+                weeklyViewPage.setAttribute("hidden", true);
+                weeklyViewEditPage.removeAttribute("hidden"); 
+
+                //Loads journal page with default values
+                loadJournalEditPage();
+        }
 
 }
 
@@ -163,10 +178,10 @@ const onEditPage3 = async event => {
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[2];
 
-    /*comment out to silence warnings but uncomment when you start coding
+    //comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    */
+    
 
     //Sets date chosen
     let loadDate = last7Days[2];
@@ -174,7 +189,48 @@ const onEditPage3 = async event => {
     //Debug view date
     console.log(loadDate);
 
-    //COPY PASTE onEditPage1 CODE HERE
+    //Grabs journal from the database
+    let journal = await getJournalPost(loadDate);
+
+    //Sets the journal to a variable that the submission function can grab
+    currentJournal = journal;
+
+        //If the journal isnt empty we switch to the journal view
+        if(journal){
+
+            console.log("Switching views...");
+
+            //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
+
+            //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
+            let habitString = await getHabitPost(loadDate);
+
+            //sets mood to journal mood
+            mood = journal.mood;
+
+            //Sets habits to the habits string we made from the journal habits
+            habits = habitString;
+
+            //sets daily affirmation to journal text
+            dailyAffirmation = journal.freeResponse;
+
+            //Switches to the journal view 
+            weeklyViewPage.setAttribute("hidden", true);
+            weeklyViewEditPage.removeAttribute("hidden"); 
+
+            //Loads journal page with the information given
+            loadJournalEditPage();
+
+        }
+        //else we load a default journal for editing if the user desires
+        else {
+                //Switches to the journal view 
+                weeklyViewPage.setAttribute("hidden", true);
+                weeklyViewEditPage.removeAttribute("hidden"); 
+
+                //Loads journal page with default values
+                loadJournalEditPage();
+        }
 }
 
 const onEditPage4 = async event => {
@@ -182,10 +238,10 @@ const onEditPage4 = async event => {
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[3];
 
-    /*comment out to silence warnings but uncomment when you start coding
+    //comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    */
+    
 
     //Sets date chosen
     let loadDate = last7Days[3];
@@ -193,7 +249,48 @@ const onEditPage4 = async event => {
     //Debug view date
     console.log(loadDate);
 
-    //COPY PASTE onEditPage1 CODE HERE
+    //Grabs journal from the database
+    let journal = await getJournalPost(loadDate);
+
+    //Sets the journal to a variable that the submission function can grab
+    currentJournal = journal;
+
+        //If the journal isnt empty we switch to the journal view
+        if(journal){
+
+            console.log("Switching views...");
+
+            //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
+
+            //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
+            let habitString = await getHabitPost(loadDate);
+
+            //sets mood to journal mood
+            mood = journal.mood;
+
+            //Sets habits to the habits string we made from the journal habits
+            habits = habitString;
+
+            //sets daily affirmation to journal text
+            dailyAffirmation = journal.freeResponse;
+
+            //Switches to the journal view 
+            weeklyViewPage.setAttribute("hidden", true);
+            weeklyViewEditPage.removeAttribute("hidden"); 
+
+            //Loads journal page with the information given
+            loadJournalEditPage();
+
+        }
+        //else we load a default journal for editing if the user desires
+        else {
+                //Switches to the journal view 
+                weeklyViewPage.setAttribute("hidden", true);
+                weeklyViewEditPage.removeAttribute("hidden"); 
+
+                //Loads journal page with default values
+                loadJournalEditPage();
+        }
 }
 
 const onEditPage5 = async event => {
@@ -201,10 +298,10 @@ const onEditPage5 = async event => {
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[4];
 
-    /*comment out to silence warnings but uncomment when you start coding
+    //comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    */
+    
 
     //Sets date chosen
     let loadDate = last7Days[4];
@@ -212,7 +309,48 @@ const onEditPage5 = async event => {
     //Debug view date
     console.log(loadDate);
 
-    //COPY PASTE onEditPage1 CODE HERE
+    //Grabs journal from the database
+    let journal = await getJournalPost(loadDate);
+
+    //Sets the journal to a variable that the submission function can grab
+    currentJournal = journal;
+
+        //If the journal isnt empty we switch to the journal view
+        if(journal){
+
+            console.log("Switching views...");
+
+            //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
+
+            //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
+            let habitString = await getHabitPost(loadDate);
+
+            //sets mood to journal mood
+            mood = journal.mood;
+
+            //Sets habits to the habits string we made from the journal habits
+            habits = habitString;
+
+            //sets daily affirmation to journal text
+            dailyAffirmation = journal.freeResponse;
+
+            //Switches to the journal view 
+            weeklyViewPage.setAttribute("hidden", true);
+            weeklyViewEditPage.removeAttribute("hidden"); 
+
+            //Loads journal page with the information given
+            loadJournalEditPage();
+
+        }
+        //else we load a default journal for editing if the user desires
+        else {
+                //Switches to the journal view 
+                weeklyViewPage.setAttribute("hidden", true);
+                weeklyViewEditPage.removeAttribute("hidden"); 
+
+                //Loads journal page with default values
+                loadJournalEditPage();
+        }
 }
 
 const onEditPage6 = async event => {
@@ -220,10 +358,10 @@ const onEditPage6 = async event => {
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[5];
 
-    /*comment out to silence warnings but uncomment when you start coding
+    //comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    */
+    
 
     //Sets date chosen
     let loadDate = last7Days[5];
@@ -231,7 +369,48 @@ const onEditPage6 = async event => {
     //Debug view date
     console.log(loadDate);
 
-    //COPY PASTE onEditPage1 CODE HERE
+    //Grabs journal from the database
+    let journal = await getJournalPost(loadDate);
+
+    //Sets the journal to a variable that the submission function can grab
+    currentJournal = journal;
+
+        //If the journal isnt empty we switch to the journal view
+        if(journal){
+
+            console.log("Switching views...");
+
+            //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
+
+            //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
+            let habitString = await getHabitPost(loadDate);
+
+            //sets mood to journal mood
+            mood = journal.mood;
+
+            //Sets habits to the habits string we made from the journal habits
+            habits = habitString;
+
+            //sets daily affirmation to journal text
+            dailyAffirmation = journal.freeResponse;
+
+            //Switches to the journal view 
+            weeklyViewPage.setAttribute("hidden", true);
+            weeklyViewEditPage.removeAttribute("hidden"); 
+
+            //Loads journal page with the information given
+            loadJournalEditPage();
+
+        }
+        //else we load a default journal for editing if the user desires
+        else {
+                //Switches to the journal view 
+                weeklyViewPage.setAttribute("hidden", true);
+                weeklyViewEditPage.removeAttribute("hidden"); 
+
+                //Loads journal page with default values
+                loadJournalEditPage();
+        }
 
 }
 
@@ -240,10 +419,10 @@ const onEditPage7 = async event => {
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[6];
 
-    /*comment out to silence warnings but uncomment when you start coding
+    //comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    */
+    
 
     //Sets date chosen
     let loadDate = last7Days[6]
@@ -251,7 +430,48 @@ const onEditPage7 = async event => {
     //Debug view date
     console.log(loadDate);
 
-    //COPY PASTE onEditPage1 CODE HERE
+    //Grabs journal from the database
+    let journal = await getJournalPost(loadDate);
+
+    //Sets the journal to a variable that the submission function can grab
+    currentJournal = journal;
+
+        //If the journal isnt empty we switch to the journal view
+        if(journal){
+
+            console.log("Switching views...");
+
+            //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
+
+            //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
+            let habitString = await getHabitPost(loadDate);
+
+            //sets mood to journal mood
+            mood = journal.mood;
+
+            //Sets habits to the habits string we made from the journal habits
+            habits = habitString;
+
+            //sets daily affirmation to journal text
+            dailyAffirmation = journal.freeResponse;
+
+            //Switches to the journal view 
+            weeklyViewPage.setAttribute("hidden", true);
+            weeklyViewEditPage.removeAttribute("hidden"); 
+
+            //Loads journal page with the information given
+            loadJournalEditPage();
+
+        }
+        //else we load a default journal for editing if the user desires
+        else {
+                //Switches to the journal view 
+                weeklyViewPage.setAttribute("hidden", true);
+                weeklyViewEditPage.removeAttribute("hidden"); 
+
+                //Loads journal page with default values
+                loadJournalEditPage();
+        }
 }
 
 const onEditPage8 = async event => {
@@ -259,10 +479,10 @@ const onEditPage8 = async event => {
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[7];
 
-    /*comment out to silence warnings but uncomment when you start coding
+    //comment out to silence warnings but uncomment when you start coding
     let weeklyViewPage = document.getElementById("weeklyView");
     let weeklyViewEditPage = document.getElementById("weeklyViewEditPage");
-    */
+    
 
     //Sets date chosen
     let loadDate = last7Days[7];
@@ -270,7 +490,48 @@ const onEditPage8 = async event => {
     //Debug view date
     console.log(loadDate);
 
-    //COPY PASTE onEditPage1 CODE HERE
+    //Grabs journal from the database
+    let journal = await getJournalPost(loadDate);
+
+    //Sets the journal to a variable that the submission function can grab
+    currentJournal = journal;
+
+        //If the journal isnt empty we switch to the journal view
+        if(journal){
+
+            console.log("Switching views...");
+
+            //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
+
+            //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
+            let habitString = await getHabitPost(loadDate);
+
+            //sets mood to journal mood
+            mood = journal.mood;
+
+            //Sets habits to the habits string we made from the journal habits
+            habits = habitString;
+
+            //sets daily affirmation to journal text
+            dailyAffirmation = journal.freeResponse;
+
+            //Switches to the journal view 
+            weeklyViewPage.setAttribute("hidden", true);
+            weeklyViewEditPage.removeAttribute("hidden"); 
+
+            //Loads journal page with the information given
+            loadJournalEditPage();
+
+        }
+        //else we load a default journal for editing if the user desires
+        else {
+                //Switches to the journal view 
+                weeklyViewPage.setAttribute("hidden", true);
+                weeklyViewEditPage.removeAttribute("hidden"); 
+
+                //Loads journal page with default values
+                loadJournalEditPage();
+        }
 
 }
 
@@ -313,9 +574,9 @@ const onSubmitJournalEdit = event => {
     console.log(nonAsciiInput);
     console.log(nonAsciiMood);
 
-    /*
+    
     //If current journal is not null
-    if(currentJournal)
+    if(currentJournal){
         //Updates the journal's free response and mood to the new ones
         currentJournal.freeResonse = nonAsciiInput;
         currentJournal.mood = nonAsciiMood;
@@ -340,16 +601,16 @@ const onSubmitJournalEdit = event => {
         //Adds a new journal with the set values
          addJournalPost(newJournal);
     }
-    */
+    
 
     //Switch back to the weekly view page
     weeklyViewEditPage.setAttribute("hidden", true);
     weeklyViewPage.removeAttribute("hidden"); 
 
     //Set globals back to dafault values
-    let mood = "no mood";
-    let habits = "no habits";
-    let dailyAffirmation = "no daily affirmation";
+    mood = "no mood";
+    habits = "no habits";
+    dailyAffirmation = "no daily affirmation";
 
     //Show submitted to confirm submission
     document.getElementById("weeklyViewHeader").innerHTML = "Updated!";

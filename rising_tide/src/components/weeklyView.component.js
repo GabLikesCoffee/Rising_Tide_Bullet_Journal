@@ -578,8 +578,13 @@ const onSubmitJournalEdit = event => {
     //If current journal is not null
     if(currentJournal){
         //Updates the journal's free response and mood to the new ones
-        currentJournal.freeResonse = nonAsciiInput;
+        currentJournal.freeResponse = nonAsciiInput;
         currentJournal.mood = nonAsciiMood;
+        currentJournal.date={
+            day:journalDay.day,
+            month:journalDay.month,
+            year:journalDay.year,
+        }
 
         //Submits this journal again with the new data
         addJournalPost(currentJournal);

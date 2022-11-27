@@ -1,13 +1,14 @@
 import axios from "axios"
 
+
 //Adds a user journal
-export const addJournalPost=(journal)=>{
+export const addJournalPost=async (journal)=>{
 
     //token contains encrypted username and password
-
+    let journalData;
 
     let token=JSON.parse(localStorage.getItem("user"));
-    axios.post("http://localhost:5000/journals/add", JSON.stringify({journal,token}),
+    await axios.post("http://localhost:5000/journals/add", JSON.stringify({journal,token}),
     {
         headers: {
             'Content-Type': 'application/json'
@@ -19,16 +20,17 @@ export const addJournalPost=(journal)=>{
                 }else{
                     console.log("error");
                 }
-                return res.data
+                journalData= res.data;
             })
-        
+        return journalData;
        
 }
 
 //Give a date to get a journal entry
-export const getJournalPost=(date)=>{
+export const getJournalPost=async (date)=>{
+    let journalData;
     let token=JSON.parse(localStorage.getItem("user"));
-    axios.post("http://localhost:5000/journals/get", JSON.stringify({date,token}),
+    await axios.post("http://localhost:5000/journals/get", JSON.stringify({date,token}),
     {
         headers: {
             'Content-Type': 'application/json'
@@ -36,20 +38,21 @@ export const getJournalPost=(date)=>{
     }).then(res=>{
                 if (res.data) {
                     
-                    console.log("Journal received "+ res.data);
-                    return res.data[0];
+                    console.log("Journal received "+ res.data[0]);
+                    journalData= res.data[0];
                 }else{
                     console.log("error");
                 }
-                return res.data
+                
             })
         
-       
+            return (journalData);
 }
 //Returns all user habits
-export const getHabitPost=(date)=>{
+export const getHabitPost=async (date)=>{
+    let completedHabits;
     let token=JSON.parse(localStorage.getItem("user"));
-    axios.post("http://localhost:5000/habits/get", JSON.stringify({token,date}),
+    await axios.post("http://localhost:5000/habits/get", JSON.stringify({token,date}),
     {
         headers: {
             'Content-Type': 'application/json'
@@ -58,7 +61,7 @@ export const getHabitPost=(date)=>{
                 if (res.data) {
                     
                     
-                    let completedHabits= res.data[0].activity;
+                     completedHabits= res.data[0].activity;
                     for(let i=1;i< res.data.length;i++){
                         completedHabits+=(", "+(res.data[i].activity));
                     }
@@ -66,14 +69,15 @@ export const getHabitPost=(date)=>{
                 }else{
                     console.log("error");
                 }
-                return res.data
+                
             })
         
-       
+       return completedHabits;
 }
-export const addHabitPost=(habit)=>{
+export const addHabitPost=async (habit)=>{
+    let habitData;
     let token=JSON.parse(localStorage.getItem("user"));
-    axios.post("http://localhost:5000/habits/add", JSON.stringify({habit,token}),
+    await axios.post("http://localhost:5000/habits/add", JSON.stringify({habit,token}),
     {
         headers: {
             'Content-Type': 'application/json'
@@ -85,8 +89,8 @@ export const addHabitPost=(habit)=>{
                 }else{
                     console.log("error");
                 }
-                return res.data
+                habitData= res.data;
             })
-        
+        return habitData;
        
 }

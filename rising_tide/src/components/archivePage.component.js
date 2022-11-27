@@ -27,16 +27,18 @@ const onBackButton = event => {
 
 //Cycles through grabbing each journal object by day and returns an array of journals
 const requestPerDate= async (beginDate,endDate)=>{
-	
+	console.log("archive reuest BEGIN")
 	let dateList=[];
     let journalList=[];
 	let calenderMonth=beginDate.month;
+    let calenderDay=beginDate.day
 	for(let currentYear=beginDate.year; currentYear<=endDate.year; currentYear++){
-		for(let monthCounter= calenderMonth; monthCounter<=12; monthCounter++){
+		for(let monthCounter= beginDate.month; monthCounter<=12; monthCounter++){
 			calenderMonth%=12
 			calenderMonth++
-			for(let dayCounter=beginDate.day; dayCounter<=31; dayCounter++){
-				
+			for(let dayCounter=calenderDay; dayCounter<=31; dayCounter++){
+                calenderDay++;
+				calenderDay%=31;
 				let currentDate={
 					day:dayCounter, 
 					month:monthCounter,
@@ -44,13 +46,14 @@ const requestPerDate= async (beginDate,endDate)=>{
 				}
 				let temp = await getJournalPost(currentDate);
                 if(temp){
+                    //console.log(currentDate)
                     journalList.push(temp);
-                    listJournals.push(temp);
+                    //listJournals.push(temp);
                     //console.log(temp);
 
                 }
 
-				if(JSON.stringify(endDate)===JSON.stringify(currentDate)){
+				if(endDate.day==currentDate.day &&endDate.month==currentDate.month &&endDate.year==currentDate.year){
 					dateList.push(currentDate);
 					return journalList;
 					
@@ -109,7 +112,7 @@ const onSubmit = async event => {
     //Posts request for journals given a start and end date
     //REPLACE CONSOLE LOG TEST CODE WITH COMMENTED CODE BELOW 
     let journalList = await requestPerDate(startDateObject, endDateObject);
-    journalList = listJournals;
+    //journalList = listJournals;
     //console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
 
     //Hides error message as the user will try again (if an error occured)

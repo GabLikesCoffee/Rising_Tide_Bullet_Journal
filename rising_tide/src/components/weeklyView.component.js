@@ -51,7 +51,7 @@ for(let i = 0; i < 8; i++){
 }
 
 //1 is for today, 2 is for yesterday, 3 is for the day before yesterday, etc
-const onEditPage1 = event => {
+const onEditPage1 = async event => {
 
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[0];
@@ -70,7 +70,7 @@ const onEditPage1 = event => {
 //COPY PASTE ALL CODE PAST THIS POINT IN THIS FUNCTION TO THE OTHER onEditPage functions once it works
 
     //Grabs journal from the database
-    /*let journal = getJournalPost(loadDate);
+    /*let journal = await getJournalPost(loadDate);
 
     //Sets the journal to a variable that the submission function can grab
     currentJournal = journal;
@@ -83,7 +83,7 @@ const onEditPage1 = event => {
             //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
 
             //Grabs array of habits from server(ask for more details on the function from backend if this doesn't work though it should)
-            let habitArray = getHabitPost(loadDate);
+            let habitArray = await getHabitPost(loadDate);
 
             let habitString = "";
 
@@ -138,7 +138,7 @@ const onEditPage1 = event => {
    //END COPY PASTE
 }
 
-const onEditPage2 = event => {
+const onEditPage2 = async event => {
 
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[1];
@@ -158,7 +158,7 @@ const onEditPage2 = event => {
 
 }
 
-const onEditPage3 = event => {
+const onEditPage3 = async event => {
 
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[2];
@@ -177,7 +177,7 @@ const onEditPage3 = event => {
     //COPY PASTE onEditPage1 CODE HERE
 }
 
-const onEditPage4 = event => {
+const onEditPage4 = async event => {
 
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[3];
@@ -196,7 +196,7 @@ const onEditPage4 = event => {
     //COPY PASTE onEditPage1 CODE HERE
 }
 
-const onEditPage5 = event => {
+const onEditPage5 = async event => {
 
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[4];
@@ -215,7 +215,7 @@ const onEditPage5 = event => {
     //COPY PASTE onEditPage1 CODE HERE
 }
 
-const onEditPage6 = event => {
+const onEditPage6 = async event => {
 
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[5];
@@ -235,7 +235,7 @@ const onEditPage6 = event => {
 
 }
 
-const onEditPage7 = event => {
+const onEditPage7 = async event => {
 
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[6];
@@ -254,7 +254,7 @@ const onEditPage7 = event => {
     //COPY PASTE onEditPage1 CODE HERE
 }
 
-const onEditPage8 = event => {
+const onEditPage8 = async event => {
 
     //Variable for the journal day so the submission function can get it
     journalDay = last7Days[7];

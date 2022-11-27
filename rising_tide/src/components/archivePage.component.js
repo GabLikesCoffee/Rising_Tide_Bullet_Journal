@@ -220,7 +220,7 @@ export default class ArchivePage extends Component {
                                     <input type="date" 
                                         id="start" 
 
-                                        min="2022-09-01" 
+                                        min="2022-01-01" 
                                         max={this.today} required>
                                     </input>
                                     </td>
@@ -230,7 +230,7 @@ export default class ArchivePage extends Component {
                                         id="end" 
                                         name="trip-start" 
 
-                                        min="2022-09-01" 
+                                        min="2022-01-01" 
                                         max={this.today} required>
                                     </input>
                                     </td>

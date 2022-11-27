@@ -36,9 +36,9 @@ export const  logIn=(user)=>{
     },
     }).then(res=>{
                 if (res.data) {
-                    if(localStorage.getItem("user")==null){
-                        window.localStorage.setItem("user", JSON.stringify(res.data));
-                    }
+                   
+                        localStorage.setItem("user", JSON.stringify(res.data));
+                    
                     console.log("Locally saved and lgoin is sucessful");
                 }else{
                     console.log("error");

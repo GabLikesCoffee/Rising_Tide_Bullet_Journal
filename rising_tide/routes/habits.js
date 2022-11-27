@@ -8,7 +8,7 @@ router.route("/get").post(async (req, res) => {
   const username=  await middleware.isValidToken(req.body.token);
   try{
 
-    if(username==null){
+    if(username==null || req.body.token==null){
       res.status(401)
       throw new Error("Invalid username");
     }
@@ -52,7 +52,7 @@ router.route("/add").post(async (req, res) => {
       }
 
       const newHabit = new Habit({
-        username,
+        username:username,
         activity,
         isCompleted,
         date,

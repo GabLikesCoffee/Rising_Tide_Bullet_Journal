@@ -58,7 +58,7 @@ export const getHabitPost=async (date)=>{
             'Content-Type': 'application/json'
         }
     }).then(res=>{
-                if (res.data) {
+                if (res.data!=null && res.data[0]!=null) {
                     
                     
                      completedHabits= res.data[0].activity;

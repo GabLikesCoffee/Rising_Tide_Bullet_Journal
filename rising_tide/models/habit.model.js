@@ -9,6 +9,7 @@ const Schema = mongoose.Schema;
 // });
 const habitSchema = new Schema(
   {
+    username: {type: String, required: true},
     activity: { type: String, required: true },
     isCompleted: { type: Boolean, required: true },
     date: { type: Date, required: true },

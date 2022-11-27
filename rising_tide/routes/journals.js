@@ -63,7 +63,7 @@ router.route("/add").post(async (req, res) => {
     newJournal
       .save()
       .then(() => res.status(201).json("Journal Added for user "+ username))
-      .catch((err) => res.status(400).json("Error: " + err));
+      .catch((err) => res.status(400).json(null));
   }catch(Error){
       res.status(401).json(null)
   }
@@ -83,7 +83,7 @@ router.route("/addHabit").post((req, res) => {
   newHabit
     .save()
     .then(() => res.json("Habit Added"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json(null));
 });
 
 // router.route("/:id").get((req, res) => {

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import seashell from '../Assets/shell.PNG';
-import {addHabitPost,addJournalPost,getHabitPost,getJournalPost} from "../features/RequestUserData"
+import {addJournalPost,getHabitPost,getJournalPost} from "../features/RequestUserData"
 
 //Stores a random number for random shell rotation
 let randomNumber;

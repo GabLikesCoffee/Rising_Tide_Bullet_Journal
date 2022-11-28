@@ -5,8 +5,6 @@ import React, { Component } from 'react';
 import {getJournalPost} from "../features/RequestUserData"
 import {getHabitPost} from "../features/RequestUserData"
 
-let listJournals = [] 
-
 //When the back button is pressed after viewing a journal
 const onBackButton = event => {
 
@@ -30,12 +28,12 @@ const requestPerDate= async (beginDate,endDate)=>{
 	console.log("archive reuest BEGIN")
 	let dateList=[];
     let journalList=[];
-	let calenderMonth=beginDate.month;
+	//let calenderMonth=beginDate.month;
     let calenderDay=beginDate.day
 	for(let currentYear=beginDate.year; currentYear<=endDate.year; currentYear++){
 		for(let monthCounter= beginDate.month; monthCounter<=12; monthCounter++){
-			calenderMonth%=12
-			calenderMonth++
+			//calenderMonth%=12
+			//calenderMonth++
 			for(let dayCounter=calenderDay; dayCounter<=31; dayCounter++){
                 calenderDay++;
 				calenderDay%=31;
@@ -46,14 +44,11 @@ const requestPerDate= async (beginDate,endDate)=>{
 				}
 				let temp = await getJournalPost(currentDate);
                 if(temp){
-                    //console.log(currentDate)
                     journalList.push(temp);
-                    //listJournals.push(temp);
-                    //console.log(temp);
 
                 }
 
-				if(endDate.day==currentDate.day &&endDate.month==currentDate.month &&endDate.year==currentDate.year){
+				if(endDate.day===currentDate.day &&endDate.month===currentDate.month &&endDate.year===currentDate.year){
 					dateList.push(currentDate);
 					return journalList;
 					
@@ -110,10 +105,7 @@ const onSubmit = async event => {
     console.log(endDateObject)
 
     //Posts request for journals given a start and end date
-    //REPLACE CONSOLE LOG TEST CODE WITH COMMENTED CODE BELOW 
     let journalList = await requestPerDate(startDateObject, endDateObject);
-    //journalList = listJournals;
-    //console.log(requestPerDate({day:1,month:1,year:1011},{day:1,month:2,year:1011}))
 
     //Hides error message as the user will try again (if an error occured)
     errorMsg.setAttribute("hidden", true);
@@ -143,18 +135,13 @@ const onSubmit = async event => {
         }
         console.log(dateObject); 
 
-
-        //GENERATE HABITS STRING HERE. HERE'S SOME PSEUDO CODE/REAL CODE
-        //Grabs array of habits from server(ask for more details on the function from backend)
-        //let habitArray = getHabitPost(journalList[i].date)
-        //let habitString = await getHabitPost(journalList[i].date)
+        //Grabs array of habits from server
         let habitString = await getHabitPost(dateObject)
-        //let habitArray = await getHabitPost(dateObject)
         
         //Create text to put inside created elements above
         //Adding the values from the journalList[i]
-        //let journalDateString = "Journal Date: " + (journalList[i].date.getMonth()+1) + "-" + journalList[i].date.getDay() + "-" +  journalList[i].date.getYear();
-        let journalDateString = "Journal Date: " + journalList[i].date;
+        let journalDateString = "Journal Date: " + dateObject.month + "-" + dateObject.day + "-" +  dateObject.year;
+        //let journalDateString = "Journal Date: " + journalList[i].date;
         let moodString = "Mood: " +  journalList[i].mood;
         let habitFullString = "Habits: " + habitString;
         let dailyAffirmationString = "Daily Affirmation: " +  journalList[i].freeResponse;

@@ -191,6 +191,7 @@ const checkedHabit = event => {
     //Creates an index from the id of the habit. ex. habit1 becomes 0 for the first index of the array
     let index = event.target.id;
 
+    //Checked a habit
     //If the id has a number in it
     if(/\d/.test(index) && index.includes("habit")){
 
@@ -221,6 +222,7 @@ const checkedHabit = event => {
             
         }
     }
+    //Clicked on a delete habit button
     else if(/\d/.test(index))
     {
         //Stores habit number and not the array index
@@ -238,6 +240,7 @@ const checkedHabit = event => {
 
         //Sets habit to no longer active
         habitsArray[index].activated = false;
+        habitsArray[index].isCompleted = false;
 
         //Hides the delete buttons after row deletion
         showingDeleteButtons = false;

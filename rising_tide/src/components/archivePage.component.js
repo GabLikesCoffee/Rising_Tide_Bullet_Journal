@@ -5,13 +5,31 @@ import React, { Component } from 'react';
 import {getJournalPost} from "../features/RequestUserData"
 import {getHabitPost} from "../features/RequestUserData"
 
+let neutral = 0;
 let happy = 0;
+let ecstatic = 0;
+let excited = 0;
+let sad = 0;
+let depressed = 0;
+let hopeless = 0;
+let mad = 0;
+let angry = 0;
+let disgusted = 0;
 let days = 0;
 
 //When the back button is pressed after viewing a journal
 const onBackButton = event => {
 
+    neutral = 0;
     happy = 0;
+    ecstatic = 0;
+    excited = 0;
+    sad = 0;
+    depressed = 0;
+    hopeless = 0;
+    mad = 0;
+    angry = 0;
+    disgusted = 0;
     days = 0;
 
     //Finds and empties the journal view
@@ -51,8 +69,35 @@ const requestPerDate= async (beginDate,endDate)=>{
 				let temp = await getJournalPost(currentDate);
                 if(temp){
                     journalList.push(temp);
-                    if(temp.mood === "happy"){
+                    if(temp.mood === "neutral"){
+                        neutral++;
+                    }
+                    else if(temp.mood === "happy"){
                         happy++;
+                    }
+                    else if(temp.mood === "ecstatic"){
+                        ecstatic++;
+                    }
+                    else if(temp.mood === "excited"){
+                        excited++;
+                    }
+                    else if(temp.mood === "sad"){
+                        sad++;
+                    }
+                    else if(temp.mood === "depressed"){
+                        depressed++;
+                    }
+                    else if(temp.mood === "hopeless"){
+                        hopeless++;
+                    }
+                    else if(temp.mood === "mad"){
+                        mad++;
+                    }
+                    else if(temp.mood === "angry"){
+                        angry++;
+                    }
+                    else if(temp.mood === "disgusted"){
+                        disgusted++;
                     }
                     days++;
                 }
@@ -176,11 +221,66 @@ const onSubmit = async event => {
         archiveEntriesDiv.appendChild(dailyAffirmation);
 
     }
+    let numberOfNeutralDays = document.createElement('h3');
+    let neutralDaysString = "Percentage of neutral days: %" + ((neutral/days) * 100);
+    let neutralText = document.createTextNode(neutralDaysString);
+    numberOfNeutralDays.appendChild(neutralText);
+    archiveEntriesDiv.appendChild(numberOfNeutralDays);
+
     let numberOfHappyDays = document.createElement('h3');
-    let daysString = "Percentage of happy days: " + (happy/days);
-    let happyText = document.createTextNode(daysString);
+    let happyDaysString = "Percentage of happy days: %" + ((happy/days) * 100);
+    let happyText = document.createTextNode(happyDaysString);
     numberOfHappyDays.appendChild(happyText);
     archiveEntriesDiv.appendChild(numberOfHappyDays);
+
+    let numberOfEcstaticDays = document.createElement('h3');
+    let ecstaticDaysString = "Percentage of ecstatic days: %" + ((ecstatic/days) * 100);
+    let ecstaticText = document.createTextNode(ecstaticDaysString);
+    numberOfEcstaticDays.appendChild(ecstaticText);
+    archiveEntriesDiv.appendChild(numberOfEcstaticDays);
+
+    let numberOfExcitedDays = document.createElement('h3');
+    let excitedDaysString = "Percentage of excited days: %" + ((excited/days) * 100);
+    let excitedText = document.createTextNode(excitedDaysString);
+    numberOfExcitedDays.appendChild(excitedText);
+    archiveEntriesDiv.appendChild(numberOfExcitedDays);
+
+    let numberOfSadDays = document.createElement('h3');
+    let sadDaysString = "Percentage of sad days: %" + ((sad/days) * 100);
+    let sadText = document.createTextNode(sadDaysString);
+    numberOfSadDays.appendChild(sadText);
+    archiveEntriesDiv.appendChild(numberOfSadDays);
+
+    let numberOfDepressedDays = document.createElement('h3');
+    let depressedDaysString = "Percentage of depressed days: %" + ((depressed/days) * 100);
+    let depressedText = document.createTextNode(depressedDaysString);
+    numberOfDepressedDays.appendChild(depressedText);
+    archiveEntriesDiv.appendChild(numberOfDepressedDays);
+
+    let numberOfHopelessDays = document.createElement('h3');
+    let hopelessDaysString = "Percentage of hopeless days: %" + ((hopeless/days) * 100);
+    let hopelessText = document.createTextNode(hopelessDaysString);
+    numberOfHopelessDays.appendChild(hopelessText);
+    archiveEntriesDiv.appendChild(numberOfHopelessDays);
+
+    let numberOfMadDays = document.createElement('h3');
+    let madDaysString = "Percentage of mad days: %" + ((mad/days) * 100);
+    let madText = document.createTextNode(madDaysString);
+    numberOfMadDays.appendChild(madText);
+    archiveEntriesDiv.appendChild(numberOfMadDays);
+
+    let numberOfAngryDays = document.createElement('h3');
+    let angryDaysString = "Percentage of angry days: %" + ((angry/days) * 100);
+    let angryText = document.createTextNode(angryDaysString);
+    numberOfAngryDays.appendChild(angryText);
+    archiveEntriesDiv.appendChild(numberOfAngryDays);
+
+    let numberOfDisgustedDays = document.createElement('h3');
+    let disgustedDaysString = "Percentage of disgusted days: %" + ((disgusted/days) * 100);
+    let disgustedText = document.createTextNode(disgustedDaysString);
+    numberOfDisgustedDays.appendChild(disgustedText);
+    archiveEntriesDiv.appendChild(numberOfDisgustedDays);
+
     //end for loop for each journal
 }
 

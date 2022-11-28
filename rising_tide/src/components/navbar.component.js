@@ -39,7 +39,7 @@ const toggleFontSize = event => {
       h3.classList.add("bigH3");
     }
     for(let ta of textarea){
-      ta.style = "font-size: 2.2vw"
+      ta.classList.add("bigTextArea");
     }
   }
   else{
@@ -60,7 +60,7 @@ const toggleFontSize = event => {
       h3.classList.remove("bigH3");
     }
     for(let ta of textarea){
-      ta.style = "font-size: 2vw"
+      ta.classList.remove("bigTextArea");
     }
   }
   bigFont = !bigFont;

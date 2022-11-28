@@ -67,40 +67,37 @@ const requestPerDate= async (beginDate,endDate)=>{
 					year:currentYear
 				}
 				let temp = await getJournalPost(currentDate);
-    
-                let moodStr = temp.mood;
-                moodStr = moodStr.toLowerCase();
 
                 if(temp){
                     journalList.push(temp);
-                    if(moodStr === "neutral"){
+                    if(temp.mood === "neutral"){
                         neutral++;
                     }
-                    else if(moodStr === "happy"){
+                    else if(temp.mood === "happy"){
                         happy++;
                     }
-                    else if(moodStr === "ecstatic"){
+                    else if(temp.mood === "ecstatic"){
                         ecstatic++;
                     }
-                    else if(moodStr === "excited"){
+                    else if(temp.mood === "excited"){
                         excited++;
                     }
-                    else if(moodStr === "sad"){
+                    else if(temp.mood === "sad"){
                         sad++;
                     }
-                    else if(moodStr === "depressed"){
+                    else if(temp.mood === "depressed"){
                         depressed++;
                     }
-                    else if(moodStr === "hopeless"){
+                    else if(temp.mood === "hopeless"){
                         hopeless++;
                     }
-                    else if(moodStr === "mad"){
+                    else if(temp.mood === "mad"){
                         mad++;
                     }
-                    else if(moodStr === "angry"){
+                    else if(temp.mood === "angry"){
                         angry++;
                     }
-                    else if(moodStr === "disgusted"){
+                    else if(temp.mood === "disgusted"){
                         disgusted++;
                     }
                     days++;

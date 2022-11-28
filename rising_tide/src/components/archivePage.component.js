@@ -5,8 +5,12 @@ import React, { Component } from 'react';
 import {getJournalPost} from "../features/RequestUserData"
 import {getHabitPost} from "../features/RequestUserData"
 
+let happy = 0;
+
 //When the back button is pressed after viewing a journal
 const onBackButton = event => {
+
+    happy = 0;
 
     //Finds and empties the journal view
     let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
@@ -45,7 +49,7 @@ const requestPerDate= async (beginDate,endDate)=>{
 				let temp = await getJournalPost(currentDate);
                 if(temp){
                     journalList.push(temp);
-
+                    happy++;
                 }
 
 				if(endDate.day===currentDate.day &&endDate.month===currentDate.month &&endDate.year===currentDate.year){
@@ -167,6 +171,11 @@ const onSubmit = async event => {
         archiveEntriesDiv.appendChild(dailyAffirmation);
 
     }
+    let numberOfHappyDays = document.createElement('h3');
+    let daysString = "Number of happy days: " + happy;
+    let happyText = document.createTextNode(daysString);
+    numberOfHappyDays.appendChild(happyText);
+    archiveEntriesDiv.appendChild(numberOfHappyDays);
     //end for loop for each journal
 }
 
@@ -231,7 +240,6 @@ export default class ArchivePage extends Component {
                         </div>
                     </center>
                 </div>
-
             </div>
 
         )

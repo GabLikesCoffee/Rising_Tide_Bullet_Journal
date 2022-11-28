@@ -6,11 +6,13 @@ import {getJournalPost} from "../features/RequestUserData"
 import {getHabitPost} from "../features/RequestUserData"
 
 let happy = 0;
+let days = 0;
 
 //When the back button is pressed after viewing a journal
 const onBackButton = event => {
 
     happy = 0;
+    days = 0;
 
     //Finds and empties the journal view
     let archiveEntriesDiv = document.getElementById("archiveEntriesDiv");
@@ -49,7 +51,10 @@ const requestPerDate= async (beginDate,endDate)=>{
 				let temp = await getJournalPost(currentDate);
                 if(temp){
                     journalList.push(temp);
-                    happy++;
+                    if(temp.mood === "happy"){
+                        happy++;
+                    }
+                    days++;
                 }
 
 				if(endDate.day===currentDate.day &&endDate.month===currentDate.month &&endDate.year===currentDate.year){
@@ -172,7 +177,7 @@ const onSubmit = async event => {
 
     }
     let numberOfHappyDays = document.createElement('h3');
-    let daysString = "Number of happy days: " + happy;
+    let daysString = "Percentage of happy days: " + (happy/days);
     let happyText = document.createTextNode(daysString);
     numberOfHappyDays.appendChild(happyText);
     archiveEntriesDiv.appendChild(numberOfHappyDays);

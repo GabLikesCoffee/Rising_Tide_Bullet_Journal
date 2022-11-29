@@ -28,7 +28,8 @@ import axios from "axios"
 
     
 }
-export const  logIn=(user)=>{
+export const  logIn= async (user)=>{
+    let token;
     console.log( JSON.stringify(user))
     axios.post("http://localhost:5000/users/logIn", JSON.stringify(user),
     { headers: {
@@ -43,8 +44,9 @@ export const  logIn=(user)=>{
                 }else{
                     console.log("error");
                 }
-                return res.data
+                token= res.data;
             })
+            return token;
 }
 
 export const logOut=()=>{
@@ -52,4 +54,26 @@ export const logOut=()=>{
     if(!localStorage.getItem("user"))
          return "User sucessfully logged out";
 }
+export const  getUsername= async()=>{
 
+    if(localStorage.getItem("user")==null) 
+        return null;
+    else{
+        let token = JSON.parse(localStorage.getItem("user"));
+        let username;
+        axios.post("http://localhost:5000/users/getUsername", JSON.stringify({token}),
+        { headers: {
+            'Content-Type': 'application/json'
+        },
+        }).then(res=>{
+                    if (res.data) {
+                    
+                        console.log(res.data.username);
+                    }else{
+                        console.log("No username");
+                    }
+                    username = res.data.username
+                })
+                return username;
+        }
+}

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
+const middleware=require("../middleware/authMiddleware");
 
 router.route("/logIn").post(async (req, res) => {
   const { username, password } = req.body;
@@ -67,6 +68,32 @@ router.route("/add").post(async (req, res) => {
     res.json(Error.message);
   }
 });
+
+router.route("/getUsername").post(async (req, res) => {
+  let username;
+  if(req.body==null){
+    res.status(400);
+    throw new Error("No username sent")
+  }
+  
+  try{
+    username = await middleware.isValidToken(req.body.token);
+
+    if(username==null){
+      res.status(401);
+      throw new Error("username DNE");
+    }
+    res.status(201).json({username});
+
+  }catch(Error){
+
+    res.json(Error);
+  }
+});
+
+
+
+
 const createToken = (user) => {
   return jwt.sign({ user }, process.env.JWT_SECRET);
 };
